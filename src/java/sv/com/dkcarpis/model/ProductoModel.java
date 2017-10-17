@@ -20,7 +20,7 @@ public class ProductoModel {
     public boolean nuevoProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;
          con =  new  Conexion();
-         con.query="INSERT INTO producto(id_fabricante, producto_serie, producto_nombre) VALUES ("+prdData.getId_fabricante()+",'"+prdData.getProducto_serie()+"','"+prdData.getProducto_nombre()+"')";
+         con.query="INSERT INTO producto(id_fabricante, id_categoria, id_tipoproducto, producto_serie, producto_nombre) VALUES ("+prdData.getId_fabricante()+","+prdData.getId_categoria()+", "+prdData.getId_tipoproducto()+",'"+prdData.getProducto_serie()+"','"+prdData.getProducto_nombre()+"')";
          resultado=con.setQuery(con.query);
          con.cerrarConexion();
          con.query="select * from producto order by producto_id asc limit 1";
@@ -39,7 +39,7 @@ public class ProductoModel {
    public boolean modificarProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;
         con = new Conexion();
-        con.query="UPDATE producto SET id_fabricante="+prdData.getId_fabricante()+", producto_serie='"+prdData.getProducto_serie()+"',producto_nombre='"+prdData.getProducto_nombre()+"' WHERE producto_id="+prdData.getProducto_id()+"";
+        con.query="UPDATE producto SET id_fabricante="+prdData.getId_fabricante()+", id_categoria="+prdData.getId_categoria()+", id_tipoproducto="+prdData.getId_tipoproducto()+", producto_serie='"+prdData.getProducto_serie()+"',producto_nombre='"+prdData.getProducto_nombre()+"' WHERE producto_id="+prdData.getProducto_id()+"";
         resultado=con.setQuery(con.query);
         con.cerrarConexion();
     return resultado;

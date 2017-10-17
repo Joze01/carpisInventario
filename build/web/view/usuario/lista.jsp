@@ -110,14 +110,15 @@
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
-                  <th>Descripcion</th>
+                  <th>Acceso</th>
+                  <th>Tipo</th>
                   <th>Funciones</th>
                 </tr>
               </thead>
               <tbody>
               <%
              
-              String query="select * from fabricante";
+              String query="select * from usuario inner join tipo_usuario on tipo_usuario.tipo_usuario_id=usuario.id_tipo";
               Conexion con = new Conexion();
               
               ResultSet rs;
@@ -126,8 +127,9 @@
               while(rs.next()){
                 out.println("<tr class='gradeX'>");
                 out.println("<td>"+rs.getInt(1)+"</td>");
-                out.println("<td>"+rs.getString(2)+"</td>");
                 out.println("<td>"+rs.getString(3)+"</td>");
+                out.println("<td>"+rs.getString(4)+"</td>");
+                out.println("<td>"+rs.getString(7)+"</td>");
                 out.println("<td>");
                 out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
                 out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
