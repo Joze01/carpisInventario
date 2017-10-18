@@ -3,12 +3,16 @@
     Created on : 10-15-2017, 04:59:46 PM
     Author     : Jose-PC
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="sv.com.dkcapris.beans.ProductoBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
+<%@page import="sv.com.dkcarpis.model.ProductoModel"%>
+<%@page import="sv.com.dkcarpis.model.ImageModel"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Matrix Admin</title>
+<title>Producto | Lista</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -50,24 +54,24 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li class=""><a href="indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li class="submenu "> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
+    <li class=""><a href="../indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
-        <li><a href="form-common.html">Buscador</a></li>
+        <li><a href="lista.jsp">Buscador</a></li>
         <li><a href="form-validation.html">Entradas</a></li>
         <li><a href="form-wizard.html">Salidas</a></li>
       </ul>
     </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
+    <li class="submenu"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
       <ul>
-          <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+          <li><a href="../fabricante/lista.jsp">Listado</a></li>
+        <li><a href="../fabricante/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
       <ul>
-        <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+        <li><a href="../usuario/lista.jsp">Listado</a></li>
+        <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
 
@@ -82,15 +86,12 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-truck"></i>Fabricantes</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-list"></i>Productos</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
 
-<!--Action boxes-->
-  <div class="container-fluid">
-  
-<!--End-Action boxes-->    
+   
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
@@ -101,39 +102,63 @@
 <!--End-Action boxes-->    
 <!--Chart-box-->    
          <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Data table</h5>
+          <div class="widget-title"> <span class="icon"><i class="icon-list"></i></span>
+            <h5>Productos</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Serie</th>
                   <th>Nombre</th>
                   <th>Descripcion</th>
-                  <th>Funciones</th>
+                  <th>Imagen</th>
+                  <th>Marca</th>
+                  <th>Categoria</th>
+                  <th>Tipo</th>
+                  <th>Existencia</th>
+                  <th>Costo</th>
+                  <th>Opciones</th>
                 </tr>
               </thead>
               <tbody>
               <%
-             
-              String query="select * from fabricante";
-              Conexion con = new Conexion();
-              
-              ResultSet rs;
-              con.setRs(query);
-              rs=con.getRs();
-              while(rs.next()){
-                out.println("<tr class='gradeX'>");
-                out.println("<td>"+rs.getInt(1)+"</td>");
-                out.println("<td>"+rs.getString(2)+"</td>");
-                out.println("<td>"+rs.getString(3)+"</td>");
-                out.println("<td>");
-                out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
-                out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
-                out.println("</td>");
-                out.println("</tr>");
-              }
+                  ProductoModel pdFunc = new ProductoModel();
+                  ArrayList<ProductoBean> listado;
+                  listado = new ArrayList<ProductoBean>();
+                  ImageModel imgMod = new ImageModel();
+                  listado=pdFunc.getTable();
+                  
+                  
+                  for(ProductoBean pd: listado ){
+                          String imgdir = imgMod.getOneUrl(pd.getProducto_id());  
+                          pd.setProducto_ImgPortada("images/"+imgdir);
+                          
+                          System.out.println(pd.getProducto_ImgPortada());
+                         out.println("<tr class='gradeX'>");
+                         out.println("<td>"+pd.getProducto_id()+"</td>");
+                         out.println("<td>"+pd.getProducto_serie()+"</td>");
+                         out.println("<td>"+pd.getProducto_nombre()+"</td>");
+                         out.println("<td>"+pd.getProducto_descripcion()+"</td>");
+                         out.println("<td><img src='"+pd.getProducto_ImgPortada()+"'/></td>");
+                         out.println("<td>"+pd.getFabricante_Nombre()+"</td>");
+                         out.println("<td>"+pd.getCategoria_Nombre()+"</td>");
+                         out.println("<td>"+pd.getTipoproducto_nombre()+"</td>");
+                         out.println("<td>3</td>");
+                         out.println("<td>5.50</td>");
+                         
+                         out.println("<td>");
+                         out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
+                         out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
+                         out.println("</td>");
+                         
+                         
+                         out.println("</tr>");
+                  
+                  }
+                  
+   
 
 
               %>

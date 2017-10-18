@@ -6,6 +6,7 @@
 package sv.com.dkcarpis.model;
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.ArrayList;
 import sv.com.dkcapris.beans.ImageBean;
 import sv.com.dkcapris.beans.ProductoBean;
 import sv.com.dkcarpis.model.ImageModel;
@@ -45,6 +46,39 @@ public class ProductoModel {
     return resultado;
     }
     
+   public ArrayList<ProductoBean> getTable() throws SQLException{
+       ArrayList<ProductoBean> listado = new ArrayList<ProductoBean>();
+        Conexion con = new  Conexion();
+        con.query="SELECT * FROM producto" + 
+                " INNER JOIN fabricante on fabricante.fabricante_id=producto.id_fabricante" +
+                " INNER JOIN categoria on categoria.categoria_id=producto.id_categoria" +
+                " INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto";
+        con.setRs(con.query);
+        rs = con.getRs();
+        while(rs.next()){
+            ProductoBean prd = new ProductoBean();
+            
+            
+            prd.setProducto_id(rs.getInt("producto_id"));
+            prd.setProducto_serie(rs.getString("producto_serie"));
+            prd.setProducto_nombre(rs.getString("producto_nombre"));
+            prd.setProducto_descripcion(rs.getString("producto_descripcion"));
+            
+            
+            
+            prd.setFabricante_Nombre(rs.getString("fabricante_nombre"));
+            prd.setCategoria_Nombre("categoria_nombre");
+            prd.setTipoproducto_nombre(rs.getString("tipoproducto_nombre"));
+            
+           
+            
+            listado.add(prd);
+        
+        }
+       
+       return listado;
+   }
+   
     public boolean eliminarProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;
         con = new Conexion();

@@ -14,6 +14,76 @@ import java.util.ArrayList;
 public class ProductoBean {
 
     /**
+     * @return the producto_descripcion
+     */
+    public String getProducto_descripcion() {
+        return producto_descripcion;
+    }
+
+    /**
+     * @param producto_descripcion the producto_descripcion to set
+     */
+    public void setProducto_descripcion(String producto_descripcion) {
+        this.producto_descripcion = producto_descripcion;
+    }
+
+    /**
+     * @return the tipoproducto_nombre
+     */
+    public String getTipoproducto_nombre() {
+        return tipoproducto_nombre;
+    }
+
+    /**
+     * @param tipoproducto_nombre the tipoproducto_nombre to set
+     */
+    public void setTipoproducto_nombre(String tipoproducto_nombre) {
+        this.tipoproducto_nombre = tipoproducto_nombre;
+    }
+
+    /**
+     * @return the categoria_Nombre
+     */
+    public String getCategoria_Nombre() {
+        return categoria_Nombre;
+    }
+
+    /**
+     * @param categoria_Nombre the categoria_Nombre to set
+     */
+    public void setCategoria_Nombre(String categoria_Nombre) {
+        this.categoria_Nombre = categoria_Nombre;
+    }
+
+    /**
+     * @return the fabricante_Nombre
+     */
+    public String getFabricante_Nombre() {
+        return fabricante_Nombre;
+    }
+
+    /**
+     * @param fabricante_Nombre the fabricante_Nombre to set
+     */
+    public void setFabricante_Nombre(String fabricante_Nombre) {
+        this.fabricante_Nombre = fabricante_Nombre;
+    }
+
+    /**
+     * @return the producto_ImgPortada
+     */
+    public String getProducto_ImgPortada() {
+        return producto_ImgPortada;
+    }
+
+    /**
+     * @param producto_ImgPortada the producto_ImgPortada to set
+     */
+    public void setProducto_ImgPortada(String producto_ImgPortada) {
+        this.producto_ImgPortada = producto_ImgPortada;
+    }
+
+    /**
      * @return the id_tipoproducto
      */
     public int getId_tipoproducto() {
@@ -112,10 +182,15 @@ public class ProductoBean {
     }
     private int producto_id;
     private int id_fabricante;
+    private String fabricante_Nombre;
     private int id_categoria;
+    private String categoria_Nombre;
     private int id_tipoproducto;
+    private String tipoproducto_nombre;
+    private String producto_ImgPortada;
     private String producto_serie;
     private String producto_nombre;
+    private String producto_descripcion;
     private ArrayList<ImageBean> ProductoImagenes=  new ArrayList<ImageBean>();
     
 }

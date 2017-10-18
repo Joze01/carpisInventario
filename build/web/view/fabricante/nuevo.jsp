@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Matrix Admin</title>
+<title>Fabricante | Nuevo</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -50,24 +50,24 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li class=""><a href="indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class=""><a href="../indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="submenu "> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
-        <li><a href="form-common.html">Buscador</a></li>
+        <li><a href="../producto/lista.jsp">Buscador</a></li>
         <li><a href="form-validation.html">Entradas</a></li>
         <li><a href="form-wizard.html">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu active"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
       <ul>
-          <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+          <li><a href="lista.jsp">Listado</a></li>
+        <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
       <ul>
-        <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+        <li><a href="../usuario/lista.jsp">Listado</a></li>
+        <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
 
@@ -87,15 +87,12 @@
   </div>
 <!--End-breadcrumbs-->
 
-<!--Action boxes-->
-  <div class="container-fluid">
-  
-<!--End-Action boxes-->    
+
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="#"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-ban-circle"></i> Cancelar </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -105,40 +102,25 @@
             <h5>Data table</h5>
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Descripcion</th>
-                  <th>Funciones</th>
-                </tr>
-              </thead>
-              <tbody>
-              <%
+             <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+              <div class="control-group">
+                <label class="control-label">Nombre</label>
+                <div class="controls">
+                  <input type="text" name="required" id="required">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Descripcion</label>
+                <div class="controls">
+                  <input type="text" name="required" id="required">
+                </div>
+              </div>
              
-              String query="select * from fabricante";
-              Conexion con = new Conexion();
-              
-              ResultSet rs;
-              con.setRs(query);
-              rs=con.getRs();
-              while(rs.next()){
-                out.println("<tr class='gradeX'>");
-                out.println("<td>"+rs.getInt(1)+"</td>");
-                out.println("<td>"+rs.getString(2)+"</td>");
-                out.println("<td>"+rs.getString(3)+"</td>");
-                out.println("<td>");
-                out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
-                out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
-                out.println("</td>");
-                out.println("</tr>");
-              }
-
-
-              %>
-              </tbody>
-            </table>
+             
+              <div class="form-actions">
+                <input type="submit" value="Guardar" class="btn btn-success">
+              </div>
+            </form>
           </div>
         </div>
 <!--End-Chart-box--> 
@@ -162,9 +144,9 @@
 <script src="../js/bootstrap.min.js"></script> 
 <script src="../js/jquery.uniform.js"></script> 
 <script src="../js/select2.min.js"></script> 
-<script src="../js/jquery.dataTables.min.js"></script> 
+<script src="../js/jquery.validate.js"></script> 
 <script src="../js/matrix.js"></script> 
-<script src="../js/matrix.tables.js"></script>
+<script src="../js/matrix.form_validation.js"></script>
 </script>
 </body>
 </html>

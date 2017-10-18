@@ -44,6 +44,7 @@ public class Conexion {
  public void setRs(String consulta) {
  try {
  this.rs = s.executeQuery(consulta);
+     System.out.println(consulta);
  } catch (SQLException e2) {
  System.out.println("ERROR:Fallo en SQL: "+e2.getMessage());
  }

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Dashboard | Admin</title>
+<title>Dashboard </title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -50,21 +50,21 @@
     <li class="active"><a href="indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
-        <li><a href="form-common.html">Buscador</a></li>
+        <li><a href="producto/lista.jsp">Buscador</a></li>
         <li><a href="form-validation.html">Entradas</a></li>
         <li><a href="form-wizard.html">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
       <ul>
-        <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+        <li><a href="fabricante/lista.jsp">Listado</a></li>
+        <li><a href="fabricante/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
       <ul>
-        <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+        <li><a href="usuario/lista.jsp">Listado</a></li>
+        <li><a href="usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
 

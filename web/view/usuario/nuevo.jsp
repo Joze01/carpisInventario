@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Usuario | Listado</title>
+<title>Usuario | Nuevo</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -105,42 +105,7 @@
             <h5>Usuarios</h5>
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Acceso</th>
-                  <th>Tipo</th>
-                  <th>Funciones</th>
-                </tr>
-              </thead>
-              <tbody>
-              <%
-             
-              String query="select * from usuario inner join tipo_usuario on tipo_usuario.tipo_usuario_id=usuario.id_tipo";
-              Conexion con = new Conexion();
-              
-              ResultSet rs;
-              con.setRs(query);
-              rs=con.getRs();
-              while(rs.next()){
-                out.println("<tr class='gradeX'>");
-                out.println("<td>"+rs.getInt(1)+"</td>");
-                out.println("<td>"+rs.getString(3)+"</td>");
-                out.println("<td>"+rs.getString(4)+"</td>");
-                out.println("<td>"+rs.getString(7)+"</td>");
-                out.println("<td>");
-                out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
-                out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
-                out.println("</td>");
-                out.println("</tr>");
-              }
 
-
-              %>
-              </tbody>
-            </table>
           </div>
         </div>
 <!--End-Chart-box--> 
@@ -159,14 +124,15 @@
 
 <!--end-Footer-part-->
 
+
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
 <script src="../js/jquery.uniform.js"></script> 
 <script src="../js/select2.min.js"></script> 
-<script src="../js/jquery.dataTables.min.js"></script> 
+<script src="../js/jquery.validate.js"></script> 
 <script src="../js/matrix.js"></script> 
-<script src="../js/matrix.tables.js"></script>
+<script src="../js/matrix.form_validation.js"></script>
 </script>
 </body>
 </html>

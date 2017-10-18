@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package sv.com.dkcarpis.model;
+import java.security.interfaces.RSAKey;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
@@ -25,6 +27,22 @@ public class ImageModel {
             con.cerrarConexion();
        }
     return resultado;
+    }
+    
+    public String getOneUrl(Integer id) throws SQLException{
+        String direccion="";
+        con = new Conexion();
+        con.query="select * from imagen where id_producto="+id+" limit 1";
+        ResultSet rs;
+        con.setRs(con.query);
+        rs=con.getRs();
+        
+        while(rs.next()){
+        direccion=rs.getString("imagen_url");
+            System.out.println(rs.getString("imagen_url"));
+        }
+        
+        return direccion;
     }
     
     public boolean elimarImagenProducto(ImageBean imgData) throws SQLException{

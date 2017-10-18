@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Matrix Admin</title>
+<title>Usuario | Listado</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -50,24 +50,24 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li class=""><a href="indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class=""><a href="../indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="submenu "> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
-        <li><a href="form-common.html">Buscador</a></li>
+        <li><a href="../producto/lista.jsp">Buscador</a></li>
         <li><a href="form-validation.html">Entradas</a></li>
         <li><a href="form-wizard.html">Salidas</a></li>
       </ul>
     </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
+    <li class="submenu "> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
       <ul>
-          <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+          <li><a href="../fabricante/lista.jsp">Listado</a></li>
+        <li><a href="../fabricante/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
+    <li class="submenu active"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
       <ul>
-        <li><a href="form-common.html">Listado</a></li>
-        <li><a href="form-validation.html">Nuevo</a></li>
+        <li><a href="lista.jsp">Listado</a></li>
+        <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
 
@@ -82,7 +82,7 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-truck"></i>Fabricantes</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-group"></i>Usuarios</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -101,8 +101,8 @@
 <!--End-Action boxes-->    
 <!--Chart-box-->    
          <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Data table</h5>
+          <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
+            <h5>Usuarios</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
