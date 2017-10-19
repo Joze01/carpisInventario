@@ -108,7 +108,7 @@
             <h5>Nuevo Producto</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+             <form class="form-horizontal" method="post" action="#" enctype = "multipart/form-data" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
                 <label class="control-label">Numero de Serie</label>
                 <div class="controls">
@@ -187,7 +187,12 @@
                     </select>
                 </div>
                </div>      
-                    
+               <div class="control-group">
+              <label class="control-label">Imagen</label>
+              <div class="controls">
+                <input type="file" name="imagen"/>
+              </div>
+            </div>  
               <div class="form-actions">
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>

@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sv.com.dkcapris.beans.ProductoBean;
+import sv.com.dkcarpis.model.ProductoModel;
 
 /**
  *
@@ -33,16 +35,30 @@ public class ProductoController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet productoController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet productoController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String metodo = request.getParameter("metodo");
+            
+            if(metodo.equals("agregar")){
+            if(false){
+             response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Registrado Correctamente");
+            }else{
+                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al registar ");
+                }
+            }
+            if(metodo.equals("modificar")){
+                if(false){
+                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Modificado Correctamente");
+                }else{
+                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al modificar ");
+                }
+            }
+            if(metodo.equals("eliminar")){     
+                if(false){
+                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Eliminado Correctamente");
+                }else{
+                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al eliminar ");
+                }
+            
+            }
         }
     }
 
