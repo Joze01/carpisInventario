@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	
 	// === jQuery Peity === //
@@ -38,15 +37,15 @@ $(document).ready(function(){
 	$(".peity_bar_neutral span").peity("bar", {
 		colour: "#757575"
 	});
-	
+	/*
         // === jQeury Gritter, a growl-like notifications === //
 	$.gritter.add({
 		title:	'Important Unread messages',
 		text:	'You have 12 unread messages.',
 		time: 3000,
-                class_name: 'gritter-itemWarn' , 
+                class_name: 'gritter-itemOk' , 
 		sticky: false
-	});
+	});*/
 	$('#gritter-notify .normal').click(function(){
 		$.gritter.add({
 			title:	'Normal notification',

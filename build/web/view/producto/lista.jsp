@@ -58,8 +58,8 @@
     <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
         <li><a href="lista.jsp">Buscador</a></li>
-        <li><a href="form-validation.html">Entradas</a></li>
-        <li><a href="form-wizard.html">Salidas</a></li>
+        <li><a href="entrada/lista.jsp">Entradas</a></li>
+        <li><a href="salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
@@ -96,14 +96,16 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="#"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_ls"> <a href="entrada/lista.jsp"> <i class="icon-signin"></i> Entradas </a> </li>
+        <li class="bg_ly"> <a href="salida/lista.jsp"> <i class="icon-external-link"></i> Salidas </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
 <!--Chart-box-->    
          <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-list"></i></span>
-            <h5>Productos</h5>
+            <h5>Lista de productos</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
@@ -130,8 +132,15 @@
                   ImageModel imgMod = new ImageModel();
                   listado=pdFunc.getTable();
                   
+             
                   
                   for(ProductoBean pd: listado ){
+
+                          Integer incom = pdFunc.getEntradas(pd.getProducto_id());
+                          Integer excom = pdFunc.getSalidas(pd.getProducto_id());
+                          Integer Existencia =  incom - excom;
+                          
+                          String precios=pdFunc.getEntradaPrecios(pd.getProducto_id());
                           String imgdir = imgMod.getOneUrl(pd.getProducto_id());  
                           pd.setProducto_ImgPortada("images/"+imgdir);
                           
@@ -145,12 +154,23 @@
                          out.println("<td>"+pd.getFabricante_Nombre()+"</td>");
                          out.println("<td>"+pd.getCategoria_Nombre()+"</td>");
                          out.println("<td>"+pd.getTipoproducto_nombre()+"</td>");
-                         out.println("<td>3</td>");
-                         out.println("<td>5.50</td>");
+                         out.println("<td>"+Existencia+"</td>");
+                         out.println("<td>"+precios+"</td>");
                          
                          out.println("<td>");
-                         out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
-                         out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
+                         out.println("<div class='btn-group'>");
+                         out.println("<button data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Producto<span class='caret'></span></button>");
+                         out.println("<ul class='dropdown-menu'>");
+                         out.println("<li><a href='#'>Detalle Producto</a></li>");
+                         out.println("<li><a href='#'>Nuevo Producto</a></li>");
+                         out.println("<li><a href='#'>Modificar</a></li>");
+                         out.println("<li class='divider'></li>");
+                         out.println("<li><a href='#'>Eliminar</a></li>");
+                         out.println("</ul>");
+                         out.println("</div>");
+  
+                         out.println("<button class='btn btn-primary btn-mini'>Nueva Entrada</button>");  
+                         out.println("<button class='btn btn-inverse btn-mini'>Nueva Salida</button>");  
                          out.println("</td>");
                          
                          
@@ -190,6 +210,8 @@
 <script src="../js/jquery.dataTables.min.js"></script> 
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.tables.js"></script>
+
+
 </script>
 </body>
 </html>

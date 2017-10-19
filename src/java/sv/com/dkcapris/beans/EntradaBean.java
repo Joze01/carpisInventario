@@ -5,13 +5,100 @@
  */
 package sv.com.dkcapris.beans;
 
-import java.sql.SQLData;
+import java.util.Date;
+
+
+
 
 /**
  *
  * @author Jose-PC
  */
 public class EntradaBean {
+
+    /**
+     * @return the entrada_fecha
+     */
+    public Date getEntrada_fecha() {
+        return entrada_fecha;
+    }
+
+    /**
+     * @param entrada_fecha the entrada_fecha to set
+     */
+    public void setEntrada_fecha(Date entrada_fecha) {
+        this.entrada_fecha = entrada_fecha;
+    }
+
+    /**
+     * @return the producto_serie
+     */
+    public String getProducto_serie() {
+        return producto_serie;
+    }
+
+    /**
+     * @param producto_serie the producto_serie to set
+     */
+    public void setProducto_serie(String producto_serie) {
+        this.producto_serie = producto_serie;
+    }
+
+    /**
+     * @return the producto_nombre
+     */
+    public String getProducto_nombre() {
+        return producto_nombre;
+    }
+
+    /**
+     * @param producto_nombre the producto_nombre to set
+     */
+    public void setProducto_nombre(String producto_nombre) {
+        this.producto_nombre = producto_nombre;
+    }
+
+    /**
+     * @return the producto_tipo
+     */
+    public String getProducto_tipo() {
+        return producto_tipo;
+    }
+
+    /**
+     * @param producto_tipo the producto_tipo to set
+     */
+    public void setProducto_tipo(String producto_tipo) {
+        this.producto_tipo = producto_tipo;
+    }
+
+    /**
+     * @return the producto_categoria
+     */
+    public String getProducto_categoria() {
+        return producto_categoria;
+    }
+
+    /**
+     * @param producto_categoria the producto_categoria to set
+     */
+    public void setProducto_categoria(String producto_categoria) {
+        this.producto_categoria = producto_categoria;
+    }
+
+    /**
+     * @return the producto_fabricante
+     */
+    public String getProducto_fabricante() {
+        return producto_fabricante;
+    }
+
+    /**
+     * @param producto_fabricante the producto_fabricante to set
+     */
+    public void setProducto_fabricante(String producto_fabricante) {
+        this.producto_fabricante = producto_fabricante;
+    }
 
     /**
      * @return the id
@@ -83,25 +170,21 @@ public class EntradaBean {
         this.entrada_precio = entrada_precio;
     }
 
-    /**
-     * @return the entrada_fecha
-     */
-    public SQLData getEntrada_fecha() {
-        return entrada_fecha;
-    }
 
-    /**
-     * @param entrada_fecha the entrada_fecha to set
-     */
-    public void setEntrada_fecha(SQLData entrada_fecha) {
-        this.entrada_fecha = entrada_fecha;
-    }
-
+ 
     
     private int id;
     private int id_usuario;
     private int id_producto;
     private int entrada_cantidad;
     private float entrada_precio;
-    private SQLData entrada_fecha; 
+    
+    
+    private String producto_nombre;
+    private String producto_tipo;
+    private String producto_categoria;
+    private String producto_fabricante;
+    private String producto_serie;
+    
+    private Date entrada_fecha; 
 }

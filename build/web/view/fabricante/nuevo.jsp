@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="../css/fullcalendar.css" />
+
+
 <link rel="stylesheet" href="../css/matrix-style.css" />
 <link rel="stylesheet" href="../css/matrix-media.css" />
 <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -54,14 +56,15 @@
     <li class="submenu "> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
         <li><a href="../producto/lista.jsp">Buscador</a></li>
-        <li><a href="form-validation.html">Entradas</a></li>
-        <li><a href="form-wizard.html">Salidas</a></li>
+        <li><a href="../producto/entrada/lista.jsp">Entradas</a></li>
+        <li><a href="../producto/salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu active"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
       <ul>
-          <li><a href="lista.jsp">Listado</a></li>
-        <li><a href="nuevo.jsp">Nuevo</a></li>
+        <li><a href="../producto/lista.jsp">Buscador</a></li>
+        <li><a href="../producto/entrada/lista.jsp">Entradas</a></li>
+        <li><a href="../producto/salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
@@ -102,17 +105,18 @@
             <h5>Data table</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+             <form class="form-horizontal" method="post" action="/inventariocapris/fabricanteController" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
                 <label class="control-label">Nombre</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <input type="text" class="required" name="nombre" id="required">
                 </div>
               </div>
+                 <input type="hidden" value="insertar" name="metodo">
               <div class="control-group">
                 <label class="control-label">Descripcion</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <input type="text" class="required" name="descripcion" id="required">
                 </div>
               </div>
              
@@ -147,6 +151,6 @@
 <script src="../js/jquery.validate.js"></script> 
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.form_validation.js"></script>
-</script>
+
 </body>
 </html>

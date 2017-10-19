@@ -50,9 +50,9 @@
     <li class="active"><a href="indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
-        <li><a href="producto/lista.jsp">Buscador</a></li>
-        <li><a href="form-validation.html">Entradas</a></li>
-        <li><a href="form-wizard.html">Salidas</a></li>
+       <li><a href="producto/lista.jsp">Buscador</a></li>
+        <li><a href="producto/entrada/lista.jsp">Entradas</a></li>
+        <li><a href="producto/salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>

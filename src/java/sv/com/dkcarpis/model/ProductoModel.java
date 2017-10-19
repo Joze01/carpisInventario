@@ -49,6 +49,82 @@ public class ProductoModel {
    public ArrayList<ProductoBean> getTable() throws SQLException{
        ArrayList<ProductoBean> listado = new ArrayList<ProductoBean>();
         Conexion con = new  Conexion();
+        con.query="SELECT * FROM producto" +
+                    " INNER JOIN fabricante on fabricante.fabricante_id=producto.id_fabricante " +
+                    " INNER JOIN categoria on categoria.categoria_id=producto.id_categoria" +
+                    " INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto";
+        con.setRs(con.query);
+        rs = con.getRs();
+        while(rs.next()){
+            ProductoBean prd = new ProductoBean();
+            
+            
+            prd.setProducto_id(rs.getInt("producto_id"));
+            prd.setProducto_serie(rs.getString("producto_serie"));
+            prd.setProducto_nombre(rs.getString("producto_nombre"));
+            prd.setProducto_descripcion(rs.getString("producto_descripcion"));
+            
+            prd.setFabricante_Nombre(rs.getString("fabricante_nombre"));
+            prd.setCategoria_Nombre(rs.getString("categoria_nombre"));
+            prd.setTipoproducto_nombre(rs.getString("tipoproducto_nombre"));
+            
+           
+            
+            listado.add(prd);
+        
+        }
+       
+       return listado;
+   }
+      public String getPrecios(){
+          String valor="0";
+          
+          
+          return valor;
+      } 
+      
+      public Integer getEntradas(Integer id_producto) throws SQLException{
+          Integer valor=0;
+          Conexion con = new  Conexion();
+            con.query="select sum(entrada_cantidad) from entrada where id_producto="+id_producto;
+            con.setRs(con.query);
+            rs = con.getRs();
+            while(rs.next()){
+                valor=rs.getInt(1);
+            }
+            con.cerrarConexion();
+          return valor;
+      } 
+      
+      public Integer getSalidas(Integer id_producto) throws SQLException{
+          Integer valor=0;
+          Conexion con = new  Conexion();
+            con.query="select sum(salida_cantidad) from salida where id_producto="+id_producto;
+            con.setRs(con.query);
+            rs = con.getRs();
+            while(rs.next()){
+                valor=rs.getInt(1);
+            }
+            con.cerrarConexion();
+          return valor;
+      } 
+      
+      public String getEntradaPrecios(Integer id_producto) throws SQLException{
+          String valor="";
+          Conexion con = new  Conexion();
+            con.query="select DISTINCT(entrada_precio) from entrada where entrada.id_producto="+id_producto;
+            con.setRs(con.query);
+            rs = con.getRs();
+            while(rs.next()){
+                valor+=rs.getString(1)+"$, ";
+            }
+            con.cerrarConexion();
+          return valor;
+      } 
+   
+      public ArrayList<ProductoBean> getAllTable() throws SQLException{
+       ArrayList<ProductoBean> listado = new ArrayList<ProductoBean>();
+        Conexion con = new  Conexion();
         con.query="SELECT * FROM producto" + 
                 " INNER JOIN fabricante on fabricante.fabricante_id=producto.id_fabricante" +
                 " INNER JOIN categoria on categoria.categoria_id=producto.id_categoria" +
@@ -78,6 +154,8 @@ public class ProductoModel {
        
        return listado;
    }
+   
+   
    
     public boolean eliminarProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;

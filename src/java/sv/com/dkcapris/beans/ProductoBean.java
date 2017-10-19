@@ -14,6 +14,20 @@ import java.util.ArrayList;
 public class ProductoBean {
 
     /**
+     * @return the precioLista
+     */
+    public String getPrecioLista() {
+        return precioLista;
+    }
+
+    /**
+     * @param precioLista the precioLista to set
+     */
+    public void setPrecioLista(String precioLista) {
+        this.precioLista = precioLista;
+    }
+
+    /**
      * @return the producto_descripcion
      */
     public String getProducto_descripcion() {
@@ -191,6 +205,9 @@ public class ProductoBean {
     private String producto_serie;
     private String producto_nombre;
     private String producto_descripcion;
+    
+    private String precioLista;
+    
     private ArrayList<ImageBean> ProductoImagenes=  new ArrayList<ImageBean>();
     
 }

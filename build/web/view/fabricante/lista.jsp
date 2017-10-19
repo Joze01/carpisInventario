@@ -51,11 +51,11 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li class=""><a href="../indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li class="submenu "> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
         <li><a href="../producto/lista.jsp">Buscador</a></li>
-        <li><a href="form-validation.html">Entradas</a></li>
-        <li><a href="form-wizard.html">Salidas</a></li>
+        <li><a href="../producto/entrada/lista.jsp">Entradas</a></li>
+        <li><a href="../producto/salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu active"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
@@ -95,7 +95,7 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="#"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -129,9 +129,9 @@
                 out.println("<td>"+rs.getString(2)+"</td>");
                 out.println("<td>"+rs.getString(3)+"</td>");
                 out.println("<td>");
+                out.println("<button onclick=\"eliminar('fabricante',"+rs.getInt(1)+",'/inventariocapris/fabricanteController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
                 out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
-                out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
-                out.println("</td>");
+               out.println("</td>");
                 out.println("</tr>");
               }
 
@@ -165,6 +165,50 @@
 <script src="../js/jquery.dataTables.min.js"></script> 
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.tables.js"></script>
-</script>
+
+
+
+<script src="../js/jquery.peity.min.js"></script> 
+<script src="../js/jquery.gritter.min.js"></script> 
+<script src="../js/matrix.interface.js"></script> 
+<script src="../js/jquery.uniform.js"></script> 
+<script src="../js/matrix.popover.js"></script> 
+<script src="../js/redirecciones.js"></script>
+
+
+
+<% 
+        String exito="3";
+        String mensaje="";
+         if(request.getParameterMap().containsKey("exito"))
+        {
+            exito = request.getParameter("exito");
+            mensaje = request.getParameter("mensaje");
+        }
+        if(exito.equals("1")){
+        out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Completado Exitosamente', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemOk' ,"
+                + "sticky: false})"
+                + ";}); </script>");
+        }else if(exito.equals("2")){
+         out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Error.', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemError' ,"
+                + "sticky: false})"
+                + ";}); </script>");  
+        }
+
+    %> 
+
+
 </body>
 </html>

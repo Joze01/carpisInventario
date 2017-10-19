@@ -13,6 +13,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+
+<link rel="stylesheet" href="../css/colorpicker.css" />
+<link rel="stylesheet" href="../css/datepicker.css" />
+<link rel="stylesheet" href="../css/uniform.css" />
+<link rel="stylesheet" href="../css/select2.css" />
+
 <link rel="stylesheet" href="../css/fullcalendar.css" />
 <link rel="stylesheet" href="../css/matrix-style.css" />
 <link rel="stylesheet" href="../css/matrix-media.css" />
@@ -54,8 +60,8 @@
     <li class="submenu "> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
         <li><a href="../producto/lista.jsp">Buscador</a></li>
-        <li><a href="form-validation.html">Entradas</a></li>
-        <li><a href="form-wizard.html">Salidas</a></li>
+        <li><a href="../producto/entrada/lista.jsp">Entradas</a></li>
+        <li><a href="../producto/salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
     <li class="submenu "> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
@@ -87,10 +93,7 @@
   </div>
 <!--End-breadcrumbs-->
 
-<!--Action boxes-->
-  <div class="container-fluid">
   
-<!--End-Action boxes-->    
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
@@ -105,7 +108,39 @@
             <h5>Usuarios</h5>
           </div>
           <div class="widget-content nopadding">
-
+             <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+              <div class="control-group">
+                <label class="control-label">Nombre</label>
+                <div class="controls">
+                  <input type="text" name="nombre" class="required" id="required">
+                </div>
+              </div>
+              <div class="control-group">
+              <label class="control-label">Select input</label>
+              <div class="controls">
+                <select >
+                  <option value="2">Administrador</option>
+                  <option value="3">Ingeniero</option>
+                  
+                </select>
+              </div>
+            </div>
+              <div class="control-group">
+                <label class="control-label">Usuario</label>
+                <div class="controls">
+                     <input type="text" name="usuario" id="required">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Password</label>
+                <div class="controls">
+                     <input type="password" name="password" id="required">
+                </div>
+              </div>   
+              <div class="form-actions">
+                <input type="submit" value="Guardar" class="btn btn-success">
+              </div>
+            </form>
           </div>
         </div>
 <!--End-Chart-box--> 
@@ -128,11 +163,19 @@
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
+<script src="../js/bootstrap-colorpicker.js"></script> 
+<script src="../js/bootstrap-datepicker.js"></script> 
+<script src="../js/jquery.toggle.buttons.js"></script> 
+<script src="../js/masked.js"></script> 
 <script src="../js/jquery.uniform.js"></script> 
 <script src="../js/select2.min.js"></script> 
-<script src="../js/jquery.validate.js"></script> 
 <script src="../js/matrix.js"></script> 
-<script src="../js/matrix.form_validation.js"></script>
-</script>
+<script src="../js/matrix.form_common.js"></script> 
+<script src="../js/wysihtml5-0.3.0.js"></script> 
+<script src="../js/jquery.peity.min.js"></script> 
+<script src="../js/bootstrap-wysihtml5.js"></script> 
+
+
+
 </body>
 </html>

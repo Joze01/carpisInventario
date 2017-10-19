@@ -7,7 +7,5 @@ $(document).ready(function(){
 		"sDom": '<""l>t<"F"fp>'
 	});
 	
-	
-	
-	
+
 });
