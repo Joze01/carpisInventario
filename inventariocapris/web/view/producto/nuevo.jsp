@@ -88,7 +88,8 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-list"></i>Producto</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Producto</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Agregar</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -194,6 +195,7 @@
               </div>
             </div>  
               <div class="form-actions">
+                  <input type="hidden" name="metodo" value="insertar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>
             </form>

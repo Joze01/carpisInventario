@@ -89,7 +89,8 @@
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
         <a href="../lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Productos</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-signin"></i>Entradas</a>
+        <a href="lista.jps" title="" class="tip-bottom"><i class="icon-signin"></i>Entradas</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
 <!--End-breadcrumbs-->

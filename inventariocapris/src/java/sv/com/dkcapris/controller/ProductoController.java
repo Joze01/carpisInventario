@@ -5,20 +5,37 @@
  */
 package sv.com.dkcapris.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import sv.com.dkcapris.beans.FabricanteBean;
+import sv.com.dkcapris.beans.ImageBean;
 
 import sv.com.dkcapris.beans.ProductoBean;
 import sv.com.dkcarpis.model.ProductoModel;
@@ -32,18 +49,13 @@ public class ProductoController extends HttpServlet {
 
     
         
-        private boolean isMultipart;
-        private String filePath;
-        private int maxFileSize = 50 * 1024;
-        private int maxMemSize = 4 * 1024;
-        private File file ;
-
+           private boolean isMultipart;
+	   private String filePath="";
+	   private int maxFileSize = 1024 * 1024;
+	   private int maxMemSize = 1024 * 1024;
+	   private File file ;
         
-      public void init( ){
-      // Get the file location where it would be stored.
-      filePath = getServletContext().getInitParameter("file-upload"); 
-   }
-   
+           private static final String SAVE_DIR = "view\\producto\\images\\";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -54,30 +66,133 @@ public class ProductoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, FileUploadException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+        // gets absolute path of the web application
+        String appPath = request.getServletContext().getRealPath("");
+        // constructs path of the directory to save uploaded file
+        String savePath = appPath+ SAVE_DIR;
+       
+            ProductoModel pdModel = new ProductoModel();
+          
+         
+           
+                        String metodo="";
+                        ProductoBean prdData = new ProductoBean();
+                        ArrayList<ImageBean> listaImgs = new ArrayList<ImageBean>();
+                   // Check that we have a file upload request
+                      isMultipart = ServletFileUpload.isMultipartContent(request);
+                      response.setContentType("text/html");
+                      if( !isMultipart ) {
+                         out.println("<html>");
+                         out.println("<head>");
+                         out.println("<title>Servlet upload</title>");  
+                         out.println("</head>");
+                         out.println("<body>");
+                         out.println("<p>No file uploaded</p>"); 
+                         out.println("</body>");
+                         out.println("</html>");
+                         return;
+                      }
+                      DiskFileItemFactory factory = new DiskFileItemFactory();
+                      // maximum size that will be stored in memory
+                      factory.setSizeThreshold(maxMemSize);
+                      // Location to save data that is larger than maxMemSize.
+                      factory.setRepository(new File(savePath));
+                      filePath=savePath;
+                      // Create a new file upload handler
+                      ServletFileUpload upload = new ServletFileUpload(factory);
+                      // maximum file size to be uploaded.
+                      upload.setSizeMax( maxFileSize );
+                      
+                      
+                      try { 
+                         // Parse the request to get file items.
+                         List fileItems = upload.parseRequest(request);
+                         // Process the uploaded file items
+                         Iterator i = fileItems.iterator();
+                         out.println("<html>");
+                         out.println("<head>");
+                         out.println("<title>Servlet upload</title>");  
+                         out.println("</head>");
+                         out.println("<body>");
+                         while ( i.hasNext () ) {
+                            FileItem fi = (FileItem)i.next();
+                            if ( !fi.isFormField () ) {
+                               // Get the uploaded file parameters
+                             
+                               String fieldName = fi.getFieldName();
+                               String fileName = fi.getName();
+                               String contentType = fi.getContentType();
+                               boolean isInMemory = fi.isInMemory();
+                               long sizeInBytes = fi.getSize();
+                               // Write the file
+                               if( fileName.lastIndexOf("\\") >= 0 ) {
+                                  file = new File( filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
+                               } else {
+                                  file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
+                               }
+                               fi.write( file ) ;
+                               out.println("Uploaded Filename: " + fileName + "<br>");
+                                ImageBean portada = new ImageBean();
+                                portada.setImage_url(fileName);
+                                listaImgs.add(portada);
+                                out.println(filePath);
+                                
+                            }else{
+                                if(fi.getFieldName().equals("serie")){
+                                   prdData.setProducto_serie(fi.getString());
+                                }
+                                if(fi.getFieldName().equals("nombre")){
+                                   prdData.setProducto_nombre(fi.getString());
+                                }
+                                if(fi.getFieldName().equals("descripcion")){
+                                   prdData.setProducto_descripcion(fi.getString());
+                                }
+                                if(fi.getFieldName().equals("fabricante")){
+                                  prdData.setId_fabricante(Integer.parseInt(fi.getString()));
+                                }
+                                if(fi.getFieldName().equals("categoria")){
+                                  prdData.setId_categoria(Integer.parseInt(fi.getString()));
+                                }
+                                if(fi.getFieldName().equals("tipo")){
+                                  prdData.setId_tipoproducto(Integer.parseInt(fi.getString()));
+                                }
+                                if(fi.getFieldName().equals("metodo")){
+                                   metodo=(fi.getString());
+                                }
+                                
+                            }
+                         }
+                         out.println("</body>");
+                         out.println("</html>");
+                         
+            
 
-              
-            /*
-            if(metodo.equals("modificar")){
-                if(false){
-                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Modificado Correctamente");
+                      
+            prdData.setProductoImagenes(listaImgs);
+            if(metodo.equals("insertar"))          
+            if(pdModel.nuevoProducto(prdData)){
+                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Registrado Correctamente");
+            }else{
+                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al registar ");
+                }
+            
+           if(metodo.equals("modificar")){
+                if(pdModel.modificarProducto(prdData)){
+                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Modificado Correctamente");
                 }else{
                  response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al modificar ");
                 }
             }
-            if(metodo.equals("eliminar")){     
-                if(false){
-                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Eliminado Correctamente");
-                }else{
-                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al eliminar ");
-                }
-            
-            }
-            */
-        }
+
+              } catch(Exception ex) {
+                            System.out.println(ex);
+                         }
+        
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,7 +207,30 @@ public class ProductoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                   ProductoModel pdModel = new ProductoModel();
+                   ProductoBean prdData = new ProductoBean();
+                   String metodo="";
+                   metodo = request.getParameter("metodo");
+                   
+                   prdData.setProducto_id(Integer.parseInt(request.getParameter("id")));
+                  
+                 if(metodo.equals("eliminar")){     
+               
+                       try {
+                           if(pdModel.eliminarProducto(prdData)){
+                               response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Eliminado Correctamente");
+                           }else{
+                               response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al eliminar ");
+                           }      } catch (SQLException ex) {
+                           Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+                       }
+            
+            }
+                   
+                   
+                   
+                  // processRequest(request, response);
+       
     }
 
     /**
@@ -106,7 +244,13 @@ public class ProductoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+               try {
+                   processRequest(request, response);
+               } catch (FileUploadException ex) {
+                   Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+               } catch (SQLException ex) {
+                   Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+               }
         
     }
 

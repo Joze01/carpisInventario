@@ -150,7 +150,7 @@
                          out.println("<td>"+pd.getProducto_serie()+"</td>");
                          out.println("<td>"+pd.getProducto_nombre()+"</td>");
                          out.println("<td>"+pd.getProducto_descripcion()+"</td>");
-                         out.println("<td><img src='"+pd.getProducto_ImgPortada()+"'/></td>");
+                         out.println("<td><img class='img-responsive' src='"+pd.getProducto_ImgPortada()+"'/></td>");
                          out.println("<td>"+pd.getFabricante_Nombre()+"</td>");
                          out.println("<td>"+pd.getCategoria_Nombre()+"</td>");
                          out.println("<td>"+pd.getTipoproducto_nombre()+"</td>");
@@ -162,10 +162,10 @@
                          out.println("<button data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Producto<span class='caret'></span></button>");
                          out.println("<ul class='dropdown-menu'>");
                          out.println("<li><a href='#'>Detalle Producto</a></li>");
-                         out.println("<li><a href='#'>Nuevo Producto</a></li>");
+                         out.println("<li><a href='nuevo.jsp'>Nuevo Producto</a></li>");
                          out.println("<li><a href='#'>Modificar</a></li>");
                          out.println("<li class='divider'></li>");
-                         out.println("<li><a href='#'>Eliminar</a></li>");
+                         out.println("<li><a href='/inventariocapris/productoController?metodo=eliminar&id="+pd.getProducto_id()+"'>Eliminar</a></li>");
                          out.println("</ul>");
                          out.println("</div>");
   

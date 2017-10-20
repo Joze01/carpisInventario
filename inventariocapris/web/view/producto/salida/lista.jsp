@@ -100,7 +100,7 @@
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
         <li class="bg_lo"> <a href="../lista.jsp"> <i class="icon-search"></i> Listado de Producto </a> </li>
-        <li class="bg_lg"> <a href="../lista.jsp"> <i class="icon-plus"></i> Nueva Salida </a> </li>
+
       </ul>
     </div>
 <!--End-Action boxes-->    

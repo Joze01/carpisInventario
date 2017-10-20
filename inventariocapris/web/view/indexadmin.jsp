@@ -77,7 +77,7 @@
 <div id="content">
 <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    <div id="breadcrumb"> <a href="indexadmin.jsp" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
   </div>
 <!--End-breadcrumbs-->
 
@@ -85,10 +85,10 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_db span2"> <a href="index.html"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
-        <li class="bg_dy span2"> <a href="#"> <i class="icon-th-list"></i>  Productos </a> </li>
-        <li class="bg_lr span2"> <a href="#"> <i class="icon-truck"></i>  Fabricantes </a> </li>
-        <li class="bg_lv span2"> <a href="#"> <i class="icon-group"></i> Usuarios </a> </li>
+        <li class="bg_db span2"> <a href="indexadmin.jsp"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
+        <li class="bg_dy span2"> <a href="producto/lista.jsp"> <i class="icon-th-list"></i>  Productos </a> </li>
+        <li class="bg_lr span2"> <a href="fabricante/lista.jsp"> <i class="icon-truck"></i>  Fabricantes </a> </li>
+        <li class="bg_lv span2"> <a href="usuario/lista.jsp"> <i class="icon-group"></i> Usuarios </a> </li>
 
       </ul>
     </div>

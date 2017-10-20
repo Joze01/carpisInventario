@@ -90,7 +90,6 @@
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
         <a href="../lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Productos</a>
         <a href="lista.jps" title="" class="tip-bottom"><i class="icon-signin"></i>Entradas</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -101,7 +100,7 @@
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
         <li class="bg_lo"> <a href="../lista.jsp"> <i class="icon-search"></i> Listado de Producto </a> </li>
-        <li class="bg_lg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Nueva Entrada </a> </li>
+
       </ul>
     </div>
 <!--End-Action boxes-->    

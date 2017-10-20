@@ -20,6 +20,7 @@ public class ImageModel {
     Conexion con;
     public boolean nuevaImagen(ArrayList<ImageBean>listado, int id_producto) throws SQLException{
     boolean resultado=false;
+        System.out.println("EN NUEVA IMAGEN");
        for(ImageBean img : listado){
             con=new Conexion();
             con.query="INSERT INTO imagen(id_producto, imagen_url) VALUES ("+id_producto+",'"+img.getImage_url()+"')";

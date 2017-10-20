@@ -71,7 +71,7 @@ public class EntradaModel {
                         
             entr.setProducto_nombre(rs.getString("producto_nombre"));
             entr.setProducto_fabricante(rs.getString("fabricante_nombre"));
-            entr.setProducto_categoria("categoria_nombre");
+            entr.setProducto_categoria(rs.getString("categoria_nombre"));
             entr.setProducto_tipo(rs.getString("tipoproducto_nombre"));
             entr.setProducto_serie(rs.getString("producto_serie"));
            

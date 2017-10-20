@@ -21,17 +21,26 @@ public class ProductoModel {
     public boolean nuevoProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;
          con =  new  Conexion();
-         con.query="INSERT INTO producto(id_fabricante, id_categoria, id_tipoproducto, producto_serie, producto_nombre) VALUES ("+prdData.getId_fabricante()+","+prdData.getId_categoria()+", "+prdData.getId_tipoproducto()+",'"+prdData.getProducto_serie()+"','"+prdData.getProducto_nombre()+"')";
+         con.query="INSERT INTO producto(id_fabricante, id_categoria, id_tipoproducto, producto_serie, producto_nombre, producto_descripcion) VALUES ("+prdData.getId_fabricante()+","+prdData.getId_categoria()+", "+prdData.getId_tipoproducto()+",'"+prdData.getProducto_serie()+"','"+prdData.getProducto_nombre()+"','"+prdData.getProducto_descripcion()+"')";
          resultado=con.setQuery(con.query);
-         con.cerrarConexion();
-         con.query="select * from producto order by producto_id asc limit 1";
+         
+         con.query="select * from producto order by producto_id DESC limit 1";
          con.setRs(con.query);
          rs=con.getRs();
          while(rs.next()){
          prdData.setProducto_id(rs.getInt("producto_id"));
          }
          
-         imgModel.nuevaImagen(prdData.getProductoImagenes(),prdData.getProducto_id());
+         System.out.println("Id Nuevo producto: "+prdData.getProducto_id());
+    
+         System.out.println("CONTENIDO DE LAS IMAGENES: "+prdData.getProductoImagenes());
+         
+         
+         if(resultado && imgModel.nuevaImagen(prdData.getProductoImagenes(),prdData.getProducto_id())){
+         resultado=true;
+         }else{
+         resultado=false;
+         }
          
     return resultado;
     }
@@ -160,7 +169,7 @@ public class ProductoModel {
     public boolean eliminarProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;
         con = new Conexion();
-        con.query="DELETE FROM producto WHERE producto_id"+prdData.getProducto_id();
+        con.query="DELETE FROM producto WHERE producto_id="+prdData.getProducto_id();
         resultado=con.setQuery(con.query);
         con.cerrarConexion();
     
