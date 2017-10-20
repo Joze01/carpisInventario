@@ -86,11 +86,7 @@
     </div>
   </div>
 <!--End-breadcrumbs-->
-
-<!--Action boxes-->
-  <div class="container-fluid">
   
-<!--End-Action boxes-->    
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">

@@ -97,8 +97,8 @@
 <!--Chart-box-->    
     <div class="row-fluid">
       <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
-          <h5>Site Analytics</h5>
+        <div class="widget-title bg_lg"><span class="icon"><i class="icon-print"></i></span>
+          <h5>Reportes</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">

@@ -165,7 +165,9 @@
                          out.println("<li><a href='nuevo.jsp'>Nuevo Producto</a></li>");
                          out.println("<li><a href='#'>Modificar</a></li>");
                          out.println("<li class='divider'></li>");
-                         out.println("<li><a href='/inventariocapris/productoController?metodo=eliminar&id="+pd.getProducto_id()+"'>Eliminar</a></li>");
+                         out.println("<li><a onclick=\"eliminar('Producto',"+pd.getProducto_id()+",'/inventariocapris/productoController')\"          >Eliminar</a></li>");
+                
+//out.println("<li><a href='/inventariocapris/productoController?metodo=eliminar&id="+pd.getProducto_id()+"'>Eliminar</a></li>");
                          out.println("</ul>");
                          out.println("</div>");
   
@@ -212,6 +214,46 @@
 <script src="../js/matrix.tables.js"></script>
 
 
-</script>
+
+<script src="../js/jquery.peity.min.js"></script> 
+<script src="../js/jquery.gritter.min.js"></script> 
+<script src="../js/matrix.interface.js"></script> 
+<script src="../js/jquery.uniform.js"></script> 
+<script src="../js/matrix.popover.js"></script> 
+<script src="../js/redirecciones.js"></script>
+
+
+
+<% 
+        String exito="3";
+        String mensaje="";
+         if(request.getParameterMap().containsKey("exito"))
+        {
+            exito = request.getParameter("exito");
+            mensaje = request.getParameter("mensaje");
+        }
+        if(exito.equals("1")){
+        out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Completado Exitosamente', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemOk' ,"
+                + "sticky: false})"
+                + ";}); </script>");
+        }else if(exito.equals("2")){
+         out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Error.', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemError' ,"
+                + "sticky: false})"
+                + ";}); </script>");  
+        }
+
+    %> 
 </body>
 </html>

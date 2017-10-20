@@ -175,14 +175,14 @@ public class ProductoController extends HttpServlet {
             prdData.setProductoImagenes(listaImgs);
             if(metodo.equals("insertar"))          
             if(pdModel.nuevoProducto(prdData)){
-                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Registrado Correctamente");
+                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Registrado Correctamente");
             }else{
                  response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al registar ");
                 }
             
            if(metodo.equals("modificar")){
                 if(pdModel.modificarProducto(prdData)){
-                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Modificado Correctamente");
+                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Modificado Correctamente");
                 }else{
                  response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al modificar ");
                 }
@@ -218,7 +218,7 @@ public class ProductoController extends HttpServlet {
                
                        try {
                            if(pdModel.eliminarProducto(prdData)){
-                               response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Fabricante Eliminado Correctamente");
+                               response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Eliminado Correctamente");
                            }else{
                                response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al eliminar ");
                            }      } catch (SQLException ex) {
@@ -226,11 +226,7 @@ public class ProductoController extends HttpServlet {
                        }
             
             }
-                   
-                   
-                   
-                  // processRequest(request, response);
-       
+
     }
 
     /**

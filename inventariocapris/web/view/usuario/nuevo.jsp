@@ -98,17 +98,17 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="#"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-ban-circle"></i> Cancelar </a> </li>
       </ul>
     </div>
-<!--End-Action boxes-->    
+<!--End-Action boxes--> 
 <!--Chart-box-->    
          <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
             <h5>Usuarios</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+             <form class="form-horizontal" method="post" action="/inventariocapris/usuarioController" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
                 <label class="control-label">Nombre</label>
                 <div class="controls">
@@ -116,9 +116,9 @@
                 </div>
               </div>
               <div class="control-group">
-              <label class="control-label">Select input</label>
+              <label class="control-label">Privilegios</label>
               <div class="controls">
-                <select >
+                <select name="tipo">
                   <option value="2">Administrador</option>
                   <option value="3">Ingeniero</option>
                   
@@ -138,6 +138,7 @@
                 </div>
               </div>   
               <div class="form-actions">
+                <input type="hidden" name="metodo" value="insertar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>
             </form>

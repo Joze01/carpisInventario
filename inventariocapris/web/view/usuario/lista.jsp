@@ -87,15 +87,12 @@
   </div>
 <!--End-breadcrumbs-->
 
-<!--Action boxes-->
-  <div class="container-fluid">
-  
-<!--End-Action boxes-->    
+ 
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="#"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -132,7 +129,7 @@
                 out.println("<td>"+rs.getString(7)+"</td>");
                 out.println("<td>");
                 out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
-                out.println("<button class='btn btn-danger btn-mini'>Eliminar</button>");           
+                 out.println("<button onclick=\"eliminar('Usuario',"+rs.getInt(1)+",'/inventariocapris/usuarioController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
                 out.println("</td>");
                 out.println("</tr>");
               }
@@ -159,6 +156,7 @@
 
 <!--end-Footer-part-->
 
+
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
@@ -167,6 +165,49 @@
 <script src="../js/jquery.dataTables.min.js"></script> 
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.tables.js"></script>
-</script>
+
+
+
+<script src="../js/jquery.peity.min.js"></script> 
+<script src="../js/jquery.gritter.min.js"></script> 
+<script src="../js/matrix.interface.js"></script> 
+<script src="../js/jquery.uniform.js"></script> 
+<script src="../js/matrix.popover.js"></script> 
+<script src="../js/redirecciones.js"></script>
+
+
+
+<% 
+        String exito="3";
+        String mensaje="";
+         if(request.getParameterMap().containsKey("exito"))
+        {
+            exito = request.getParameter("exito");
+            mensaje = request.getParameter("mensaje");
+        }
+        if(exito.equals("1")){
+        out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Completado Exitosamente', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemOk' ,"
+                + "sticky: false})"
+                + ";}); </script>");
+        }else if(exito.equals("2")){
+         out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Error.', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemError' ,"
+                + "sticky: false})"
+                + ";}); </script>");  
+        }
+
+    %> 
+
 </body>
 </html>
