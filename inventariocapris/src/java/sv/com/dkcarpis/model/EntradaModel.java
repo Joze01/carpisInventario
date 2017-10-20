@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import sv.com.dkcapris.beans.EntradaBean;
 import sv.com.dkcapris.beans.ProductoBean;
 import sv.com.dkcapris.beans.EntradaBean;
+import sv.com.dkcapris.beans.SalidaBean;
 
 /**
  *
@@ -58,7 +59,7 @@ public class EntradaModel {
     }
     
     
-          public ArrayList<EntradaBean> getAllTable() throws SQLException{
+    public ArrayList<EntradaBean> getAllTable() throws SQLException{
        ArrayList<EntradaBean> listado = new ArrayList<EntradaBean>();
         Conexion con = new  Conexion();
         con.query="SELECT * FROM entrada "
@@ -91,6 +92,24 @@ public class EntradaModel {
        return listado;
    }
    
+        public ArrayList<EntradaBean> getAllEntradasByProducto(int idProducto) throws SQLException{
+        ArrayList<EntradaBean> listadoEntradas = new ArrayList<EntradaBean>();
+        con = new Conexion();
+        con.query="select * from salida where id_producto="+idProducto;
+        con.setRs(con.query);
+        rs=con.getRs();
+        while(rs.next()){
+            EntradaBean nuevaEntrada = new EntradaBean();
+            nuevaEntrada.setId(rs.getInt(1));
+            nuevaEntrada.setId_usuario(rs.getInt(2));
+            nuevaEntrada.setId_producto(rs.getInt(3));
+            nuevaEntrada.setEntrada_cantidad(rs.getInt(4));
+            nuevaEntrada.setEntrada_precio(rs.getFloat(5));
+            nuevaEntrada.setEntrada_fecha(rs.getDate(6).toString());
+            listadoEntradas.add(nuevaEntrada);
+        }
+        return listadoEntradas;
+    }
    
    
     

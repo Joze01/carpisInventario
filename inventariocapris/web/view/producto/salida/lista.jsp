@@ -130,7 +130,7 @@
                   SalidaModel pdFunc = new SalidaModel();
                   ArrayList<SalidaBean> listado;
                   listado = new ArrayList<>();
-                  ImageModel imgMod = new ImageModel();
+                
                   listado=pdFunc.getAllTable();
                   
                   

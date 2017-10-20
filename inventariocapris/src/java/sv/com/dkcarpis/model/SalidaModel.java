@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import sv.com.dkcapris.beans.EntradaBean;
 import sv.com.dkcapris.beans.SalidaBean;
-
+import sv.com.dkcarpis.model.EntradaModel;
 /**
  *
  * @author Jose-PC
@@ -21,10 +21,11 @@ public class SalidaModel {
     ResultSet rs;
     public boolean nuevaEntrada(SalidaBean exitData) throws SQLException{
      boolean resultado =false;
-     con = new Conexion();
-     con.query="INSERT INTO salida(id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+exitData.getSalidad_cantidad()+","+exitData.getSalida_precio()+","+exitData.getSalida_fecha()+")";
-     resultado=con.setQuery(con.query);
-     con.cerrarConexion();
+        
+     
+     
+     
+     
      return resultado;
     }
     
@@ -48,7 +49,24 @@ public class SalidaModel {
      return resultado;
     }
     
-    
+    public ArrayList<SalidaBean> getAllSalidasbyProducto(int idProducto) throws SQLException{
+        ArrayList<SalidaBean> listadoSalidas = new ArrayList<SalidaBean>();
+        con = new Conexion();
+        con.query="select * from salida where id_producto="+idProducto;
+        con.setRs(con.query);
+        rs=con.getRs();
+        while(rs.next()){
+            SalidaBean nuevasalida = new SalidaBean();
+            nuevasalida.setId(rs.getInt(1));
+            nuevasalida.setId_usuario(rs.getInt(2));
+            nuevasalida.setId_producto(rs.getInt(3));
+            nuevasalida.setSalidad_cantidad(rs.getInt(4));
+            nuevasalida.setSalida_precio(rs.getFloat(5));
+            nuevasalida.setSalida_fecha(rs.getDate(6).toString());
+            listadoSalidas.add(nuevasalida);
+        }
+        return listadoSalidas;
+    }
         
     
       public ArrayList<SalidaBean> getAllTable() throws SQLException{
@@ -66,7 +84,7 @@ public class SalidaModel {
             exts.setId(rs.getInt("salida_int"));
             exts.setSalidad_cantidad(rs.getInt("salida_cantidad"));
             exts.setSalida_precio(rs.getFloat("salida_precio"));
-            exts.setSalida_fecha(rs.getDate("salida_fecha"));
+            exts.setSalida_fecha(rs.getString("salida_fecha"));
             
           
                         

@@ -15,6 +15,20 @@ import java.util.Date;
 public class SalidaBean {
 
     /**
+     * @return the salida_fecha
+     */
+    public String getSalida_fecha() {
+        return salida_fecha;
+    }
+
+    /**
+     * @param salida_fecha the salida_fecha to set
+     */
+    public void setSalida_fecha(String salida_fecha) {
+        this.salida_fecha = salida_fecha;
+    }
+
+    /**
      * @return the producto_nombre
      */
     public String getProducto_nombre() {
@@ -84,19 +98,7 @@ public class SalidaBean {
         this.producto_serie = producto_serie;
     }
 
-    /**
-     * @return the salida_fecha
-     */
-    public Date getSalida_fecha() {
-        return salida_fecha;
-    }
 
-    /**
-     * @param salida_fecha the salida_fecha to set
-     */
-    public void setSalida_fecha(Date salida_fecha) {
-        this.salida_fecha = salida_fecha;
-    }
 
     /**
      * @return the id
@@ -180,5 +182,5 @@ public class SalidaBean {
     private String producto_fabricante;
     private String producto_serie;
     
-    private Date salida_fecha; 
+    private String salida_fecha; 
 }
