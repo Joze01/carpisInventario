@@ -19,16 +19,18 @@ public class EntradaBean {
     /**
      * @return the entrada_fecha
      */
-    public Date getEntrada_fecha() {
+    public String getEntrada_fecha() {
         return entrada_fecha;
     }
 
     /**
      * @param entrada_fecha the entrada_fecha to set
      */
-    public void setEntrada_fecha(Date entrada_fecha) {
+    public void setEntrada_fecha(String entrada_fecha) {
         this.entrada_fecha = entrada_fecha;
     }
+
+ 
 
     /**
      * @return the producto_serie
@@ -186,5 +188,5 @@ public class EntradaBean {
     private String producto_fabricante;
     private String producto_serie;
     
-    private Date entrada_fecha; 
+    private String entrada_fecha; 
 }

@@ -171,7 +171,7 @@
                          out.println("</ul>");
                          out.println("</div>");
   
-                         out.println("<button class='btn btn-primary btn-mini'>Nueva Entrada</button>");  
+                         out.println("<a href='entrada/nuevo.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"' class='btn btn-primary btn-mini'>Nueva Entrada</a>");  
                          out.println("<button class='btn btn-inverse btn-mini'>Nueva Salida</button>");  
                          out.println("</td>");
                          

@@ -20,12 +20,20 @@ public class EntradaModel {
     Conexion con;
     ImageModel imgModel = new ImageModel();
     ResultSet rs;
+    
     public boolean nuevaEntrada(EntradaBean ntrData) throws SQLException{
      boolean resultado =false;
      con = new Conexion();
-     con.query="INSERT INTO entrada(id_usuario, id_producto, entrada_cantidad, entrada_precio, entrada_fecha) VALUES ("+ntrData.getId_usuario()+","+ntrData.getId_producto()+","+ntrData.getEntrada_cantidad()+","+ntrData.getEntrada_precio()+","+ntrData.getEntrada_fecha()+")";
+     try{
+            
+            String[] output = ntrData.getEntrada_fecha().split("-");
+            String fecha = output[2]+"-"+output[1]+"-"+output[0];
+     con.query="INSERT INTO entrada(id_usuario, id_producto, entrada_cantidad, entrada_precio, entrada_fecha) VALUES ("+ntrData.getId_usuario()+","+ntrData.getId_producto()+","+ntrData.getEntrada_cantidad()+","+ntrData.getEntrada_precio()+",'"+fecha+"')";
      resultado=con.setQuery(con.query);
      con.cerrarConexion();
+     }catch(Exception ex){
+         System.out.println(ex);
+     }
      return resultado;
     }
     
@@ -65,7 +73,7 @@ public class EntradaModel {
             entr.setId(rs.getInt("entrada_id"));
             entr.setEntrada_cantidad(rs.getInt("entrada_cantidad"));
             entr.setEntrada_precio(rs.getFloat("entrada_precio"));
-            entr.setEntrada_fecha(rs.getDate("entrada_fecha"));
+            entr.setEntrada_fecha(rs.getString("entrada_fecha"));
             
           
                         

@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Producto | Entrada</title>
+<title>Entrada | Nuevo</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
@@ -53,8 +53,6 @@
 </div>
 <!--close-top-Header-menu-->
 
-
-
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
@@ -62,7 +60,7 @@
     <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
         <li><a href="../lista.jsp">Buscador</a></li>
-        <li><a href="lista.jsp">Entradas</a></li>
+        <li><a href="../entrada/lista.jsp">Entradas</a></li>
         <li><a href="../salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
@@ -90,9 +88,9 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="../lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Producto</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Producto</a>
         <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-signin"></i>Entrada</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Agregar</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -111,9 +109,59 @@
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Nuevo Producto</h5>
           </div>
+                <%
+                  String producto_id=request.getParameter("id");
+                  String producto_serie=request.getParameter("serie");
+                  String prodcuto_nombre=request.getParameter("nombre");
+                  String usuario_Id="5";
+                  
+                %>
+             
+             
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="/inventariocapris/productoController" enctype = "multipart/form-data" name="basic_validate" id="basic_validate" novalidate="novalidate">
-              
+             <form class="form-horizontal" method="post" action="/inventariocapris/entradaController" name="basic_validate" id="basic_validate" novalidate="novalidate">
+              <div class="control-group">
+                <label class="control-label">Numero de Serie</label>
+                <div class="controls">
+                  <input type="text" class="required" disabled name="serie" value="<%out.print(producto_serie);%>" id="required">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label"  >Nombre</label>
+                <div class="controls">
+                  <input type="text" class="required" disabled name="nombre"  value="<%out.print(prodcuto_nombre);%>" id="required">
+                </div>
+              </div>   
+              <div class="control-group">
+                <label class="control-label">Cantidad de Entrada</label>
+                <div class="controls">
+                  <input type="number" min="0" max="9999" step="1" class="required" name="cantidad" id="required">
+                </div>
+              </div>   
+              <div class="control-group">
+                <label class="control-label">Precio Unitario</label>
+                <div class="controls">
+                  <input type="number" min="1" max="9999" step="0.01" class="required" name="precio" id="required">
+                </div>
+              </div>  
+              <div class="control-group">
+              <label class="control-label">Fecha Entrada</label>
+              <div class="controls">
+                <div  data-date="12-02-2012" class="input-append date datepicker">
+                  <input type="text" name="fecha" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
+                  <span class="add-on"><i class="icon-th"></i></span> </div>
+              </div>
+            </div>   
+   
+  
+              <div class="form-actions">
+
+                  
+                  <input type="hidden" name="productoId" value="<%out.print(producto_id);%>"/>
+                  <input type="hidden" name="usuarioId" value="<%out.print(usuario_Id);%>"/>
+                  <input type="hidden" name="metodo" value="insertar"/>
+                <input type="submit" value="Guardar" class="btn btn-success">
+              </div>
             </form>
           </div>
         </div>
@@ -143,7 +191,10 @@
 <script src="../../js/matrix.js"></script> 
 <script src="../../js/matrix.form_validation.js"></script>
 <script src="../../js/matrix.form_common.js"></script>
-
+<script src="../../js/bootstrap-datepicker.js"></script> 
+<script src="../../js/bootstrap-colorpicker.js"></script> 
+<script src="../../js/masked.js"></script> 
+<script src="../../js/jquery.peity.min.js"></script> 
 
 </body>
 </html>

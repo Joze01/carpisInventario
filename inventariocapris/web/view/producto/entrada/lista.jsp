@@ -139,7 +139,7 @@
 
                          out.println("<tr class='gradeX'>");
                          out.println("<td>"+pd.getId()+"</td>");
-                         out.println("<td>"+pd.getEntrada_fecha().toString()+"</td>");
+                         out.println("<td>"+pd.getEntrada_fecha()+"</td>");
                          out.println("<td>"+pd.getProducto_serie()+"</td>");
                          out.println("<td>"+pd.getProducto_nombre()+"</td>");
                          out.println("<td>"+pd.getProducto_fabricante()+"</td>");
@@ -149,7 +149,7 @@
                          out.println("<td>"+pd.getEntrada_precio()+"</td>");
                          out.println("<td>");
                          out.println("<button class='btn btn-info btn-mini'>Modificar Entrada</button>");
-                         out.println("<button class='btn btn-danger btn-mini'>Eliminar Entrada</button>");
+                         out.println("<button onclick=\"eliminar('Entrada',"+pd.getId()+",'/inventariocapris/entradaController')\" class='btn btn-danger btn-mini'>Eliminar Entrada</button>");
                          
                          out.println("</td>");
                          
