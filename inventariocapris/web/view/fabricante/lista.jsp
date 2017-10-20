@@ -30,6 +30,7 @@
 
 
 
+
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
@@ -38,11 +39,11 @@
 
         <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
         <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> Cerrar Sesion</a></li>
+        <li><a href="../../index.jsp"><i class="icon-key"></i> Cerrar Sesion</a></li>
       </ul>
     </li>
 
-    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    <li class=""><a title="" href="../../index.jsp"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>
 <!--close-top-Header-menu-->

@@ -44,11 +44,11 @@
 
         <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
         <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> Cerrar Sesion</a></li>
+        <li><a href="../../../index.jsp"><i class="icon-key"></i> Cerrar Sesion</a></li>
       </ul>
     </li>
 
-    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    <li class=""><a title="" href="../../../index.jsp"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>
 <!--close-top-Header-menu-->
@@ -89,7 +89,7 @@
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
         <a href="../lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Productos</a>
-        <a href="lista.jps" title="" class="tip-bottom"><i class="icon-signin"></i>Entradas</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-signin"></i>Entradas</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -121,7 +121,7 @@
                   <th>Categoria</th>
                   <th>Tipo</th>
                   <th>Cantidad</th>
-                  <th>Precios</th>
+                  <th>Precio</th>
                   <th>Opciones</th>
                 </tr>
               </thead>
@@ -190,6 +190,48 @@
 <script src="../../js/jquery.dataTables.min.js"></script> 
 <script src="../../js/matrix.js"></script> 
 <script src="../../js/matrix.tables.js"></script>
-</script>
+
+
+
+<script src="../../js/jquery.peity.min.js"></script> 
+<script src="../../js/jquery.gritter.min.js"></script> 
+<script src="../../js/matrix.interface.js"></script> 
+<script src="../../js/jquery.uniform.js"></script> 
+<script src="../../js/matrix.popover.js"></script> 
+<script src="../../js/redirecciones.js"></script>
+
+
+
+<% 
+        String exito="3";
+        String mensaje="";
+         if(request.getParameterMap().containsKey("exito"))
+        {
+            exito = request.getParameter("exito");
+            mensaje = request.getParameter("mensaje");
+        }
+        if(exito.equals("1")){
+        out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Completado Exitosamente', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemOk' ,"
+                + "sticky: false})"
+                + ";}); </script>");
+        }else if(exito.equals("2")){
+         out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Error.', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemError' ,"
+                + "sticky: false})"
+                + ";}); </script>");  
+        }
+
+    %> 
 </body>
 </html>

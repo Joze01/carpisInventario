@@ -3,23 +3,23 @@
     Created on : 10-15-2017, 04:59:46 PM
     Author     : Jose-PC
 --%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="sv.com.dkcapris.beans.ProductoBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
-<%@page import="sv.com.dkcarpis.model.ProductoModel"%>
-<%@page import="sv.com.dkcarpis.model.ImageModel"%>
-<%@page import="sv.com.dkcarpis.model.EntradaModel"%>
-<%@page import="sv.com.dkcapris.beans.EntradaBean"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Producto | Lista</title>
+<title>Producto | Entrada</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../../css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="../../css/fullcalendar.css" />
+
+<link rel="stylesheet" href="../../css/colorpicker.css" />
+<link rel="stylesheet" href="../../css/datepicker.css" />
+<link rel="stylesheet" href="../../css/uniform.css" />
+<link rel="stylesheet" href="../../css/select2.css" />
+
 <link rel="stylesheet" href="../../css/matrix-style.css" />
 <link rel="stylesheet" href="../../css/matrix-media.css" />
 <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -44,14 +44,16 @@
 
         <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
         <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> Cerrar Sesion</a></li>
+        <li><a href="../../index.jsp"><i class="icon-key"></i> Cerrar Sesion</a></li>
       </ul>
     </li>
 
-    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    <li class=""><a title="" href="../../index.jsp"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>
 <!--close-top-Header-menu-->
+
+
 
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
@@ -88,30 +90,31 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="../lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Productos</a>
-        <a href="lista.jps" title="" class="tip-bottom"><i class="icon-signin"></i>Entradas</a>
+        <a href="../lista.jsp" title="" class="tip-bottom"><i class="icon-list"></i>Producto</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-signin"></i>Entrada</a>
         <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
 
-   
+
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_lo"> <a href="../lista.jsp"> <i class="icon-search"></i> Listado de Producto </a> </li>
-        <li class="bg_lg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Nueva Entrada </a> </li>
+        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-ban-circle"></i> Cancelar </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
 <!--Chart-box-->    
          <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-signin"></i></span>
-            <h5>Nueva Entrada</h5>
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Nuevo Producto</h5>
           </div>
           <div class="widget-content nopadding">
-                
+             <form class="form-horizontal" method="post" action="/inventariocapris/productoController" enctype = "multipart/form-data" name="basic_validate" id="basic_validate" novalidate="novalidate">
+              
+            </form>
           </div>
         </div>
 <!--End-Chart-box--> 
@@ -130,14 +133,17 @@
 
 <!--end-Footer-part-->
 
+
 <script src="../../js/jquery.min.js"></script> 
 <script src="../../js/jquery.ui.custom.js"></script> 
 <script src="../../js/bootstrap.min.js"></script> 
 <script src="../../js/jquery.uniform.js"></script> 
 <script src="../../js/select2.min.js"></script> 
-<script src="../../js/jquery.dataTables.min.js"></script> 
+<script src="../../js/jquery.validate.js"></script> 
 <script src="../../js/matrix.js"></script> 
-<script src="../../js/matrix.tables.js"></script>
-</script>
+<script src="../../js/matrix.form_validation.js"></script>
+<script src="../../js/matrix.form_common.js"></script>
+
+
 </body>
 </html>
