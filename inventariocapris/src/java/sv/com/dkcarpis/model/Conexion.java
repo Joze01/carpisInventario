@@ -43,6 +43,7 @@ public class Conexion {
  //SQL realizada
  public void setRs(String consulta) {
  try {
+     System.out.println(consulta);
  this.rs = s.executeQuery(consulta);
    
  } catch (SQLException e2) {

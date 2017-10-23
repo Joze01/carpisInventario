@@ -12,6 +12,20 @@ package sv.com.dkcapris.beans;
 public class UsuarioBean {
 
     /**
+     * @return the loggeado
+     */
+    public boolean isLoggeado() {
+        return loggeado;
+    }
+
+    /**
+     * @param loggeado the loggeado to set
+     */
+    public void setLoggeado(boolean loggeado) {
+        this.loggeado = loggeado;
+    }
+
+    /**
      * @return the usuario_id
      */
     public int getUsuario_id() {
@@ -85,4 +99,5 @@ public class UsuarioBean {
     private String usuario_Nombre;
     private String usuario_user;
     private String usuario_password;
+    private boolean loggeado;
 }

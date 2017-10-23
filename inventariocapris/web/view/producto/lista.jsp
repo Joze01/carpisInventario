@@ -169,7 +169,7 @@
                          out.println("<div class='btn-group'>");
                          out.println("<button data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Producto<span class='caret'></span></button>");
                          out.println("<ul class='dropdown-menu'>");
-                         out.println("<li><a href='detalle.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"&imagen="+pd.getProducto_ImgPortada()+"&fabricante="+pd.getFabricante_Nombre()+""
+                         out.println("<li><a href='detalle.jsp?id="+pd.getProducto_id()+"&ubicacion="+pd.getProducto_ubicacion()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"&imagen="+pd.getProducto_ImgPortada()+"&fabricante="+pd.getFabricante_Nombre()+""
                                  + "&categoria="+pd.getCategoria_Nombre()+"&tipo="+pd.getTipoproducto_nombre()+"'>Detalle Producto</a></li>");
                          out.println("<li><a href='nuevo.jsp'>Nuevo Producto</a></li>");
                          out.println("<li><a href='#'>Modificar</a></li>");

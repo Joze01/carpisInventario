@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sv.com.dkcarpis.model;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import sv.com.dkcapris.beans.UsuarioBean;
 /**
@@ -12,9 +13,11 @@ import sv.com.dkcapris.beans.UsuarioBean;
  */
 public class UsuarioModel {
     Conexion con ;
-    
+    ResultSet rs;
     
     public boolean nuevoUsuario(UsuarioBean usrData) throws SQLException{
+        
+        
         boolean resultado=false;
             con =  new  Conexion();
             con.query="INSERT INTO usuario(id_tipo, usuario_nombre, usuario_user, usuario_password) "
@@ -51,5 +54,26 @@ public class UsuarioModel {
         return resultado;
     }
     
+    
+    public UsuarioBean login(UsuarioBean usrData) throws SQLException{
+        UsuarioBean usrResultado = new UsuarioBean();
+        con = new Conexion();
+        con.query="select count(*) as contador, usuario.* from usuario where usuario_user='"+usrData.getUsuario_user()+"' and usuario_password='"+usrData.getUsuario_password()+"'";
+        con.setRs(con.query);
+        rs=con.getRs();
+        while(rs.next()){
+         if(rs.getInt("contador")==1){
+          usrResultado.setUsuario_id(rs.getInt("usuario_id"));
+          usrResultado.setId_tipo(rs.getInt("id_tipo"));
+          usrResultado.setUsuario_Nombre(rs.getString("usuario_nombre"));
+          usrResultado.setUsuario_user(rs.getString("usuario_user"));
+          usrResultado.setUsuario_password(rs.getString("usuario_password"));
+          usrResultado.setLoggeado(true);
+         }else{
+         usrResultado.setLoggeado(false);
+         }
+        }
+        return usrResultado;
+    }
     
 }

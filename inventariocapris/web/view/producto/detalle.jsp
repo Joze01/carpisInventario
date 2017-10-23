@@ -153,7 +153,11 @@
                       <td>Tipo:</td>
                       <td><strong><% out.print(request.getParameter("tipo")); %></strong></td>
                     </tr>
-                  
+
+                    <tr>
+                      <td>Ubicacion: </td>
+                      <td><strong><% out.print(request.getParameter("ubicacion")); %></strong></td>
+                    </tr>                  
                     </tbody>
                   
                 </table>

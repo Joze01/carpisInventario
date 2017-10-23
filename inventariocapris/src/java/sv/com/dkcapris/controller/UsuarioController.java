@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sv.com.dkcapris.beans.FabricanteBean;
 import sv.com.dkcapris.beans.UsuarioBean;
 import sv.com.dkcarpis.model.UsuarioModel;
@@ -80,7 +81,34 @@ public class UsuarioController extends HttpServlet {
                 }
             
             }
-                   
+            
+            if(metodo.equals("login")){
+                UsuarioBean usrData = new UsuarioBean();
+                usrData.setUsuario_user(request.getParameter("username"));
+                usrData.setUsuario_password(request.getParameter("password"));
+                
+                usrData=usrModel.login(usrData);
+                
+                if(usrData.isLoggeado()){
+                HttpSession sesion = request.getSession();
+                    sesion.setAttribute("id", usrData.getUsuario_id());
+                    sesion.setAttribute("nombre", usrData.getUsuario_Nombre());
+                    sesion.setAttribute("tipo", usrData.getId_tipo());
+                 if(usrData.getId_tipo()!=3){
+                    response.sendRedirect("view/indexadmin.jsp?exito=1&mensaje=Bienvenido");
+                 }else{
+                    response.sendRedirect("view/indexing.jsp?exito=1&mensaje=Bienvenido "); 
+                 }
+                 
+                }else{
+                 response.sendRedirect("index.jsp?exito=2&mensaje=No se ha iniciado session ");
+                }
+                
+            }
+            
+            if(metodo.equals("logout")){
+            
+            }
         }
     }
 

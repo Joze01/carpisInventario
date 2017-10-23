@@ -66,7 +66,8 @@ public class EntradaModel {
                 + "INNER JOIN producto on producto.producto_id=entrada.id_producto "
                 + "INNER JOIN fabricante on fabricante.fabricante_id=producto.id_fabricante  "
                 + "INNER JOIN categoria on categoria.categoria_id=producto.id_categoria "
-                + "INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto";
+                + "INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto "
+                + "ORDER BY entrada.entrada_id DESC";
         con.setRs(con.query);
         rs = con.getRs();
         while(rs.next()){

@@ -133,27 +133,64 @@
 
 <!--end-Footer-part-->
 
-<script src="js/excanvas.min.js"></script> 
-<script src="js/jquery.min.js"></script> 
-<script src="js/jquery.ui.custom.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/jquery.flot.min.js"></script> 
-<script src="js/jquery.flot.resize.min.js"></script> 
-<script src="js/jquery.peity.min.js"></script> 
-<script src="js/fullcalendar.min.js"></script> 
-<script src="js/matrix.js"></script> 
-<script src="js/matrix.dashboard.js"></script> 
-<script src="js/jquery.gritter.min.js"></script> 
-<script src="js/matrix.interface.js"></script> 
-<script src="js/matrix.chat.js"></script> 
-<script src="js/jquery.validate.js"></script> 
-<script src="js/matrix.form_validation.js"></script> 
-<script src="js/jquery.wizard.js"></script> 
-<script src="js/jquery.uniform.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/matrix.popover.js"></script> 
-<script src="js/jquery.dataTables.min.js"></script> 
-<script src="js/matrix.tables.js"></script> 
+        <script src="js/jquery.min.js"></script>  
+        <script src="js/matrix.login.js"></script> 
+        
+        <script src="js/excanvas.min.js"></script> 
+        <script src="js/jquery.ui.custom.js"></script> 
+        <script src="js/bootstrap.min.js"></script> 
+        <script src="js/jquery.flot.min.js"></script> 
+        <script src="js/jquery.flot.resize.min.js"></script> 
+        <script src="js/jquery.peity.min.js"></script> 
+        <script src="js/fullcalendar.min.js"></script> 
+        <script src="js/matrix.js"></script> 
+        <script src="js/matrix.dashboard.js"></script> 
+        <script src="js/jquery.gritter.min.js"></script> 
+        <script src="js/matrix.interface.js"></script> 
+        <script src="js/matrix.chat.js"></script> 
+        <script src="js/jquery.validate.js"></script> 
+        <script src="js/matrix.form_validation.js"></script> 
+        <script src="js/jquery.wizard.js"></script> 
+        <script src="js/jquery.uniform.js"></script> 
+        <script src="js/select2.min.js"></script> 
+        <script src="js/matrix.popover.js"></script> 
+        <script src="js/jquery.dataTables.min.js"></script> 
+        <script src="js/matrix.tables.js"></script> 
+        
+        
+    </body>
+
+<% 
+        String exito="3";
+        String mensaje="";
+         if(request.getParameterMap().containsKey("exito"))
+        {
+            exito = request.getParameter("exito");
+            mensaje = request.getParameter("mensaje");
+        }
+        if(exito.equals("1")){
+        out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Completado Exitosamente', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemOk' ,"
+                + "sticky: false})"
+                + ";}); </script>");
+        }else if(exito.equals("2")){
+         out.println(" <script>"
+                + " $(document).ready(function() "
+                + "{ $.gritter.add({ "
+                + "title:'Error.', "
+                + "text:'"+mensaje+"',"
+                + "time: 5000, "
+                + "class_name: 'gritter-itemError' ,"
+                + "sticky: false})"
+                + ";}); </script>");  
+        }
+
+    %> 
 
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
