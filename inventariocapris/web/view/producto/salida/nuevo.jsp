@@ -76,6 +76,12 @@
         <li><a href="../../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
+    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+      <ul>
+        <li><a href="../../hospital/lista.jsp">Listado</a></li>
+        <li><a href="../../hospital/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
 
 
   </ul>
@@ -132,6 +138,28 @@
                   <input type="text" class="required" disabled name="nombre"  value="<%out.print(prodcuto_nombre);%>" id="required">
                 </div>
               </div>   
+                
+             <div class="control-group">
+                <label class="control-label">Fabricante</label>
+                 <div class="controls">
+                    <select name="fabricante" >
+                            <%
+
+                            Conexion con = new Conexion();
+                            ResultSet rs;
+                            con.query ="select * from hospital";
+                            con.setRs(con.query);
+                            rs = con.getRs();
+                            while(rs.next()){
+                               out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</td>");
+
+                            }
+
+                            %>
+                    </select>
+                </div>
+               </div> 
+                    
               <div class="control-group">
                 <label class="control-label">Cantidad de Salida</label>
                 <div class="controls">

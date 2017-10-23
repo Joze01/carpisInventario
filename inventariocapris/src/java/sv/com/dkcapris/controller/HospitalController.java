@@ -15,19 +15,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sv.com.dkcapris.beans.FabricanteBean;
-import sv.com.dkcapris.beans.UsuarioBean;
-import sv.com.dkcarpis.model.UsuarioModel;
-
+import sv.com.dkcapris.beans.HospitalBean;
+import sv.com.dkcarpis.model.HospitalModel;
 /**
  *
  * @author Jose-PC
  */
-@WebServlet(name = "usuarioController", urlPatterns = {"/usuarioController"})
-public class UsuarioController extends HttpServlet {
-        
-        UsuarioBean usr = new UsuarioBean();
-        UsuarioModel usrModel = new  UsuarioModel();
+@WebServlet(name = "HospitalController", urlPatterns = {"/HospitalController"})
+public class HospitalController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,45 +38,37 @@ public class UsuarioController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
             String metodo = request.getParameter("metodo");
-            
+            HospitalModel hostModel = new HospitalModel();
+            HospitalBean hospitalData;
             if(metodo.equals("insertar")){
-            UsuarioBean usr = new UsuarioBean();
-            usr.setUsuario_Nombre(request.getParameter("nombre"));
-            usr.setId_tipo(Integer.parseInt(request.getParameter("tipo")));
-            usr.setUsuario_user(request.getParameter("usuario"));
-            usr.setUsuario_password(request.getParameter("password"));
-            
-            
-            if(usrModel.nuevoUsuario(usr)){
-             response.sendRedirect("view/usuario/lista.jsp?exito=1&mensaje=Usuario Registrado Correctamente");
-            }else{
-                 response.sendRedirect("view/usuario/lista.jsp?exito=2&mensaje=Error al registar ");
+                hospitalData = new HospitalBean();
+                    hospitalData.setHospital_Nombre(request.getParameter("nombre"));
+                    hospitalData.setHospital_Descripcion(request.getParameter("descripcion"));
+                    if(hostModel.nuevoHospital(hospitalData)){
+                        response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Hospital Registrado Correctamente");
+                    }else{
+                         response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al registar ");
+                    }
             }
             
-            
-            }
             if(metodo.equals("modificar")){
-               UsuarioBean usr = new UsuarioBean();
-            
-            if(usrModel.updateUsuario(usr)){
-                 response.sendRedirect("view/usuario/lista.jsp?exito=1&mensaje=Usuario Modificado Correctamente");
-                }else{
-                 response.sendRedirect("view/usuario/lista.jsp?exito=2&mensaje=Error Al modificar ");
-                }
+                hospitalData = new HospitalBean();
+                    if(hostModel.modificarHospital(hospitalData)){
+                        response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Hospital Modificado Correctamente");
+                    }else{
+                         response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al registar ");
+                    }            
             }
             if(metodo.equals("eliminar")){
-              UsuarioBean usr = new UsuarioBean();
-              usr.setUsuario_id(Integer.parseInt(request.getParameter("id")));
-            if(usrModel.deleteUsuario(usr)){
-                 response.sendRedirect("view/usuario/lista.jsp?exito=1&mensaje=Usuario Eliminado Correctamente");
-                }else{
-                 response.sendRedirect("view/usuario/lista.jsp?exito=2&mensaje=Error Al eliminar ");
-                }
-            
+                hospitalData = new HospitalBean();
+                    hospitalData.setHospital_Id(Integer.parseInt(request.getParameter("id")));
+                    if(hostModel.eliminarHospital(hospitalData)){
+                        response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Hospital Eliminado Correctamente");
+                    }else{
+                         response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al registar ");
+                    }
             }
-                   
         }
     }
 
@@ -96,11 +84,11 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            try {
-                processRequest(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(HospitalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -114,11 +102,11 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            try {
-                processRequest(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(HospitalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -67,6 +67,12 @@
         <li><a href="usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
+    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+      <ul>
+        <li><a href="hospital/lista.jsp">Listado</a></li>
+        <li><a href="hospital/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
 
 
   </ul>
@@ -89,7 +95,7 @@
         <li class="bg_dy span2"> <a href="producto/lista.jsp"> <i class="icon-th-list"></i>  Productos </a> </li>
         <li class="bg_lr span2"> <a href="fabricante/lista.jsp"> <i class="icon-truck"></i>  Fabricantes </a> </li>
         <li class="bg_lv span2"> <a href="usuario/lista.jsp"> <i class="icon-group"></i> Usuarios </a> </li>
-
+        <li class="bg_ls span2"> <a href="hospital/lista.jsp"> <i class="icon-hospital"></i> Hospital </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    

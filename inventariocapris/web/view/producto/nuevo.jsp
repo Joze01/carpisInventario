@@ -76,6 +76,12 @@
         <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
+    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+      <ul>
+        <li><a href="../hospital/lista.jsp">Listado</a></li>
+        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
 
 
   </ul>
@@ -128,6 +134,12 @@
                   <input type="text" class="required" name="descripcion" id="required">
                 </div>
               </div>   
+              <div class="control-group">
+                <label class="control-label">Ubicacion</label>
+                <div class="controls">
+                  <input type="text" class="required" name="ubicacion" id="required">
+                </div>
+              </div> 
              <div class="control-group">
                 <label class="control-label">Fabricante</label>
                  <div class="controls">

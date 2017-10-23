@@ -76,6 +76,12 @@
         <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
+    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+      <ul>
+        <li><a href="../hospital/lista.jsp">Listado</a></li>
+        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
 
 
   </ul>

@@ -21,7 +21,7 @@ public class ProductoModel {
     public boolean nuevoProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;
          con =  new  Conexion();
-         con.query="INSERT INTO producto(id_fabricante, id_categoria, id_tipoproducto, producto_serie, producto_nombre, producto_descripcion) VALUES ("+prdData.getId_fabricante()+","+prdData.getId_categoria()+", "+prdData.getId_tipoproducto()+",'"+prdData.getProducto_serie()+"','"+prdData.getProducto_nombre()+"','"+prdData.getProducto_descripcion()+"')";
+         con.query="INSERT INTO producto(id_fabricante, id_categoria, id_tipoproducto, producto_serie, producto_nombre, producto_descripcion, producto_ubicacion) VALUES ("+prdData.getId_fabricante()+","+prdData.getId_categoria()+", "+prdData.getId_tipoproducto()+",'"+prdData.getProducto_serie()+"','"+prdData.getProducto_nombre()+"','"+prdData.getProducto_descripcion()+"','"+prdData.getProducto_ubicacion()+"')";
          resultado=con.setQuery(con.query);
          
          con.query="select * from producto order by producto_id DESC limit 1";
@@ -72,7 +72,7 @@ public class ProductoModel {
             prd.setProducto_serie(rs.getString("producto_serie"));
             prd.setProducto_nombre(rs.getString("producto_nombre"));
             prd.setProducto_descripcion(rs.getString("producto_descripcion"));
-            
+            prd.setProducto_ubicacion(rs.getString("producto_ubicacion"));
             prd.setFabricante_Nombre(rs.getString("fabricante_nombre"));
             prd.setCategoria_Nombre(rs.getString("categoria_nombre"));
             prd.setTipoproducto_nombre(rs.getString("tipoproducto_nombre"));

@@ -15,6 +15,20 @@ import java.util.Date;
 public class SalidaBean {
 
     /**
+     * @return the id_hospital
+     */
+    public int getId_hospital() {
+        return id_hospital;
+    }
+
+    /**
+     * @param id_hospital the id_hospital to set
+     */
+    public void setId_hospital(int id_hospital) {
+        this.id_hospital = id_hospital;
+    }
+
+    /**
      * @return the salida_fecha
      */
     public String getSalida_fecha() {
@@ -174,6 +188,7 @@ public class SalidaBean {
     private int id;
     private int id_usuario;
     private int id_producto;
+    private int id_hospital;
     private int salidad_cantidad;
     private float salida_precio;
     private String producto_nombre;

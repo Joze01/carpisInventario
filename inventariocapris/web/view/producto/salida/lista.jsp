@@ -148,8 +148,8 @@
                          out.println("<td>"+pd.getSalidad_cantidad()+"</td>");
                          out.println("<td>"+pd.getSalida_precio()+"</td>");
                          out.println("<td>");
-                         out.println("<button class='btn btn-info btn-mini'>Modificar Entrada</button>");
-                         out.println("<button class='btn btn-danger btn-mini'>Eliminar Entrada</button>");
+                         out.println("<button class='btn btn-info btn-mini'>Modificar Salida</button>");
+                         out.println("<button class='btn btn-danger btn-mini'>Eliminar Salida</button>");
                          
                          out.println("</td>");
                          

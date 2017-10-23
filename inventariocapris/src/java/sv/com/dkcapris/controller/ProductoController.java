@@ -163,7 +163,9 @@ public class ProductoController extends HttpServlet {
                                 if(fi.getFieldName().equals("metodo")){
                                    metodo=(fi.getString());
                                 }
-                                
+                                if(fi.getFieldName().equals("ubicacion")){
+                                   prdData.setProducto_ubicacion(fi.getString());
+                                }
                             }
                          }
                          out.println("</body>");

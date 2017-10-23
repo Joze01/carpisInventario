@@ -70,19 +70,18 @@
         <li><a href="../fabricante/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
+    <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
+      <ul>
+        <li><a href="../usuario/lista.jsp">Listado</a></li>
+        <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
+    <li class="submenu active"> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
       <ul>
         <li><a href="lista.jsp">Listado</a></li>
         <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
-      <ul>
-        <li><a href="../hospital/lista.jsp">Listado</a></li>
-        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
-      </ul>
-    </li>
-
 
   </ul>
 </div>
@@ -94,7 +93,8 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-group"></i>Usuarios</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-hospital"></i>Hospital</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -111,10 +111,10 @@
 <!--Chart-box-->    
          <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
-            <h5>Usuarios</h5>
+            <h5>Nuevo Hospital</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="/inventariocapris/usuarioController" name="basic_validate" id="basic_validate" novalidate="novalidate">
+             <form class="form-horizontal" method="post" action="/inventariocapris/HospitalController" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
                 <label class="control-label">Nombre</label>
                 <div class="controls">
@@ -122,27 +122,11 @@
                 </div>
               </div>
               <div class="control-group">
-              <label class="control-label">Privilegios</label>
-              <div class="controls">
-                <select name="tipo">
-                  <option value="2">Administrador</option>
-                  <option value="3">Ingeniero</option>
-                  
-                </select>
-              </div>
-            </div>
-              <div class="control-group">
-                <label class="control-label">Usuario</label>
+                <label class="control-label">Descripcion</label>
                 <div class="controls">
-                     <input type="text" class="required" name="usuario" id="required">
+                  <input type="text" class="required" name="descripcion" class="required" id="required">
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">Password</label>
-                <div class="controls">
-                     <input type="password" name="password" class="required" id="required">
-                </div>
-              </div>   
+              </div>             
               <div class="form-actions">
                 <input type="hidden" name="metodo" value="insertar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">

@@ -74,6 +74,12 @@
         <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
+    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+      <ul>
+        <li><a href="../hospital/lista.jsp">Listado</a></li>
+        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
 
 
   </ul>
@@ -115,6 +121,7 @@
                   <th>Serie</th>
                   <th>Nombre</th>
                   <th>Descripcion</th>
+                  <th>Ubicacion</th>
                   <th>Imagen</th>
                   <th>Marca</th>
                   <th>Categoria</th>
@@ -150,6 +157,7 @@
                          out.println("<td>"+pd.getProducto_serie()+"</td>");
                          out.println("<td>"+pd.getProducto_nombre()+"</td>");
                          out.println("<td>"+pd.getProducto_descripcion()+"</td>");
+                         out.println("<td>"+pd.getProducto_ubicacion()+"</td>");
                          out.println("<td><img class='img-responsive' src='"+pd.getProducto_ImgPortada()+"'/></td>");
                          out.println("<td>"+pd.getFabricante_Nombre()+"</td>");
                          out.println("<td>"+pd.getCategoria_Nombre()+"</td>");
