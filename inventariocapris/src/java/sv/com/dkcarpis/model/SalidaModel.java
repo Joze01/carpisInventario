@@ -30,14 +30,13 @@ public class SalidaModel {
         ArrayList<EntradaBean> listaEntradas = entdModel.getAllEntradasByProducto(exitData.getId_producto()); //obtener lista de entradas
         
         for(SalidaBean salida: listaSalidas){ //contar salidas
-                cantidadSalidas+=salida.getSalidad_cantidad();
+                cantidadSalidas+=salida.getSalidad_cantidad();  
                 
         }       
         for(EntradaBean entrada: listaEntradas){         //contar entradas
                 for(SalidaBean exitActual : listaSalidas){
                     
-                }
-                
+                }   
         }
         if(resto>=exitData.getSalidad_cantidad()){// Comprobar si hay Existencias Suficientes
             System.out.println("Existencia suficiente");

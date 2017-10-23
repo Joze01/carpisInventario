@@ -107,7 +107,7 @@
 <!--Chart-box-->    
          <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Nuevo Producto</h5>
+            <h5>Salida de Productos</h5>
           </div>
                 <%
                   String producto_id=request.getParameter("id");
@@ -127,36 +127,19 @@
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label"  >Nombre</label>
+                <label class="control-label"  >Nombre Producto</label>
                 <div class="controls">
                   <input type="text" class="required" disabled name="nombre"  value="<%out.print(prodcuto_nombre);%>" id="required">
                 </div>
               </div>   
               <div class="control-group">
-                <label class="control-label">Cantidad de Entrada</label>
+                <label class="control-label">Cantidad de Salida</label>
                 <div class="controls">
                   <input type="number" min="0" max="9999" step="1" class="required" name="cantidad" id="required">
                 </div>
               </div>   
-              <div class="control-group">
-                <label class="control-label">Precio Unitario</label>
-                <div class="controls">
-                  <input type="number" min="1" max="9999" step="0.01" class="required" name="precio" id="required">
-                </div>
-              </div>  
-              <div class="control-group">
-              <label class="control-label">Fecha Entrada</label>
-              <div class="controls">
-                <div  data-date="12-02-2012" class="input-append date datepicker">
-                  <input type="text" name="fecha" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
-                  <span class="add-on"><i class="icon-th"></i></span> </div>
-              </div>
-            </div>   
-   
-  
-              <div class="form-actions">
 
-                  
+              <div class="form-actions">
                   <input type="hidden" name="productoId" value="<%out.print(producto_id);%>"/>
                   <input type="hidden" name="usuarioId" value="5"/>
                   <input type="hidden" name="metodo" value="insertar"/>
