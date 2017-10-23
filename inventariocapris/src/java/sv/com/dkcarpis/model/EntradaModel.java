@@ -95,7 +95,7 @@ public class EntradaModel {
         public ArrayList<EntradaBean> getAllEntradasByProducto(int idProducto) throws SQLException{
         ArrayList<EntradaBean> listadoEntradas = new ArrayList<EntradaBean>();
         con = new Conexion();
-        con.query="select * from salida where id_producto="+idProducto;
+        con.query="select * from entrada where id_producto="+idProducto;
         con.setRs(con.query);
         rs=con.getRs();
         while(rs.next()){

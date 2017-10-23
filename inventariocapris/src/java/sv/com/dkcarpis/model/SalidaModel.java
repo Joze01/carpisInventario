@@ -17,15 +17,37 @@ import sv.com.dkcarpis.model.EntradaModel;
  */
 public class SalidaModel {
         Conexion con;
-
+        int contador=0;
+        int contador2=0;
     ResultSet rs;
-    public boolean nuevaEntrada(SalidaBean exitData) throws SQLException{
+    public boolean nuevaSalida(SalidaBean exitData) throws SQLException{
      boolean resultado =false;
+        Integer cantidadEntradas=0;
+        Integer cantidadSalidas=0;
+        Integer resto=0;
+        EntradaModel entdModel = new EntradaModel();
+        ArrayList<SalidaBean> listaSalidas = this.getAllSalidasbyProducto(exitData.getId_producto()); //obtener lista de salidas
+        ArrayList<EntradaBean> listaEntradas = entdModel.getAllEntradasByProducto(exitData.getId_producto()); //obtener lista de entradas
         
-     
-     
-     
-     
+        for(SalidaBean salida: listaSalidas){ //contar salidas
+                cantidadSalidas+=salida.getSalidad_cantidad();
+                
+        }       
+        for(EntradaBean entrada: listaEntradas){         //contar entradas
+                for(SalidaBean exitActual : listaSalidas){
+                    
+                }
+                
+        }
+        if(resto>=exitData.getSalidad_cantidad()){// Comprobar si hay Existencias Suficientes
+            System.out.println("Existencia suficiente");
+            for(EntradaBean entr : listaEntradas){ //Recorrer cada entrada
+            
+            }//end recorrer entradas
+        }else{ //end if cuando si hay existencias
+              System.out.println("NO HAY Existencia suficiente");
+        }//end if cuando hay no hay existencias
+        
      return resultado;
     }
     
@@ -40,7 +62,7 @@ public class SalidaModel {
         
         
         
-    public boolean EliminarEntrada(SalidaBean exitData) throws SQLException{
+    public boolean EliminarSalida(SalidaBean exitData) throws SQLException{
      boolean resultado =false;
      con = new Conexion();
      con.query="delete from salida where salida_id="+exitData.getId();

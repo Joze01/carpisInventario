@@ -144,7 +144,7 @@
                           String imgdir = imgMod.getOneUrl(pd.getProducto_id());  
                           pd.setProducto_ImgPortada("images/"+imgdir);
                           
-                          System.out.println(pd.getProducto_ImgPortada());
+               
                          out.println("<tr class='gradeX'>");
                          out.println("<td>"+pd.getProducto_id()+"</td>");
                          out.println("<td>"+pd.getProducto_serie()+"</td>");
@@ -172,7 +172,7 @@
                          out.println("</div>");
   
                          out.println("<a href='entrada/nuevo.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"' class='btn btn-primary btn-mini'>Nueva Entrada</a>");  
-                         out.println("<button class='btn btn-inverse btn-mini'>Nueva Salida</button>");  
+                         out.println("<a href='salida/nuevo.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"' class='btn btn-danger btn-mini'>Nueva Salida</a>");  
                          out.println("</td>");
                          
                          
