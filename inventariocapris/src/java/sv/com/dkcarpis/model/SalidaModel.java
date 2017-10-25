@@ -31,20 +31,45 @@ public class SalidaModel {
         
         for(SalidaBean salida: listaSalidas){ //contar salidas
                 cantidadSalidas+=salida.getSalidad_cantidad();  
-                
         }       
         for(EntradaBean entrada: listaEntradas){         //contar entradas
-                for(SalidaBean exitActual : listaSalidas){
-                    
-                }   
+            cantidadEntradas+=entrada.getEntrada_cantidad();
         }
+        
+        resto = cantidadEntradas-cantidadSalidas;
         if(resto>=exitData.getSalidad_cantidad()){// Comprobar si hay Existencias Suficientes
-            System.out.println("Existencia suficiente");
-            for(EntradaBean entr : listaEntradas){ //Recorrer cada entrada
-            
-            }//end recorrer entradas
+            System.out.println("TOTAL Existencia suficiente");
+            Integer acumuladorEntradas = 0;
+            Integer acumuladorSalidas = 0;
+             boolean salidaCompleta=false;
+            for(EntradaBean ntr : listaEntradas){
+                acumuladorEntradas=acumuladorEntradas+ntr.getEntrada_cantidad();
+                for(SalidaBean sld : listaSalidas){
+                   
+                    acumuladorSalidas=acumuladorSalidas+sld.getSalidad_cantidad();
+                    Integer dif2=acumuladorSalidas;
+                    System.out.println("Diferencia "+dif2);
+                 if(dif2>=exitData.getSalidad_cantidad()){
+                     if(!salidaCompleta){
+                     System.out.println("SE PUEDE SACAR "+exitData.getSalidad_cantidad()+" A precio de: "+ntr.getEntrada_precio());
+                     con = new Conexion();
+                     con.query="INSERT INTO salida(id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) "
+                             + "VALUES ("+exitData.getId_usuario()+", "+exitData.getId_producto()+", "+exitData.getSalidad_cantidad()+", "+ntr.getEntrada_precio()+", CURRENT_DATE(), "+exitData.getId_hospital()+" )";
+                     con.setQuery(con.query);
+                     salidaCompleta=true;
+                        resultado=true;
+                     con.cerrarConexion();
+                     }
+                 }else { //Salida cuando se pasa de 1 entrada
+                     System.out.println("NO ALCANZA LA SALIDA ACTUAL");
+                 }
+                 
+                }
+            }
         }else{ //end if cuando si hay existencias
+           
               System.out.println("NO HAY Existencia suficiente");
+              resultado=false;
         }//end if cuando hay no hay existencias
         
      return resultado;
@@ -64,7 +89,7 @@ public class SalidaModel {
     public boolean EliminarSalida(SalidaBean exitData) throws SQLException{
      boolean resultado =false;
      con = new Conexion();
-     con.query="delete from salida where salida_id="+exitData.getId();
+     con.query="delete from salida where salida_int="+exitData.getId();
      resultado=con.setQuery(con.query);
      con.cerrarConexion();
      return resultado;

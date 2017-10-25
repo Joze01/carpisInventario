@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Producto | Salida</title>
+<title>Salida | Lista</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
@@ -148,8 +148,8 @@
                          out.println("<td>"+pd.getSalidad_cantidad()+"</td>");
                          out.println("<td>"+pd.getSalida_precio()+"</td>");
                          out.println("<td>");
-                         out.println("<button class='btn btn-info btn-mini'>Modificar Salida</button>");
-                         out.println("<button class='btn btn-danger btn-mini'>Eliminar Salida</button>");
+                         out.println("<a  class='btn btn-info btn-mini'>Modificar Salida</a>");
+                         out.println("<a onclick=\"eliminar('Salida',"+pd.getId()+",'/inventariocapris/salidaController')\" class='btn btn-danger btn-mini'>Eliminar Salida</a>");
                          
                          out.println("</td>");
                          

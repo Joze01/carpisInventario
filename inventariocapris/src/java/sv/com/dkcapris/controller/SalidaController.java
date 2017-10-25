@@ -47,11 +47,13 @@ public class SalidaController extends HttpServlet {
             extB.setId_producto(Integer.parseInt(request.getParameter("productoId")));
             extB.setSalidad_cantidad(Integer.parseInt(request.getParameter("cantidad")));
             extB.setId_usuario(Integer.parseInt(request.getParameter("usuarioId")));
+            //System.out.println("HOSPITAL: "+request.getParameter("hospitalId"));
+            extB.setId_hospital(Integer.parseInt(request.getParameter("hospitalId")));
             
             if(extModel.nuevaSalida(extB)){
              response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Salida registrada Correctamente.");
             }else{
-                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al registar salida.");
+             response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al registar salida.");
                 }
             }
 
@@ -61,9 +63,9 @@ public class SalidaController extends HttpServlet {
                 extB.setId(Integer.parseInt(request.getParameter("id")));
 
                 if(extModel.EliminarSalida(extB)){
-                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Salida eliminada Correctamente.");
+                 response.sendRedirect("view/producto/salida/lista.jsp?exito=1&mensaje=Salida eliminada Correctamente.");
                 }else{
-                     response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al eliminar salida.");
+                     response.sendRedirect("view/producto/salida/lista.jsp?exito=2&mensaje=Error al eliminar salida.");
                     }
               }
         }

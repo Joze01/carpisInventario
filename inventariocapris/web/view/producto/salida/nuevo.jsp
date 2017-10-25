@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Entrada | Nuevo</title>
+<title>Salida | Nuevo</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
@@ -106,7 +106,7 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-ban-circle"></i> Cancelar </a> </li>
+        <li class="bg_lr"> <a href="../lista.jsp"> <i class="icon-ban-circle"></i> Cancelar </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -140,11 +140,10 @@
               </div>   
                 
              <div class="control-group">
-                <label class="control-label">Fabricante</label>
+                <label class="control-label">Hospital</label>
                  <div class="controls">
-                    <select name="fabricante" >
+                    <select name="hospitalId" >
                             <%
-
                             Conexion con = new Conexion();
                             ResultSet rs;
                             con.query ="select * from hospital";
@@ -152,9 +151,7 @@
                             rs = con.getRs();
                             while(rs.next()){
                                out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</td>");
-
                             }
-
                             %>
                     </select>
                 </div>
