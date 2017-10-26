@@ -43,12 +43,14 @@ public class SalidaModel {
             Integer acumuladorSalidas = 0;
              boolean salidaCompleta=false;
             for(EntradaBean ntr : listaEntradas){
+                acumuladorSalidas=0;
                 acumuladorEntradas=acumuladorEntradas+ntr.getEntrada_cantidad();
                 for(SalidaBean sld : listaSalidas){
                    
                     acumuladorSalidas=acumuladorSalidas+sld.getSalidad_cantidad();
                     Integer dif2=acumuladorSalidas;
                     System.out.println("Diferencia "+dif2);
+                    System.out.println("SE NECESITA SACAR: "+exitData.getSalidad_cantidad());
                  if(dif2>=exitData.getSalidad_cantidad()){
                      if(!salidaCompleta){
                      System.out.println("SE PUEDE SACAR "+exitData.getSalidad_cantidad()+" A precio de: "+ntr.getEntrada_precio());
@@ -57,11 +59,18 @@ public class SalidaModel {
                              + "VALUES ("+exitData.getId_usuario()+", "+exitData.getId_producto()+", "+exitData.getSalidad_cantidad()+", "+ntr.getEntrada_precio()+", CURRENT_DATE(), "+exitData.getId_hospital()+" )";
                      con.setQuery(con.query);
                      salidaCompleta=true;
-                        resultado=true;
+                     resultado=true;
                      con.cerrarConexion();
                      }
                  }else { //Salida cuando se pasa de 1 entrada
                      System.out.println("NO ALCANZA LA SALIDA ACTUAL");
+                     System.out.println("Se pueden sacar: "+dif2+" De: "+exitData.getSalidad_cantidad());
+                     exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-dif2);
+                     con = new Conexion();
+                    
+                     con.query="INSERT INTO salida(id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) "
+                             + "VALUES ("+exitData.getId_usuario()+", "+exitData.getId_producto()+", "+dif2+", "+ntr.getEntrada_precio()+", CURRENT_DATE(), "+exitData.getId_hospital()+" )";
+                     resultado=con.setQuery(con.query);
                  }
                  
                 }
