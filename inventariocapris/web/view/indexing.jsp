@@ -3,7 +3,16 @@
     Created on : 10-26-2017, 01:04:29 AM
     Author     : Jose-PC
 --%>
-
+<%
+   HttpSession sesion = request.getSession();
+   String id=sesion.getAttribute("id").toString();
+   String nombre=sesion.getAttribute("nombre").toString();
+   String tipo=sesion.getAttribute("tipo").toString();
+   System.out.println("TIPO EN JSP: "+tipo);
+   if(Integer.parseInt(tipo)!=3){
+       response.sendRedirect("../");
+   }
+ %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +40,7 @@
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Bienvenido <%out.println(nombre);%></span><b class="caret"></b></a>
       <ul class="dropdown-menu">
 
         <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
@@ -72,11 +81,9 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_db span2"> <a href="indexadmin.jsp"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
-        <li class="bg_dy span2"> <a href="producto/lista.jsp"> <i class="icon-th-list"></i>  Productos </a> </li>
-        <li class="bg_lr span2"> <a href="fabricante/lista.jsp"> <i class="icon-truck"></i>  Fabricantes </a> </li>
-        <li class="bg_lv span2"> <a href="usuario/lista.jsp"> <i class="icon-group"></i> Usuarios </a> </li>
-        <li class="bg_ls span2"> <a href="hospital/lista.jsp"> <i class="icon-hospital"></i> Hospital </a> </li>
+        <li class="bg_db span2"> <a href="indexing.jsp"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
+        <li class="bg_dy span2"> <a href="productoIng/lista.jsp"> <i class="icon-th-list"></i>  Productos </a> </li>
+     
       </ul>
     </div>
 <!--End-Action boxes-->    

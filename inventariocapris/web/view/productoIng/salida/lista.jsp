@@ -3,6 +3,7 @@
     Created on : 10-15-2017, 04:59:46 PM
     Author     : Jose-PC
 --%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="sv.com.dkcapris.beans.ProductoBean"%>
 <%@page import="java.sql.ResultSet"%>
@@ -56,28 +57,13 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li class=""><a href="../../indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class=""><a href="../../indexIng.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
         <li><a href="../lista.jsp">Buscador</a></li>
-        <li><a href="../entrada/lista.jsp">Entradas</a></li>
         <li><a href="lista.jsp">Salidas</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
-      <ul>
-          <li><a href="../../fabricante/lista.jsp">Listado</a></li>
-        <li><a href="../../fabricante/nuevo.jsp">Nuevo</a></li>
-      </ul>
-    </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
-      <ul>
-        <li><a href="../../usuario/lista.jsp">Listado</a></li>
-        <li><a href="../../usuario/nuevo.jsp">Nuevo</a></li>
-      </ul>
-    </li>
-
-
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -149,8 +135,7 @@
                          out.println("<td>"+pd.getSalida_precio()+"</td>");
                          out.println("<td>");
                          out.println("<a  class='btn btn-info btn-mini'>Modificar Salida</a>");
-                         out.println("<a onclick=\"eliminar('Salida',"+pd.getId()+",'/inventariocapris/salidaController')\" class='btn btn-danger btn-mini'>Eliminar Salida</a>");
-                         
+
                          out.println("</td>");
                          
                          

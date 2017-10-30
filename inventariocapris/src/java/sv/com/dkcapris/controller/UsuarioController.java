@@ -90,13 +90,15 @@ public class UsuarioController extends HttpServlet {
                 usrData=usrModel.login(usrData);
                 
                 if(usrData.isLoggeado()){
-                HttpSession sesion = request.getSession();
+                    HttpSession sesion = request.getSession();
                     sesion.setAttribute("id", usrData.getUsuario_id());
                     sesion.setAttribute("nombre", usrData.getUsuario_Nombre());
                     sesion.setAttribute("tipo", usrData.getId_tipo());
-                 if(usrData.getId_tipo()!=3){
+                    System.out.println("TIPO DE USUARIO: "+usrData.getId_tipo());
+                 if(usrData.getId_tipo()<=2){
                     response.sendRedirect("view/indexadmin.jsp?exito=1&mensaje=Bienvenido");
                  }else{
+                     System.out.println("BIENVENIDO INGENIERO");
                     response.sendRedirect("view/indexing.jsp?exito=1&mensaje=Bienvenido "); 
                  }
                  

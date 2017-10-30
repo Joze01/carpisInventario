@@ -3,6 +3,16 @@
     Created on : 10-15-2017, 04:59:46 PM
     Author     : Jose-PC
 --%>
+<%
+   HttpSession sesion = request.getSession();
+   String id=sesion.getAttribute("id").toString();
+   String nombre=sesion.getAttribute("nombre").toString();
+   String tipo=sesion.getAttribute("tipo").toString();
+   System.out.println("TIPO EN JSP: "+tipo);
+   if(Integer.parseInt(tipo)!=3){
+       response.sendRedirect("../");
+   }
+ %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
 <!DOCTYPE html>
@@ -166,7 +176,7 @@
 
               <div class="form-actions">
                   <input type="hidden" name="productoId" value="<%out.print(producto_id);%>"/>
-                  <input type="hidden" name="usuarioId" value="5"/>
+                  <input type="hidden" name="usuarioId" value="<%out.print(id);%>"/>
                   <input type="hidden" name="metodo" value="insertar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>

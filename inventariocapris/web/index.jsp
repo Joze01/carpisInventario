@@ -7,8 +7,11 @@ and open the template in the editor.
 <!DOCTYPE html>
 <%
 HttpSession sesion = request.getSession();
+                    sesion.setAttribute("id",null);
+                    sesion.setAttribute("nombre", null);
+                    sesion.setAttribute("tipo", null);
 session.invalidate();
-
+System.out.println("CHECKOUT");
 %>
 <html lang="en">
     

@@ -3,6 +3,16 @@
     Created on : 10-15-2017, 04:59:46 PM
     Author     : Jose-PC
 --%>
+<%
+   HttpSession sesion = request.getSession();
+   String id=sesion.getAttribute("id").toString();
+   String nombre=sesion.getAttribute("nombre").toString();
+   String tipo=sesion.getAttribute("tipo").toString();
+   System.out.println("TIPO EN JSP: "+tipo);
+   if(Integer.parseInt(tipo)!=3){
+       response.sendRedirect("../");
+   }
+ %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="sv.com.dkcapris.beans.ProductoBean"%>
 <%@page import="java.sql.ResultSet"%>
@@ -37,7 +47,7 @@
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text"><%out.println(nombre);%> </span><b class="caret"></b></a>
       <ul class="dropdown-menu">
 
         <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
@@ -54,34 +64,13 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li class=""><a href="../indexadmin.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class=""><a href="../indexing.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> </a>
       <ul>
         <li><a href="lista.jsp">Buscador</a></li>
-        <li><a href="entrada/lista.jsp">Entradas</a></li>
         <li><a href="salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
-      <ul>
-          <li><a href="../fabricante/lista.jsp">Listado</a></li>
-        <li><a href="../fabricante/nuevo.jsp">Nuevo</a></li>
-      </ul>
-    </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
-      <ul>
-        <li><a href="../usuario/lista.jsp">Listado</a></li>
-        <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
-      </ul>
-    </li>
-    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
-      <ul>
-        <li><a href="../hospital/lista.jsp">Listado</a></li>
-        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
-      </ul>
-    </li>
-
-
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -103,7 +92,6 @@
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
         <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
-        <li class="bg_ls"> <a href="entrada/lista.jsp"> <i class="icon-signin"></i> Entradas </a> </li>
         <li class="bg_ly"> <a href="salida/lista.jsp"> <i class="icon-external-link"></i> Salidas </a> </li>
       </ul>
     </div>
@@ -170,16 +158,9 @@
                          out.println("<ul class='dropdown-menu'>");
                          out.println("<li><a href='detalle.jsp?id="+pd.getProducto_id()+"&ubicacion="+pd.getProducto_ubicacion()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"&imagen="+pd.getProducto_ImgPortada()+"&fabricante="+pd.getFabricante_Nombre()+""
                                  + "&categoria="+pd.getCategoria_Nombre()+"&tipo="+pd.getTipoproducto_nombre()+"'>Detalle Producto</a></li>");
-                         out.println("<li><a href='nuevo.jsp'>Nuevo Producto</a></li>");
-                         out.println("<li><a href='#'>Modificar</a></li>");
-                         out.println("<li class='divider'></li>");
-                         out.println("<li><a onclick=\"eliminar('Producto',"+pd.getProducto_id()+",'/inventariocapris/productoController')\"          >Eliminar</a></li>");
-                
-//out.println("<li><a href='/inventariocapris/productoController?metodo=eliminar&id="+pd.getProducto_id()+"'>Eliminar</a></li>");
                          out.println("</ul>");
                          out.println("</div>");
   
-                         out.println("<a href='entrada/nuevo.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"' class='btn btn-primary btn-mini'>Nueva Entrada</a>");  
                          out.println("<a href='salida/nuevo.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"' class='btn btn-danger btn-mini'>Nueva Salida</a>");  
                          out.println("</td>");
                          

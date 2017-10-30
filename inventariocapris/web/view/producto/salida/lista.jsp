@@ -3,6 +3,15 @@
     Created on : 10-15-2017, 04:59:46 PM
     Author     : Jose-PC
 --%>
+<%
+   HttpSession sesion = request.getSession();
+   String id=sesion.getAttribute("id").toString();
+   String nombre=sesion.getAttribute("nombre").toString();
+   String tipo=sesion.getAttribute("tipo").toString();
+   if(Integer.parseInt(tipo)>2){
+       response.sendRedirect("../../../");
+   }
+%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="sv.com.dkcapris.beans.ProductoBean"%>
 <%@page import="java.sql.ResultSet"%>
@@ -148,7 +157,6 @@
                          out.println("<td>"+pd.getSalidad_cantidad()+"</td>");
                          out.println("<td>"+pd.getSalida_precio()+"</td>");
                          out.println("<td>");
-                         out.println("<a  class='btn btn-info btn-mini'>Modificar Salida</a>");
                          out.println("<a onclick=\"eliminar('Salida',"+pd.getId()+",'/inventariocapris/salidaController')\" class='btn btn-danger btn-mini'>Eliminar Salida</a>");
                          
                          out.println("</td>");

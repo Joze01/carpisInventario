@@ -38,43 +38,40 @@ public class SalidaModel {
         
         resto = cantidadEntradas-cantidadSalidas;
         if(resto>=exitData.getSalidad_cantidad()){// Comprobar si hay Existencias Suficientes
-            System.out.println("TOTAL Existencia suficiente");
+            System.out.println("TOTAL Existencia suficiente: " + resto);
             Integer acumuladorEntradas = 0;
-            Integer acumuladorSalidas = 0;
              boolean salidaCompleta=false;
-            for(EntradaBean ntr : listaEntradas){
-                acumuladorSalidas=0;
-                acumuladorEntradas=acumuladorEntradas+ntr.getEntrada_cantidad();
-                for(SalidaBean sld : listaSalidas){
+             Integer diponiblesByEntrada=0;
+             System.out.println("NECESITO SACAR: "+exitData.getSalidad_cantidad());
+             for(EntradaBean ntr : listaEntradas){
+               acumuladorEntradas+=ntr.getEntrada_cantidad();
+               diponiblesByEntrada=acumuladorEntradas-cantidadSalidas;
+               if(diponiblesByEntrada>0){
                    
-                    acumuladorSalidas=acumuladorSalidas+sld.getSalidad_cantidad();
-                    Integer dif2=acumuladorSalidas;
-                    System.out.println("Diferencia "+dif2);
-                    System.out.println("SE NECESITA SACAR: "+exitData.getSalidad_cantidad());
-                 if(dif2>=exitData.getSalidad_cantidad()){
-                     if(!salidaCompleta){
-                     System.out.println("SE PUEDE SACAR "+exitData.getSalidad_cantidad()+" A precio de: "+ntr.getEntrada_precio());
-                     con = new Conexion();
-                     con.query="INSERT INTO salida(id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) "
-                             + "VALUES ("+exitData.getId_usuario()+", "+exitData.getId_producto()+", "+exitData.getSalidad_cantidad()+", "+ntr.getEntrada_precio()+", CURRENT_DATE(), "+exitData.getId_hospital()+" )";
-                     con.setQuery(con.query);
-                     salidaCompleta=true;
-                     resultado=true;
-                     con.cerrarConexion();
-                     }
-                 }else { //Salida cuando se pasa de 1 entrada
-                     System.out.println("NO ALCANZA LA SALIDA ACTUAL");
-                     System.out.println("Se pueden sacar: "+dif2+" De: "+exitData.getSalidad_cantidad());
-                     exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-dif2);
-                     con = new Conexion();
-                    
-                     con.query="INSERT INTO salida(id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) "
-                             + "VALUES ("+exitData.getId_usuario()+", "+exitData.getId_producto()+", "+dif2+", "+ntr.getEntrada_precio()+", CURRENT_DATE(), "+exitData.getId_hospital()+" )";
-                     resultado=con.setQuery(con.query);
-                 }
-                 
-                }
-            }
+                   
+                   if(diponiblesByEntrada>=exitData.getSalidad_cantidad() && exitData.getSalidad_cantidad()>0){
+                   System.out.println("Con esta entrada alcanza");
+                   System.out.println("Puedo sacar: "+diponiblesByEntrada+" A precio: "+ntr.getEntrada_precio());
+                   System.out.println("Sacando... "+exitData.getSalidad_cantidad()+" a precio de: "+ntr.getEntrada_precio());
+                   con = new Conexion();
+                   con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+exitData.getSalidad_cantidad()+","+ntr.getEntrada_precio()+",CURRENT_DATE())";
+                   con.setQuery(con.query);
+                   con.cerrarConexion();
+                   exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-diponiblesByEntrada);
+                   }else if(diponiblesByEntrada<exitData.getSalidad_cantidad() && exitData.getSalidad_cantidad()>0){
+                         System.out.println("No alcanza con una entrada"); 
+                         System.out.println("Puedo sacar: "+diponiblesByEntrada+" A precio: "+ntr.getEntrada_precio());
+                         System.out.println("Sacando... "+diponiblesByEntrada+" a precio de: "+ntr.getEntrada_precio());
+                         con = new Conexion();
+                         con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+diponiblesByEntrada+","+ntr.getEntrada_precio()+",CURRENT_DATE())";
+                         con.setQuery(con.query);
+                         con.cerrarConexion();
+                         exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-diponiblesByEntrada);
+                   }                  
+               }else{
+                   System.out.println("Entradas agotadas");
+               }
+             }
         }else{ //end if cuando si hay existencias
            
               System.out.println("NO HAY Existencia suficiente");
@@ -83,6 +80,9 @@ public class SalidaModel {
         
      return resultado;
     }
+    
+    
+    
     
     public boolean modificarEntrada(SalidaBean exitData) throws SQLException{
      boolean resultado =false;
@@ -123,6 +123,39 @@ public class SalidaModel {
         return listadoSalidas;
     }
         
+          public ArrayList<SalidaBean> getAllTableByUser(Integer user) throws SQLException{
+       ArrayList<SalidaBean> listado = new ArrayList<SalidaBean>();
+        Conexion con = new  Conexion();
+        con.query="SELECT * FROM salida "
+                + "INNER JOIN producto on producto.producto_id=salida.id_producto "
+                + "INNER JOIN fabricante on fabricante.fabricante_id=producto.id_fabricante  "
+                + "INNER JOIN categoria on categoria.categoria_id=producto.id_categoria "
+                + "INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto "
+                + "WHERE  id_usuario="+user;
+        con.setRs(con.query);
+        rs = con.getRs();
+        while(rs.next()){
+            SalidaBean exts = new SalidaBean();
+            exts.setId(rs.getInt("salida_int"));
+            exts.setSalidad_cantidad(rs.getInt("salida_cantidad"));
+            exts.setSalida_precio(rs.getFloat("salida_precio"));
+            exts.setSalida_fecha(rs.getString("salida_fecha"));
+            
+          
+                        
+            exts.setProducto_nombre(rs.getString("producto_nombre"));
+            exts.setProducto_fabricante(rs.getString("fabricante_nombre"));
+            exts.setProducto_categoria(rs.getString("categoria_nombre"));
+            exts.setProducto_tipo(rs.getString("tipoproducto_nombre"));
+            exts.setProducto_serie(rs.getString("producto_serie"));
+           
+            
+            listado.add(exts);
+        
+        }
+       
+       return listado;
+   }
     
       public ArrayList<SalidaBean> getAllTable() throws SQLException{
        ArrayList<SalidaBean> listado = new ArrayList<SalidaBean>();
