@@ -71,6 +71,27 @@ public class UsuarioController extends HttpServlet {
                  response.sendRedirect("view/usuario/lista.jsp?exito=2&mensaje=Error Al modificar ");
                 }
             }
+            
+            if(metodo.equals("changepass")){
+               UsuarioBean usr = new UsuarioBean();
+               usr.setUsuario_password(request.getParameter("password"));
+               usr.setId_tipo(Integer.parseInt(request.getParameter("tipo")));
+               usr.setUsuario_id(Integer.parseInt(request.getParameter("id")));
+            if(usrModel.changePass(usr)){
+                 if(usr.getId_tipo()==2||usr.getId_tipo()==1){
+                 response.sendRedirect("view/usuario/lista.jsp?exito=1&mensaje=Cambio de password");
+                 }else{
+                  response.sendRedirect("../indexing.jsp?exito=1&mensaje=Cambio de password");
+                 }
+                }else{
+                 if(usr.getId_tipo()==2||usr.getId_tipo()==1){
+                  response.sendRedirect("view/usuario/lista.jsp?exito=2&mensaje=Error Al modificar ");
+                 }else{
+                  response.sendRedirect("../indexing.jsp?exito=2&mensaje=Error Al modificar ");
+                 }
+                
+                }
+            }
             if(metodo.equals("eliminar")){
               UsuarioBean usr = new UsuarioBean();
               usr.setUsuario_id(Integer.parseInt(request.getParameter("id")));
@@ -81,6 +102,7 @@ public class UsuarioController extends HttpServlet {
                 }
             
             }
+            
             
             if(metodo.equals("login")){
                 UsuarioBean usrData = new UsuarioBean();

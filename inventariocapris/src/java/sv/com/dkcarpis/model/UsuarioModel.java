@@ -45,6 +45,16 @@ public class UsuarioModel {
         
     }
     
+        public boolean changePass(UsuarioBean usrData) throws SQLException{
+            boolean resultado=false;
+            con =  new  Conexion();
+            con.query="UPDATE usuario SET usuario_password='"+usrData.getUsuario_password()+"' WHERE usuario_id="+usrData.getUsuario_id()+"";     
+            resultado=con.setQuery(con.query);
+            con.cerrarConexion();
+        return resultado;
+        
+    }
+    
     public boolean deleteUsuario(UsuarioBean usrData) throws SQLException{
       boolean resultado=false;
             con =  new  Conexion();
