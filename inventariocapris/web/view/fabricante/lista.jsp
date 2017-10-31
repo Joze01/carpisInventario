@@ -5,15 +5,11 @@
 --%>
 <%
    HttpSession sesion = request.getSession();
-   if(sesion.isNew()){
    String id=sesion.getAttribute("id").toString();
    String nombre=sesion.getAttribute("nombre").toString();
    String tipo=sesion.getAttribute("tipo").toString();
    if(Integer.parseInt(tipo)>2){
        response.sendRedirect("../../");
-   }else{
-       response.sendRedirect("../../");
-   }
    }
 %>
 <%@page import="java.sql.ResultSet"%>

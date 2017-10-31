@@ -101,7 +101,7 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_db span2"> <a href="indexadmin.jsp"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
+        <li class="bg_db span2"> <a href="indexadmin.jsp"> <i class="icon-dashboard"></i>  Inicio </a> </li>
         <li class="bg_dy span2"> <a href="producto/lista.jsp"> <i class="icon-th-list"></i>  Productos </a> </li>
         <li class="bg_lr span2"> <a href="fabricante/lista.jsp"> <i class="icon-truck"></i>  Fabricantes </a> </li>
         <li class="bg_lv span2"> <a href="usuario/lista.jsp"> <i class="icon-group"></i> Usuarios </a> </li>
