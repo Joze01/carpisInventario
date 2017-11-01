@@ -29,6 +29,7 @@ public class SalidaModel {
         ArrayList<SalidaBean> listaSalidas = this.getAllSalidasbyProducto(exitData.getId_producto()); //obtener lista de salidas
         ArrayList<EntradaBean> listaEntradas = entdModel.getAllEntradasByProducto(exitData.getId_producto()); //obtener lista de entradas
         
+        //listaSalidas = this.getAllSalidasbyProducto(exitData.getId_producto()); //obtener lista de salidas
         for(SalidaBean salida: listaSalidas){ //contar salidas
                 cantidadSalidas+=salida.getSalidad_cantidad();  
         }       
@@ -38,24 +39,34 @@ public class SalidaModel {
         
         resto = cantidadEntradas-cantidadSalidas;
         if(resto>=exitData.getSalidad_cantidad()){// Comprobar si hay Existencias Suficientes
+
             System.out.println("TOTAL Existencia suficiente: " + resto);
             Integer acumuladorEntradas = 0;
              boolean salidaCompleta=false;
              Integer diponiblesByEntrada=0;
              System.out.println("NECESITO SACAR: "+exitData.getSalidad_cantidad());
              for(EntradaBean ntr : listaEntradas){
+                   cantidadSalidas=0;
+                    listaSalidas = this.getAllSalidasbyProducto(exitData.getId_producto()); //obtener lista de salidas
+                    for(SalidaBean salida: listaSalidas){ //contar salidas
+                            cantidadSalidas+=salida.getSalidad_cantidad();  
+                    }       
+                  
+                 
                acumuladorEntradas+=ntr.getEntrada_cantidad();
+                 System.out.println("ACUMULADOR DE SALIDAS "+cantidadSalidas);
+                 System.out.println("ACUMULADOR DE ENTRADAS "+acumuladorEntradas);
                diponiblesByEntrada=acumuladorEntradas-cantidadSalidas;
                if(diponiblesByEntrada>0){
-                   
+                   System.out.println("EN ENTRADA "+diponiblesByEntrada);
                    
                    if(diponiblesByEntrada>=exitData.getSalidad_cantidad() && exitData.getSalidad_cantidad()>0){
                    System.out.println("Con esta entrada alcanza");
                    System.out.println("Puedo sacar: "+diponiblesByEntrada+" A precio: "+ntr.getEntrada_precio());
                    System.out.println("Sacando... "+exitData.getSalidad_cantidad()+" a precio de: "+ntr.getEntrada_precio());
                    con = new Conexion();
-                   con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+exitData.getSalidad_cantidad()+","+ntr.getEntrada_precio()+",CURRENT_DATE())";
-                   con.setQuery(con.query);
+                   con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+exitData.getSalidad_cantidad()+","+ntr.getEntrada_precio()+", CURRENT_DATE(),"+exitData.getId_hospital()+")";
+                   resultado=con.setQuery(con.query);
                    con.cerrarConexion();
                    exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-diponiblesByEntrada);
                    }else if(diponiblesByEntrada<exitData.getSalidad_cantidad() && exitData.getSalidad_cantidad()>0){
@@ -63,8 +74,8 @@ public class SalidaModel {
                          System.out.println("Puedo sacar: "+diponiblesByEntrada+" A precio: "+ntr.getEntrada_precio());
                          System.out.println("Sacando... "+diponiblesByEntrada+" a precio de: "+ntr.getEntrada_precio());
                          con = new Conexion();
-                         con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+diponiblesByEntrada+","+ntr.getEntrada_precio()+",CURRENT_DATE())";
-                         con.setQuery(con.query);
+                         con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+diponiblesByEntrada+","+ntr.getEntrada_precio()+",CURRENT_DATE(), "+exitData.getId_hospital()+")";
+                        resultado= con.setQuery(con.query);
                          con.cerrarConexion();
                          exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-diponiblesByEntrada);
                    }                  
