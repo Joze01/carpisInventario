@@ -9,7 +9,7 @@
    String id=sesion.getAttribute("id").toString();
    String nombre=sesion.getAttribute("nombre").toString();
    String tipo=sesion.getAttribute("tipo").toString();
-   if(Integer.parseInt(tipo)>1){
+   if(Integer.parseInt(tipo)<2){
        response.sendRedirect("../../");
    }
 %>
@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Usuario | Nuevo</title>
+<title>Usuario | Cambiar Password</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />

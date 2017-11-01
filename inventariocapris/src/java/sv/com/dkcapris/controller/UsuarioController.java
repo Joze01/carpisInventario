@@ -81,13 +81,13 @@ public class UsuarioController extends HttpServlet {
                  if(usr.getId_tipo()==2||usr.getId_tipo()==1){
                  response.sendRedirect("view/usuario/lista.jsp?exito=1&mensaje=Cambio de password");
                  }else{
-                  response.sendRedirect("../indexing.jsp?exito=1&mensaje=Cambio de password");
+                  response.sendRedirect("view/indexing.jsp?exito=1&mensaje=Cambio de password");
                  }
                 }else{
                  if(usr.getId_tipo()==2||usr.getId_tipo()==1){
                   response.sendRedirect("view/usuario/lista.jsp?exito=2&mensaje=Error Al modificar ");
                  }else{
-                  response.sendRedirect("../indexing.jsp?exito=2&mensaje=Error Al modificar ");
+                  response.sendRedirect("view/indexing.jsp?exito=2&mensaje=Error Al modificar ");
                  }
                 
                 }

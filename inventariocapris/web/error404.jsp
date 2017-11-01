@@ -11,22 +11,22 @@
 <head>
         <title>Matrix Admin</title><meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="view/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="view/css/bootstrap-responsive.min.css" />
-                <link rel="stylesheet" href="view/css/matrix-login.css" />
-                <link rel="stylesheet" href="view/css/fullcalendar.css" />
-                <link rel="stylesheet" href="view/css/matrix-style.css" />
-                <link rel="stylesheet" href="view/css/matrix-media.css" />
-                <link rel="stylesheet" href="view/css/jquery.gritter.css" />
+		<link rel="stylesheet" href="/inventariocapris/view/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/inventariocapris/view/css/bootstrap-responsive.min.css" />
+                <link rel="stylesheet" href="/inventariocapris/view/css/matrix-login.css" />
+                <link rel="stylesheet" href="/inventariocapris/view/css/fullcalendar.css" />
+                <link rel="stylesheet" href="/inventariocapris/view/css/matrix-style.css" />
+                <link rel="stylesheet" href="/inventariocapris/view/css/matrix-media.css" />
+                <link rel="stylesheet" href="/inventariocapris/view/css/jquery.gritter.css" />
                 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-                <link href="view/font-awesome/css/font-awesome.css" rel="stylesheet" />
+                <link href="/inventariocapris/view/font-awesome/css/font-awesome.css" rel="stylesheet" />
     </head>
     <body>
         <div class="error_ex">
               <h1>404</h1>
               <h3>Opps, La pagina que buscas no existe.</h3>
               <p>Por seguridad tu session se ha eliminado, debes regrar al login</p>
-              <a class="btn btn-warning btn-big" href="index.jsp">Regresar</a>
+              <a class="btn btn-warning btn-big" href="/inventariocapris/index.jsp">Regresar</a>
         </div>
         
         <script src="view/js/jquery.min.js"></script>  

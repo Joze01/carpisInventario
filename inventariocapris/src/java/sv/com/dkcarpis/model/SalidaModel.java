@@ -123,15 +123,15 @@ public class SalidaModel {
         return listadoSalidas;
     }
         
-          public ArrayList<SalidaBean> getAllTableByUser(Integer user) throws SQLException{
-       ArrayList<SalidaBean> listado = new ArrayList<SalidaBean>();
+        public ArrayList<SalidaBean> getAllTableByUser(Integer user) throws SQLException{
+        ArrayList<SalidaBean> listado = new ArrayList<SalidaBean>();
         Conexion con = new  Conexion();
         con.query="SELECT * FROM salida "
                 + "INNER JOIN producto on producto.producto_id=salida.id_producto "
                 + "INNER JOIN fabricante on fabricante.fabricante_id=producto.id_fabricante  "
                 + "INNER JOIN categoria on categoria.categoria_id=producto.id_categoria "
                 + "INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto "
-                + "WHERE  id_usuario="+user;
+                + "WHERE  salida.id_usuario="+user;
         con.setRs(con.query);
         rs = con.getRs();
         while(rs.next()){
@@ -164,7 +164,8 @@ public class SalidaModel {
                 + "INNER JOIN producto on producto.producto_id=salida.id_producto "
                 + "INNER JOIN fabricante on fabricante.fabricante_id=producto.id_fabricante  "
                 + "INNER JOIN categoria on categoria.categoria_id=producto.id_categoria "
-                + "INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto";
+                + "INNER JOIN tipoproducto on tipoproducto.tipoproducto_id = producto.id_tipoproducto "
+                + "INNER JOIN usuario on usuario.usuario_id=salida.id_usuario";
         con.setRs(con.query);
         rs = con.getRs();
         while(rs.next()){
@@ -173,7 +174,7 @@ public class SalidaModel {
             exts.setSalidad_cantidad(rs.getInt("salida_cantidad"));
             exts.setSalida_precio(rs.getFloat("salida_precio"));
             exts.setSalida_fecha(rs.getString("salida_fecha"));
-            
+            exts.setUsuario_Nombre(rs.getString("usuario_nombre"));
           
                         
             exts.setProducto_nombre(rs.getString("producto_nombre"));

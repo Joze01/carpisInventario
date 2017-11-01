@@ -91,7 +91,6 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
         <li class="bg_ly"> <a href="salida/lista.jsp"> <i class="icon-external-link"></i> Salidas </a> </li>
       </ul>
     </div>
@@ -137,7 +136,7 @@
                           
                           String precios=pdFunc.getEntradaPrecios(pd.getProducto_id());
                           String imgdir = imgMod.getOneUrl(pd.getProducto_id());  
-                          pd.setProducto_ImgPortada("images/"+imgdir);
+                          pd.setProducto_ImgPortada("../producto/images/"+imgdir);
                           
                
                          out.println("<tr class='gradeX'>");

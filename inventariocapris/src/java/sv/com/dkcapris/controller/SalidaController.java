@@ -56,6 +56,20 @@ public class SalidaController extends HttpServlet {
              response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al registar salida.");
                 }
             }
+           if(metodo.equals("insertar2")){
+            SalidaBean extB = new SalidaBean();
+            extB.setId_producto(Integer.parseInt(request.getParameter("productoId")));
+            extB.setSalidad_cantidad(Integer.parseInt(request.getParameter("cantidad")));
+            extB.setId_usuario(Integer.parseInt(request.getParameter("usuarioId")));
+            //System.out.println("HOSPITAL: "+request.getParameter("hospitalId"));
+            extB.setId_hospital(Integer.parseInt(request.getParameter("hospitalId")));
+            
+            if(extModel.nuevaSalida(extB)){
+             response.sendRedirect("view/productoIng/lista.jsp?exito=1&mensaje=Salida registrada Correctamente.");
+            }else{
+             response.sendRedirect("view/productoIng/lista.jsp?exito=2&mensaje=Error al registar salida.");
+                }
+            }
 
             
              if(metodo.equals("eliminar")){

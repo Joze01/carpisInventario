@@ -43,7 +43,7 @@
       <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text"><%out.println(nombre);%>  </span><b class="caret"></b></a>
       <ul class="dropdown-menu">
 
-        <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
+        <li><a href="usuario/cambiarpassword.jsp"><i class="icon-check"></i>Cambiar contraseña</a></li>
         <li class="divider"></li>
         <li><a href="../index.jsp"><i class="icon-key"></i> Cerrar Sesion</a></li>
       </ul>

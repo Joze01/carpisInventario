@@ -13,7 +13,7 @@
        response.sendRedirect("../");
    }
  %>
-<%@page import="java.sql.ResultSet"%>
+ <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@
     <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
       <ul class="dropdown-menu">
 
-        <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
+        <li><a href="../../usuario/cambiarpassword.jsp"><i class="icon-check"></i>Cambiar contraseña</a></li>
         <li class="divider"></li>
         <li><a href="../../index.jsp"><i class="icon-key"></i> Cerrar Sesion</a></li>
       </ul>
@@ -177,7 +177,7 @@
               <div class="form-actions">
                   <input type="hidden" name="productoId" value="<%out.print(producto_id);%>"/>
                   <input type="hidden" name="usuarioId" value="<%out.print(id);%>"/>
-                  <input type="hidden" name="metodo" value="insertar"/>
+                  <input type="hidden" name="metodo" value="insertar2"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>
             </form>

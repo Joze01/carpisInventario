@@ -51,7 +51,7 @@
     <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
       <ul class="dropdown-menu">
 
-        <li><a href="#"><i class="icon-check"></i>Cambiar contraseña</a></li>
+        <li><a href="../../usuario/cambiarpassword.jsp"><i class="icon-check"></i>Cambiar contraseña</a></li>
         <li class="divider"></li>
         <li><a href="../../../index.jsp"><i class="icon-key"></i> Cerrar Sesion</a></li>
       </ul>
@@ -131,6 +131,7 @@
                   <th>Tipo</th>
                   <th>Cantidad</th>
                   <th>Precio</th>
+                  <th>Usuario</th>
                   <th>Opciones</th>
                 </tr>
               </thead>
@@ -156,6 +157,7 @@
                          out.println("<td>"+pd.getProducto_tipo()+"</td>");
                          out.println("<td>"+pd.getSalidad_cantidad()+"</td>");
                          out.println("<td>"+pd.getSalida_precio()+"</td>");
+                         out.println("<td>"+pd.getUsuario_Nombre()+"</td>");
                          out.println("<td>");
                          out.println("<a onclick=\"eliminar('Salida',"+pd.getId()+",'/inventariocapris/salidaController')\" class='btn btn-danger btn-mini'>Eliminar Salida</a>");
                          

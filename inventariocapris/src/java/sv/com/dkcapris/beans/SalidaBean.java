@@ -15,6 +15,20 @@ import java.util.Date;
 public class SalidaBean {
 
     /**
+     * @return the usuario_Nombre
+     */
+    public String getUsuario_Nombre() {
+        return usuario_Nombre;
+    }
+
+    /**
+     * @param usuario_Nombre the usuario_Nombre to set
+     */
+    public void setUsuario_Nombre(String usuario_Nombre) {
+        this.usuario_Nombre = usuario_Nombre;
+    }
+
+    /**
      * @return the id_hospital
      */
     public int getId_hospital() {
@@ -196,6 +210,6 @@ public class SalidaBean {
     private String producto_categoria;
     private String producto_fabricante;
     private String producto_serie;
-    
+    private String usuario_Nombre;
     private String salida_fecha; 
 }
