@@ -114,7 +114,6 @@
                   <th>Categoria</th>
                   <th>Tipo</th>
                   <th>Existencia</th>
-                  <th>Costo</th>
                   <th>Opciones</th>
                 </tr>
               </thead>

@@ -24,6 +24,7 @@ public class Conexion {
  public Conexion() throws SQLException{
  try
  {
+
  //obtenemos el driver de para mysql
  Class.forName("com.mysql.jdbc.Driver");
  // Se obtiene una conexión con la base de datos. 2
@@ -57,6 +58,7 @@ public class Conexion {
  public boolean setQuery(String query) throws SQLException {
      boolean resultado=false;
      try{
+        
         this.s.executeUpdate(query);
          System.out.println(query);
         return true;

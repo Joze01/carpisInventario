@@ -51,8 +51,8 @@ public class ProductoController extends HttpServlet {
         
            private boolean isMultipart;
 	   private String filePath="";
-	   private int maxFileSize = 1024 * 1024;
-	   private int maxMemSize = 1024 * 1024;
+	   private int maxFileSize = 4096 * 1024;
+	   private int maxMemSize = 4096 * 1024;
 	   private File file ;
         
            private static final String SAVE_DIR = "view\\producto\\images\\";
@@ -77,8 +77,7 @@ public class ProductoController extends HttpServlet {
        
             ProductoModel pdModel = new ProductoModel();
           
-         
-           
+
                         String metodo="";
                         ProductoBean prdData = new ProductoBean();
                         ArrayList<ImageBean> listaImgs = new ArrayList<ImageBean>();
@@ -142,6 +141,9 @@ public class ProductoController extends HttpServlet {
                                 out.println(filePath);
                                 
                             }else{
+                                if(fi.getFieldName().equals("idproducto")){
+                                   prdData.setProducto_id(Integer.parseInt(fi.getString()));
+                                }
                                 if(fi.getFieldName().equals("serie")){
                                    prdData.setProducto_serie(fi.getString());
                                 }
@@ -175,12 +177,24 @@ public class ProductoController extends HttpServlet {
 
                       
             prdData.setProductoImagenes(listaImgs);
-            if(metodo.equals("insertar"))          
+            
+            if(metodo.equals("insertar")){          
             if(pdModel.nuevoProducto(prdData)){
                  response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Registrado Correctamente");
             }else{
                  response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al registar ");
                 }
+            }
+            
+            if(metodo.equals("asignarImagen")){
+                System.out.println("AsignarImagen");
+               if(pdModel.asignarImagen(prdData)){
+                    response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Imagen Asignada Correctamente");
+              }else{
+                    response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error al Asignar ");
+              }
+            }
+            
             
            if(metodo.equals("modificar")){
                 if(pdModel.modificarProducto(prdData)){

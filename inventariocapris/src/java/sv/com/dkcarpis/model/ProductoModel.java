@@ -176,4 +176,24 @@ public class ProductoModel {
     return resultado;
     }
     
+    
+    public boolean asignarImagen(ProductoBean prdData) throws SQLException{
+    boolean resultado=false;
+         con =  new  Conexion();
+                  System.out.println("Id Nuevo producto: "+prdData.getProducto_id());
+    
+         System.out.println("CONTENIDO DE LAS IMAGENES: "+prdData.getProductoImagenes());
+         for(ImageBean img: prdData.getProductoImagenes()){
+             System.out.println("URL:   "+img.getImage_url());
+         }
+         resultado=imgModel.nuevaImagen(prdData.getProductoImagenes(),prdData.getProducto_id());
+         if(resultado){
+             resultado=true;
+         }
+         con.cerrarConexion();
+    return resultado;
+    }
+    
+    
+    
 }

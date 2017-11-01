@@ -42,7 +42,7 @@ public class ImageModel {
         direccion=rs.getString("imagen_url");
             System.out.println(rs.getString("imagen_url"));
         }
-        
+        con.cerrarConexion();
         return direccion;
     }
     
