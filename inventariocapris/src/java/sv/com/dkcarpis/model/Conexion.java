@@ -17,6 +17,9 @@ public class Conexion {
     private ResultSet rs=null;
     public String query=""; 
  
+    public Connection getCon(){
+    return conexion;
+    }
  //Contructor
  public Conexion() throws SQLException{
  try
