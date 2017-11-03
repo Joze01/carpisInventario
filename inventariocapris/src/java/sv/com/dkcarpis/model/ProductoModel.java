@@ -49,7 +49,7 @@ public class ProductoModel {
    public boolean modificarProducto(ProductoBean prdData) throws SQLException{
     boolean resultado=false;
         con = new Conexion();
-        con.query="UPDATE producto SET id_fabricante="+prdData.getId_fabricante()+", id_categoria="+prdData.getId_categoria()+", id_tipoproducto="+prdData.getId_tipoproducto()+", producto_serie='"+prdData.getProducto_serie()+"',producto_nombre='"+prdData.getProducto_nombre()+"' WHERE producto_id="+prdData.getProducto_id()+"";
+        con.query="UPDATE producto SET id_fabricante="+prdData.getId_fabricante()+", id_categoria="+prdData.getId_categoria()+", id_tipoproducto="+prdData.getId_tipoproducto()+",producto_serie='"+prdData.getProducto_serie()+"',producto_nombre='"+prdData.getProducto_nombre()+"',producto_descripcion='"+prdData.getProducto_descripcion()+"',producto_ubicacion='"+prdData.getProducto_ubicacion()+"' WHERE producto_id="+prdData.getProducto_id();
         resultado=con.setQuery(con.query);
         con.cerrarConexion();
     return resultado;

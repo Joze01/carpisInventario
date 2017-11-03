@@ -19,6 +19,7 @@ import sv.com.dkcarpis.model.Conexion;
 public class ImageModel {
     Conexion con;
     public boolean nuevaImagen(ArrayList<ImageBean>listado, int id_producto) throws SQLException{
+        
     boolean resultado=false;
         System.out.println("EN NUEVA IMAGEN");
        for(ImageBean img : listado){

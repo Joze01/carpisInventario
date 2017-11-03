@@ -181,6 +181,7 @@
                          out.println("<li><a href='detalle.jsp?id="+pd.getProducto_id()+"&ubicacion="+pd.getProducto_ubicacion()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"&imagen="+pd.getProducto_ImgPortada()+"&fabricante="+pd.getFabricante_Nombre()+""
                                  + "&categoria="+pd.getCategoria_Nombre()+"&tipo="+pd.getTipoproducto_nombre()+"'>Detalle Producto</a></li>");
                          out.println("<li><a href='nuevo.jsp'>Nuevo Producto</a></li>");
+                         out.println("<li><a href='modificar.jsp?id="+pd.getProducto_id()+"'>Modificar</a></li>");
                          out.println("<li><a href='asignarImagen.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"'>Asignar Imagen</a></li>");
                          out.println("<li class='divider'></li>");
                          out.println("<li><a onclick=\"eliminar('Producto',"+pd.getProducto_id()+",'/inventariocapris/productoController')\"          >Eliminar</a></li>");

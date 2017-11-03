@@ -118,6 +118,7 @@ public class ProductoController extends HttpServlet {
                          out.println("</head>");
                          out.println("<body>");
                          while ( i.hasNext () ) {
+                             System.out.println("Iteracion de campos");
                             FileItem fi = (FileItem)i.next();
                             if ( !fi.isFormField () ) {
                                // Get the uploaded file parameters
@@ -175,9 +176,9 @@ public class ProductoController extends HttpServlet {
                          
             
 
-                      
+                          System.out.println("end de iteraciones");
             prdData.setProductoImagenes(listaImgs);
-            
+             System.out.println("end de iteraciones: "+metodo);
             if(metodo.equals("insertar")){          
             if(pdModel.nuevoProducto(prdData)){
                  response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Registrado Correctamente");
@@ -195,14 +196,7 @@ public class ProductoController extends HttpServlet {
               }
             }
             
-            
-           if(metodo.equals("modificar")){
-                if(pdModel.modificarProducto(prdData)){
-                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Modificado Correctamente");
-                }else{
-                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al modificar ");
-                }
-            }
+
 
               } catch(Exception ex) {
                             System.out.println(ex);

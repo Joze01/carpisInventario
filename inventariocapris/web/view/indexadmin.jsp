@@ -119,7 +119,7 @@
         <div class="widget-content" >
           <div class="row-fluid">
             <div class="span9">
-              
+                  <li class="bg_ls span2"> <a href="localhost/jasperserver"> <i class="icon-download"></i> Sistema de Reportes </a> </li>
             </div>
             <div class="span3">
 
