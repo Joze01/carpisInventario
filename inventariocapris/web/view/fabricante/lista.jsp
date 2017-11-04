@@ -141,7 +141,7 @@
                 out.println("<td>"+rs.getString(3)+"</td>");
                 out.println("<td>");
                 out.println("<button onclick=\"eliminar('fabricante',"+rs.getInt(1)+",'/inventariocapris/fabricanteController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
-                out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
+                out.println("<a href='modificar.jsp?id="+rs.getInt(1)+"&nombre="+rs.getString(2)+"&descripcion="+rs.getString(3)+"' class='btn btn-info btn-mini'>Modificar</a>");
                out.println("</td>");
                 out.println("</tr>");
               }

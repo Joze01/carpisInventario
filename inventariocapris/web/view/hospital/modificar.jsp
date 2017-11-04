@@ -1,8 +1,9 @@
 <%-- 
-    Document   : nuevo
-    Created on : 10-15-2017, 04:59:46 PM
+    Document   : modificar
+    Created on : 11-04-2017, 03:07:56 PM
     Author     : Jose-PC
 --%>
+
 <%
    HttpSession sesion = request.getSession();
    String id=sesion.getAttribute("id").toString();
@@ -17,12 +18,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hospitales | Listado</title>
+<title>Hospitales | Nuevo</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="../css/fullcalendar.css" />
+
+<link rel="stylesheet" href="../css/colorpicker.css" />
+<link rel="stylesheet" href="../css/datepicker.css" />
+<link rel="stylesheet" href="../css/uniform.css" />
+<link rel="stylesheet" href="../css/select2.css" />
+
 <link rel="stylesheet" href="../css/matrix-style.css" />
 <link rel="stylesheet" href="../css/matrix-media.css" />
 <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -55,6 +62,7 @@
   </ul>
 </div>
 <!--close-top-Header-menu-->
+
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
@@ -85,7 +93,6 @@
       </ul>
     </li>
 
-
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -96,60 +103,46 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-hospital"></i>Hospitales</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-hospital"></i>Hospital</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
 
- 
+  
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-ban-circle"></i> Cancelar </a> </li>
       </ul>
     </div>
-<!--End-Action boxes-->    
+<!--End-Action boxes--> 
 <!--Chart-box-->    
          <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
-            <h5>Hospitales</h5>
+            <h5>Nuevo Hospital</h5>
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Descripcion</th>
-                  <th>Funciones</th>
-                </tr>
-              </thead>
-              <tbody>
-              <%
-             
-              String query="select * from hospital";
-              Conexion con = new Conexion();
-              
-              ResultSet rs;
-              con.setRs(query);
-              rs=con.getRs();
-              while(rs.next()){
-                out.println("<tr class='gradeX'>");
-                out.println("<td>"+rs.getInt(1)+"</td>");
-                out.println("<td>"+rs.getString(2)+"</td>");
-                out.println("<td>"+rs.getString(3)+"</td>");
-                out.println("<td>");
-                out.println("<a href='modificar.jsp?id="+rs.getInt(1)+"&nombre="+rs.getString(2)+"&descripcion="+rs.getString(3)+"' class='btn btn-info btn-mini'>Modificar</a>");
-                 out.println("<button onclick=\"eliminar('Hospital',"+rs.getInt(1)+",'/inventariocapris/HospitalController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
-                out.println("</td>");
-                out.println("</tr>");
-              }
-
-
-              %>
-              </tbody>
-            </table>
+             <form class="form-horizontal" method="post" action="/inventariocapris/HospitalController" name="basic_validate" id="basic_validate" novalidate="novalidate">
+              <div class="control-group">
+                <label class="control-label">Nombre</label>
+                <div class="controls">
+                    <input type="text" class="required" name="nombre" class="required" value="<%out.println(request.getParameter("nombre"));%>" id="required">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Descripcion</label>
+                <div class="controls">
+                  <input type="text" class="required" name="descripcion" value="<%out.println(request.getParameter("descripcion"));%>" class="required" id="required">
+                </div>
+              </div>             
+              <div class="form-actions">
+                <input type="hidden" name="id" value="<%out.print(request.getParameter("id"));%>" />  
+                <input type="hidden" name="metodo" value="modificar"/>
+                <input type="submit" value="Modificar" class="btn btn-success">
+              </div>
+            </form>
           </div>
         </div>
 <!--End-Chart-box--> 
@@ -169,57 +162,17 @@
 <!--end-Footer-part-->
 
 
+
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
 <script src="../js/jquery.uniform.js"></script> 
 <script src="../js/select2.min.js"></script> 
-<script src="../js/jquery.dataTables.min.js"></script> 
+<script src="../js/jquery.validate.js"></script> 
 <script src="../js/matrix.js"></script> 
-<script src="../js/matrix.tables.js"></script>
+<script src="../js/matrix.form_validation.js"></script>
+<script src="../js/matrix.form_common.js"></script>
 
-
-
-<script src="../js/jquery.peity.min.js"></script> 
-<script src="../js/jquery.gritter.min.js"></script> 
-<script src="../js/matrix.interface.js"></script> 
-<script src="../js/jquery.uniform.js"></script> 
-<script src="../js/matrix.popover.js"></script> 
-<script src="../js/redirecciones.js"></script>
-
-
-
-<% 
-        String exito="3";
-        String mensaje="";
-         if(request.getParameterMap().containsKey("exito"))
-        {
-            exito = request.getParameter("exito");
-            mensaje = request.getParameter("mensaje");
-        }
-        if(exito.equals("1")){
-        out.println(" <script>"
-                + " $(document).ready(function() "
-                + "{ $.gritter.add({ "
-                + "title:'Completado Exitosamente', "
-                + "text:'"+mensaje+"',"
-                + "time: 5000, "
-                + "class_name: 'gritter-itemOk' ,"
-                + "sticky: false})"
-                + ";}); </script>");
-        }else if(exito.equals("2")){
-         out.println(" <script>"
-                + " $(document).ready(function() "
-                + "{ $.gritter.add({ "
-                + "title:'Error.', "
-                + "text:'"+mensaje+"',"
-                + "time: 5000, "
-                + "class_name: 'gritter-itemError' ,"
-                + "sticky: false})"
-                + ";}); </script>");  
-        }
-
-    %> 
 
 </body>
 </html>

@@ -162,9 +162,7 @@
                          out.println("<td>"+pd.getEntrada_cantidad()+"</td>");
                          out.println("<td>"+pd.getEntrada_precio()+"</td>");
                          out.println("<td>");
-                         out.println("<button class='btn btn-info btn-mini'>Modificar Entrada</button>");
                          out.println("<button onclick=\"eliminar('Entrada',"+pd.getId()+",'/inventariocapris/entradaController')\" class='btn btn-danger btn-mini'>Eliminar Entrada</button>");
-                         
                          out.println("</td>");
                          
                          

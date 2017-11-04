@@ -26,8 +26,8 @@ public class HospitalModel {
     public boolean modificarHospital(HospitalBean hospitalData) throws SQLException{
         boolean resultado=false;
         con  = new Conexion();
-         con.query="";
-        con.setQuery(con.query);
+        con.query="UPDATE hospital SET hospital_nombre='"+hospitalData.getHospital_Nombre()+"', hospital_descripcion='"+hospitalData.getHospital_Descripcion()+"' WHERE hospital_id="+hospitalData.getHospital_Id();
+        resultado=con.setQuery(con.query);
         
         con.cerrarConexion();
         return resultado;

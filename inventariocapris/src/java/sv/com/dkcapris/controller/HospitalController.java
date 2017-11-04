@@ -54,10 +54,13 @@ public class HospitalController extends HttpServlet {
             
             if(metodo.equals("modificar")){
                 hospitalData = new HospitalBean();
+                    hospitalData.setHospital_Id(Integer.parseInt(request.getParameter("id")));
+                    hospitalData.setHospital_Nombre(request.getParameter("nombre"));
+                    hospitalData.setHospital_Descripcion(request.getParameter("descripcion"));
                     if(hostModel.modificarHospital(hospitalData)){
                         response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Hospital Modificado Correctamente");
                     }else{
-                         response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al registar ");
+                         response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al modificar ");
                     }            
             }
             if(metodo.equals("eliminar")){

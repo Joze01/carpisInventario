@@ -142,8 +142,8 @@
                 out.println("<td>"+rs.getString(4)+"</td>");
                 out.println("<td>"+rs.getString(7)+"</td>");
                 out.println("<td>");
-                out.println("<button class='btn btn-info btn-mini'>Modificar</button>");
-                 out.println("<button onclick=\"eliminar('Usuario',"+rs.getInt(1)+",'/inventariocapris/usuarioController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
+                out.println("<button onclick=\"eliminar('Usuario',"+rs.getInt(1)+",'/inventariocapris/usuarioController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
+                out.println("<a href='modificar.jsp?tipoNombre="+rs.getString(7)+"&id="+rs.getInt(1)+"&nombre="+rs.getString(3)+"&usuario="+rs.getString(4)+"&tipo="+rs.getString(2)+"&password="+rs.getString(5)+"' class='btn btn-info btn-mini'>Modificar</a>");
                 out.println("</td>");
                 out.println("</tr>");
               }

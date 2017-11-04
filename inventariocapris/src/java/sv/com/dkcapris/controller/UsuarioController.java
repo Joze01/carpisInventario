@@ -63,7 +63,13 @@ public class UsuarioController extends HttpServlet {
             
             }
             if(metodo.equals("modificar")){
-               UsuarioBean usr = new UsuarioBean();
+                UsuarioBean usr = new UsuarioBean();
+                usr.setUsuario_id(Integer.parseInt(request.getParameter("id")));
+                usr.setUsuario_Nombre(request.getParameter("nombre"));
+                usr.setId_tipo(Integer.parseInt(request.getParameter("tipo")));
+                usr.setUsuario_user(request.getParameter("usuario"));
+                usr.setUsuario_password(request.getParameter("password"));
+            
             
             if(usrModel.updateUsuario(usr)){
                  response.sendRedirect("view/usuario/lista.jsp?exito=1&mensaje=Usuario Modificado Correctamente");
