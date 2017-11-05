@@ -157,7 +157,7 @@
             <h5>Nuevo Producto</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="/inventariocapris/ProductoControllerMod"  name="basic_validate" id="basic_validate" novalidate="novalidate">
+             <form class="form-horizontal" method="post" enctype = "multipart/form-data" action="/inventariocapris/productoController"  name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
                 <label class="control-label">Numero de Serie</label>
                 <div class="controls">
@@ -246,10 +246,23 @@
                             %>
                     </select>
                 </div>
-               </div>      
-
+               </div> 
+               <div class="control-group">
+                <label class="control-label">cambiar Imagen</label>
+                <div class="controls">
+                  <label>
+                    <input type="checkbox" value="cambio" name="cambio" />
+                    Modificar Imagen</label>
+                </div>
+               </div>     
+               <div class="control-group">
+                <label class="control-label">Imagen</label>
+                <div class="controls">
+                  <input type="file" name="imagen"/>
+                </div>
+              </div>       
               <div class="form-actions">
-                  <input type="hidden" name="prodModId" value="<%out.print(productoMod.getProducto_id());%>"/>
+                  <input type="hidden" name="idproducto" value="<%out.print(productoMod.getProducto_id());%>"/>
                   <input type="hidden" name="metodo" value="modificar"/>
                   <input type="submit" value="Modificar" class="btn btn-success">
               </div>

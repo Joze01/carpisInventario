@@ -40,7 +40,7 @@ public class ProductoControllerMod extends HttpServlet {
         String metodo= request.getParameter("metodo").toString();
         ProductoBean prdData = new ProductoBean();
         ProductoModel pdModel = new ProductoModel();
-        
+                    
                    prdData.setProducto_id(Integer.parseInt(request.getParameter("prodModId")));
                    prdData.setId_fabricante(Integer.parseInt(request.getParameter("fabricante")));
                    prdData.setId_categoria(Integer.parseInt(request.getParameter("categoria")));
@@ -49,7 +49,7 @@ public class ProductoControllerMod extends HttpServlet {
                    prdData.setProducto_nombre(request.getParameter("nombre"));
                    prdData.setProducto_descripcion(request.getParameter("descripcion"));
                    prdData.setProducto_ubicacion(request.getParameter("ubicacion"));
-       
+                   System.out.println();
                         
            if(metodo.equals("modificar")){
                System.out.println("Modificar");

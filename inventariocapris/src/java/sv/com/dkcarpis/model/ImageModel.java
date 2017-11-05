@@ -34,7 +34,7 @@ public class ImageModel {
     public String getOneUrl(Integer id) throws SQLException{
         String direccion="";
         con = new Conexion();
-        con.query="select * from imagen where id_producto="+id+" limit 1";
+        con.query="select * from imagen where id_producto="+id+" order by imagen_id desc limit 1";
         ResultSet rs;
         con.setRs(con.query);
         rs=con.getRs();

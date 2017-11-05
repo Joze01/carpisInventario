@@ -74,7 +74,7 @@ public class ProductoController extends HttpServlet {
         String appPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
         String savePath = appPath+ SAVE_DIR;
-       
+        String mod = "";
             ProductoModel pdModel = new ProductoModel();
           
 
@@ -122,25 +122,27 @@ public class ProductoController extends HttpServlet {
                             FileItem fi = (FileItem)i.next();
                             if ( !fi.isFormField () ) {
                                // Get the uploaded file parameters
-                             
-                               String fieldName = fi.getFieldName();
-                               String fileName = fi.getName();
-                               String contentType = fi.getContentType();
-                               boolean isInMemory = fi.isInMemory();
-                               long sizeInBytes = fi.getSize();
-                               // Write the file
-                               if( fileName.lastIndexOf("\\") >= 0 ) {
-                                  file = new File( filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
-                               } else {
-                                  file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
-                               }
-                               fi.write( file ) ;
-                               out.println("Uploaded Filename: " + fileName + "<br>");
-                                ImageBean portada = new ImageBean();
-                                portada.setImage_url(fileName);
-                                listaImgs.add(portada);
-                                out.println(filePath);
-                                
+                                    if(mod.equals("cambio")){
+                                    String fieldName = fi.getFieldName();
+                                    String fileName = fi.getName();
+                                    String contentType = fi.getContentType();
+                                    boolean isInMemory = fi.isInMemory();
+                                    long sizeInBytes = fi.getSize();
+                                    // Write the file
+                                    
+                                    if( fileName.lastIndexOf("\\") >= 0 ) {
+                                       file = new File( filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
+                                    } else {
+                                       file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
+                                    }
+                                    fi.write( file ) ;
+                                    
+                                     System.out.println("Uploaded Filename: " + fileName + "<br>");
+                                     ImageBean portada = new ImageBean();
+                                     portada.setImage_url(fileName);
+                                     listaImgs.add(portada);
+                                     out.println("DIRECCION "+filePath);
+                                    }
                             }else{
                                 if(fi.getFieldName().equals("idproducto")){
                                    prdData.setProducto_id(Integer.parseInt(fi.getString()));
@@ -160,6 +162,10 @@ public class ProductoController extends HttpServlet {
                                 if(fi.getFieldName().equals("categoria")){
                                   prdData.setId_categoria(Integer.parseInt(fi.getString()));
                                 }
+                                 if(fi.getFieldName().equals("cambio")){
+                                 mod=fi.getString();
+                                     System.out.println("CHECKBOX CLICKED "+mod );
+                                }
                                 if(fi.getFieldName().equals("tipo")){
                                   prdData.setId_tipoproducto(Integer.parseInt(fi.getString()));
                                 }
@@ -176,8 +182,8 @@ public class ProductoController extends HttpServlet {
                          
             
 
-                          System.out.println("end de iteraciones");
-            prdData.setProductoImagenes(listaImgs);
+                         
+             prdData.setProductoImagenes(listaImgs);
              System.out.println("end de iteraciones: "+metodo);
             if(metodo.equals("insertar")){          
             if(pdModel.nuevoProducto(prdData)){
@@ -196,7 +202,17 @@ public class ProductoController extends HttpServlet {
               }
             }
             
-
+             if(metodo.equals("modificar")){
+                System.out.println("Modificar");
+                if(pdModel.modificarProducto(prdData)){
+                    if(mod.equals("cambio")){
+                    pdModel.asignarImagen(prdData);
+                    }
+                 response.sendRedirect("view/producto/lista.jsp?exito=1&mensaje=Producto Modificado Correctamente");
+                }else{
+                 response.sendRedirect("view/producto/lista.jsp?exito=2&mensaje=Error Al modificar ");
+                }
+             }
 
               } catch(Exception ex) {
                             System.out.println(ex);

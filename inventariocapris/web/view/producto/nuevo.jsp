@@ -209,7 +209,7 @@
                     </select>
                 </div>
                </div>      
-               <div class="control-group">
+            <div class="control-group">
               <label class="control-label">Imagen</label>
               <div class="controls">
                 <input type="file" name="imagen"/>
