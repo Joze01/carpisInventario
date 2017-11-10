@@ -41,7 +41,7 @@ public class ImageModel {
         
         while(rs.next()){
         direccion=rs.getString("imagen_url");
-            System.out.println(rs.getString("imagen_url"));
+           // System.out.println(rs.getString("imagen_url"));
         }
         con.cerrarConexion();
         return direccion;
