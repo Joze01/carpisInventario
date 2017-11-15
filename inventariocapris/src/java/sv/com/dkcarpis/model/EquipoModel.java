@@ -56,5 +56,13 @@ public class EquipoModel {
           con.cerrarConexion();
         return resultado;
     }
-    
+      public boolean eliminarAsignacion(EquipoBean frmData) throws SQLException{
+        boolean resultado=false;
+        con = new Conexion();
+        con.query="DELETE FROM historial_equipo WHERE 0 LIMIT1 ";
+        resultado= con.setQuery(con.query);
+        con.cerrarConexion();
+        return resultado;
+    } 
+
 }
