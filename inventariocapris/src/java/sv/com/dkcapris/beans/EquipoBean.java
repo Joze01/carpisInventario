@@ -178,6 +178,8 @@ public class EquipoBean {
     public void setEquipo_estado(Integer equipo_estado) {
         this.equipo_estado = equipo_estado;
     }
+    
+    private Integer historialChange;
     private Integer equipo_id;
     private Integer id_hospital;
     private String hospital_name;
@@ -190,4 +192,18 @@ public class EquipoBean {
     private String equipo_descripcion;
     private String equipo_nInventario;
     private Integer equipo_estado;
+
+    /**
+     * @return the historialChange
+     */
+    public Integer getHistorialChange() {
+        return historialChange;
+    }
+
+    /**
+     * @param historialChange the historialChange to set
+     */
+    public void setHistorialChange(Integer historialChange) {
+        this.historialChange = historialChange;
+    }
 }

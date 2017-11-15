@@ -50,7 +50,8 @@ public class EquipoModel {
    public boolean asignarEquipo(EquipoBean frmData) throws SQLException{
         boolean resultado=false;
         con = new Conexion();
-        con.query="INSERT INTO historial_equipo(id_equipo, id_hospital, historial_id, historial_fecha, historial_tipo) VALUES ([value-1],[value-2],[value-3],CURRENT_DATE(),[value-5])";
+        con.query="INSERT INTO historial_equipo(id_equipo, id_hospital, historial_fecha, historial_tipo) "
+                + "VALUES ("+frmData.getEquipo_id()+", "+frmData.getId_hospital()+", CURRENT_DATE(), "+frmData.getHistorialChange()+")";
          resultado= con.setQuery(con.query);
           con.cerrarConexion();
         return resultado;
