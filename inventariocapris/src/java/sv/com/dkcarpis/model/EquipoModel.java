@@ -29,7 +29,7 @@ public class EquipoModel {
     public boolean modificarEquipo(EquipoBean frmData) throws SQLException{
         boolean resultado=false;
         con = new Conexion();
-        con.query="UPDATE `equipo` SET `equipo_id`=[value-1],`id_area`=[value-2],`id_marca`=[value-3],`equipo_serie`=[value-4],`equipo_modelo`=[value-5],`equipo_descripcion`=[value-6],`equipo_ninventario`=[value-7] WHERE 1";
+        con.query="UPDATE equipo SET id_area="+frmData.getId_area()+",id_marca="+frmData.getId_marca()+",equipo_serie='"+frmData.getEquipo_serie()+"',equipo_modelo='"+frmData.getEquipo_modelo()+"',equipo_descripcion='"+frmData.getEquipo_descripcion()+"',equipo_ninventario='"+frmData.getEquipo_nInventario()+"' WHERE equipo_id="+frmData.getEquipo_id();
         resultado= con.setQuery(con.query);
          con.cerrarConexion();
         return resultado;
@@ -39,9 +39,21 @@ public class EquipoModel {
     public boolean eliminarEquipo(EquipoBean frmData) throws SQLException{
         boolean resultado=false;
         con = new Conexion();
-        con.query="DELETE FROM `equipo` WHERE 0";
+        con.query="DELETE FROM equipo WHERE equipo_id="+frmData.getEquipo_id()+"";
          resultado= con.setQuery(con.query);
           con.cerrarConexion();
         return resultado;
     }
+    
+    
+    
+   public boolean asignarEquipo(EquipoBean frmData) throws SQLException{
+        boolean resultado=false;
+        con = new Conexion();
+        con.query="INSERT INTO historial_equipo(id_equipo, id_hospital, historial_id, historial_fecha, historial_tipo) VALUES ([value-1],[value-2],[value-3],CURRENT_DATE(),[value-5])";
+         resultado= con.setQuery(con.query);
+          con.cerrarConexion();
+        return resultado;
+    }
+    
 }
