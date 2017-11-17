@@ -51,8 +51,8 @@ public class ProductoController extends HttpServlet {
         
            private boolean isMultipart;
 	   private String filePath="";
-	   private int maxFileSize = 4096 * 1024;
-	   private int maxMemSize = 4096 * 1024;
+	   private int maxFileSize = 9096 * 1024;
+	   private int maxMemSize = 9096 * 1024;
 	   private File file ;
         
            private static final String SAVE_DIR = "view\\producto\\images\\";
