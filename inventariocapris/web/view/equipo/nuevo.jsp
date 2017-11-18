@@ -85,7 +85,13 @@
         <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+      <ul>
+        <li><a href="../hospital/lista.jsp">Listado</a></li>
+        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
+    <li class="submenu active"> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
       <ul>
         <li><a href="lista.jsp">Listado</a></li>
         <li><a href="nuevo.jsp">Nuevo</a></li>
@@ -101,8 +107,8 @@
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-hospital"></i>Hospital</a>
+        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-folder-close"></i>Equipo</a>
         <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
@@ -120,24 +126,66 @@
 <!--Chart-box-->    
          <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
-            <h5>Nuevo Hospital</h5>
+            <h5>Nuevo Equipo</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="/inventariocapris/HospitalController" name="basic_validate" id="basic_validate" novalidate="novalidate">
+             <form class="form-horizontal" method="post" action="/inventariocapris/EquipoController" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
-                <label class="control-label">Nombre</label>
+                <label class="control-label">Numero de Serie</label>
                 <div class="controls">
-                  <input type="text" class="required" name="nombre" class="required" id="required">
+                  <input type="text" class="required" name="serie" id="required">
                 </div>
               </div>
               <div class="control-group">
+                <label class="control-label">Nombre</label>
+                <div class="controls">
+                  <input type="text" class="required" name="nombre" id="required">
+                </div>
+              </div>   
+              <div class="control-group">
                 <label class="control-label">Descripcion</label>
                 <div class="controls">
-                  <input type="text" class="required" name="descripcion" class="required" id="required">
+                  <input type="text" class="required" name="descripcion" id="required">
                 </div>
-              </div>             
+              </div>   
+              <div class="control-group">
+                <label class="control-label">Modelo</label>
+                <div class="controls">
+                  <input type="text" class="required" name="modelo" id="required">
+                </div>
+              </div> 
+             <div class="control-group">
+                <label class="control-label">Fabricante</label>
+                 <div class="controls">
+                    <select name="fabricante">
+                            <%
+
+                            Conexion con = new Conexion();
+                            ResultSet rs;
+                            con.query ="select * from fabricante order by fabricante.fabricante_nombre";
+                            con.setRs(con.query);
+                            rs = con.getRs();
+                            while(rs.next()){
+                               out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</td>");
+
+                            }
+
+                            %>
+                    </select>
+                </div>
+               </div> 
+                            <div class="control-group">
+                <label class="control-label">Estado</label>
+                 <div class="controls">
+                    <select name="estado">
+                        <option value="1">Activo</option>
+                        <option value="0">Desactivado</option>
+                    </select>
+                </div>
+               </div>      
+ 
               <div class="form-actions">
-                <input type="hidden" name="metodo" value="insertar"/>
+                  <input type="hidden" name="metodo" value="insertar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>
             </form>

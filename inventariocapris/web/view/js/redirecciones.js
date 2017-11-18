@@ -13,6 +13,14 @@ function eliminar(item,id,url){
         
         
     }
-    
-    
+}
+
+
+function eliminar2(item,id,url){
+    if(confirm("Esta seguro de eliminar este "+item)){
+          window.location=url+"?metodo=retirar&id="+id;
+    }else{
+        
+        
+    }
 }

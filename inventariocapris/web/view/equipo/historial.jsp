@@ -1,8 +1,9 @@
 <%-- 
-    Document   : nuevo
-    Created on : 10-15-2017, 04:59:46 PM
+    Document   : historial
+    Created on : 11-17-2017, 12:47:31 PM
     Author     : Jose-PC
 --%>
+
 <%
     
    HttpSession sesion = request.getSession();
@@ -12,13 +13,15 @@
    if(Integer.parseInt(tipo)>2){
        response.sendRedirect("../../");
    }
+      ResultSet rs;
+             
 %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Equipo | Listado</title>
+    <title>Historial | <% out.print(request.getParameter("nombre")); %></title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -102,7 +105,8 @@
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-folder-close"></i>Equipos</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-folder-close"></i>Equipos</a>
+         <a href="#" title="" class="tip-bottom"><i class="icon-folder-open"></i>Historial</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -112,67 +116,99 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-arrow-left"></i> Regresar </a> </li>
+        <li class="bg_dg"> <a href="asignar.jsp?id=<%out.print(request.getParameter("id"));%>"> <i class="icon-plus"></i> Nueva Asignacion </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
-<!--Chart-box-->    
+<!--Chart-box-->   
+  <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-folder-close"></i> </span>
+            <h5>Equipo </h5>
+          </div>
+        
+          <div class="widget-content">
+            <div class="row-fluid">
+              <div class="span6">
+                <table class="">
+                  <tbody>
+                    <tr>
+                      <td><h4> <%out.print(request.getParameter("nombre"));%></h4></td>
+                    </tr>
+                    <tr>
+                      <td>  <%out.print(request.getParameter("descripcion"));%></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="span6">
+                <table class="table table-bordered table-invoice">
+                  <tbody>
+                    <tr>
+                    <tr>
+                      <td class="width30">Marca:</td>
+                      <td class="width70"><strong>  <%out.print(request.getParameter("marca"));%></strong></td>
+                    </tr>
+                    <tr>
+                      <td>Modelo:</td>
+                      <td><strong>  <%out.print(request.getParameter("modelo"));%></strong></td>
+                    </tr>
+
+                  <td class="width30">Estado</td>
+                  <td class="width70"><strong>  <%out.print(request.getParameter("estado"));%></strong></td>
+                  </tr>
+                    </tbody>
+                  
+                </table>
+              </div>
+            </div>
+
+          </div>
+         </div>
+      </div>
+    </div>
          <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-folder-close"></i></span>
-            <h5>Equipos</h5>
+          <div class="widget-title"> <span class="icon"><i class="icon-folder-open"></i></span>
+            <h5>Historial</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>SERIE</th>
-                  <th>NOMBRE</th>
-                  <th>DESCRIPCION</th>
-                  <th>MODELO</th>
-                  <th>MARCA</th>
-                  <th>ESTADO</th>
+                  <th>HOSPITAL</th>
+                  <th>AREA</th>
+                  <th>FECHA</th>
+                  <th>TIPO MOVIMIENTO</th>
                   <th>FUNCIONES</th> 
                 </tr>
               </thead>
               <tbody>
               <%
-              String estado="";
-              String query="select * from equipo "
-                      + "INNER JOIN fabricante on fabricante.fabricante_id =  equipo.id_marca";
-              Conexion con = new Conexion();
              
-              ResultSet rs;
+              String query="select * from historial_equipo inner join equipo on equipo.equipo_id=historial_equipo.id_equipo inner join area on area.area_id=historial_equipo.id_area inner join hospital on hospital.hospital_id=historial_equipo.id_hospital where equipo.equipo_id="+request.getParameter("id");
+              Conexion con = new Conexion();
+              
+             
               con.setRs(query);
               rs=con.getRs();
               while(rs.next()){
-                   
                 out.println("<tr class='gradeX'>");
-                out.println("<td>"+rs.getInt(1)+"</td>");
-                out.println("<td>"+rs.getString(3)+"</td>");
-                out.println("<td>"+rs.getString(6)+"</td>");
+                out.println("<td>"+rs.getInt(4)+"</td>");
+                out.println("<td>"+rs.getString(18)+"</td>");
+                out.println("<td>"+rs.getString(15)+"</td>");
                 out.println("<td>"+rs.getString(5)+"</td>");
-                out.println("<td>"+rs.getString(4)+"</td>");
-                out.println("<td>"+rs.getString(9)+"</td>");
-       
-                out.println("<td>");
-                if(rs.getInt(8)==1){
-                out.println("Activo");
-                estado="Activo";
-                }else{
-                 out.println("Desactivado");
-                estado="Desactivado";
-                }
-                out.println("</td>");
+                out.println("<td>"+rs.getString(5)+"</td>");
 
                 out.println("<td>");
-                out.println("<a href='historial.jsp?id="+rs.getInt(1)+"&serie="+rs.getString(3)+"&nombre="+rs.getString(6)+"&descripcion="+rs.getString(5)+"&marca="+rs.getString(9)+"&modelo="+rs.getString(4)+"&estado="+estado+"' class='btn btn-info btn-mini'>Historial</a>");
-                out.println("<a href='' class='btn btn-info btn-mini'>Modificar</a>");
-                 out.println("<button onclick=\"eliminar('Equipo',"+rs.getInt(1)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
+                 out.println("<button onclick=\"eliminar2('Equipo',"+rs.getInt(4)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
                 out.println("</td>");
                 out.println("</tr>");
               }
-
+              con.cerrarConexion();
 
               %>
               </tbody>

@@ -155,14 +155,14 @@ public class EquipoBean {
      * @return the equipo_nInventario
      */
     public String getEquipo_nInventario() {
-        return equipo_nInventario;
+        return equipo_nombre;
     }
 
     /**
      * @param equipo_nInventario the equipo_nInventario to set
      */
     public void setEquipo_nInventario(String equipo_nInventario) {
-        this.equipo_nInventario = equipo_nInventario;
+        this.equipo_nombre = equipo_nInventario;
     }
 
     /**
@@ -190,7 +190,7 @@ public class EquipoBean {
     private String equipo_serie;
     private String equipo_modelo;
     private String equipo_descripcion;
-    private String equipo_nInventario;
+    private String equipo_nombre;
     private Integer equipo_estado;
 
     /**

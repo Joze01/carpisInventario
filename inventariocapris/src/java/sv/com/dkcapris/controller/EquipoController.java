@@ -45,44 +45,62 @@ public class EquipoController extends HttpServlet {
         EquipoBean equipoBean;
         equipoBean = new EquipoBean();
         if(metodo.equals("insertar")){
-            if(equiModel.asignarEquipo(equipoBean)){
-                response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Hospital Registrado Correctamente");
+            equipoBean= new EquipoBean();
+            equipoBean.setEquipo_serie(request.getParameter("serie"));
+            equipoBean.setEquipo_nInventario(request.getParameter("nombre"));
+            equipoBean.setEquipo_descripcion(request.getParameter("descripcion"));
+            equipoBean.setEquipo_modelo(request.getParameter("modelo"));
+            equipoBean.setEquipo_estado(Integer.parseInt(request.getParameter("estado")));
+            equipoBean.setId_marca(Integer.parseInt(request.getParameter("fabricante")));
+            if(equiModel.nuevoEquipo(equipoBean)){
+                response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Equipo Registrado Correctamente");
             }else{
-                response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al registar ");
+                response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al registar ");
             }
         }
         if(metodo.equals("modificar")){
             if(equiModel.modificarEquipo(equipoBean)){
-                response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Hospital Modificado Correctamente");
+                response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Equipo Modificado Correctamente");
             }else{
-                response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al modificar ");            
+                response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al modificar ");            
             }
         }
         if(metodo.equals("eliminar")){
+            equipoBean= new EquipoBean();
+            equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("id")));
             if(equiModel.eliminarEquipo(equipoBean)){
-                response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Hospital Eliminado Correctamente");
+                response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Equipo Eliminado Correctamente");
             }else{
-                response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al registar ");
+                response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al Eliminar ");
             }
         }
         
         if(metodo.equals("asignar")){
+            equipoBean= new EquipoBean();
+            equipoBean.setId_area(Integer.parseInt(request.getParameter("area")));
+            equipoBean.setId_hospital(Integer.parseInt(request.getParameter("hospital")));
+            equipoBean.setHistorialChange(Integer.parseInt(request.getParameter("tipo")));
+            equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("equipo")));
+            
+          
             if(equiModel.asignarEquipo(equipoBean)){
-                        response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Asignado Correctamente");
+                        response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Nueva Asisgnacion Registrada Correctamente");
             
             }else{
-                     response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al asignar ");
+                     response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al asignar ");
            
             }    
         
         }
         
          if(metodo.equals("retirar")){
+             equipoBean= new EquipoBean();
+             equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("id")));
             if(equiModel.eliminarAsignacion(equipoBean)){
-                        response.sendRedirect("view/hospital/lista.jsp?exito=1&mensaje=Eliminado Correctamente");
+                        response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Asignacion Eliminada Correctamente");
             
             }else{
-                     response.sendRedirect("view/hospital/lista.jsp?exito=2&mensaje=Error al eliminar asignacion  ");
+                     response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al eliminar asignacion  ");
            
             }    
         

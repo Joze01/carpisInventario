@@ -1,8 +1,9 @@
 <%-- 
-    Document   : modificar
-    Created on : 10-15-2017, 04:59:46 PM
+    Document   : asignar
+    Created on : 11-18-2017, 01:12:46 AM
     Author     : Jose-PC
 --%>
+
 <%
    HttpSession sesion = request.getSession();
    String id=sesion.getAttribute("id").toString();
@@ -11,21 +12,23 @@
    if(Integer.parseInt(tipo)>2){
        response.sendRedirect("../../");
    }
-   System.out.println(request.getParameter("id"));
-   
 %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Fabricante | Nuevo</title>
+<title>Hospitales | Nuevo</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="../css/fullcalendar.css" />
 
+<link rel="stylesheet" href="../css/colorpicker.css" />
+<link rel="stylesheet" href="../css/datepicker.css" />
+<link rel="stylesheet" href="../css/uniform.css" />
+<link rel="stylesheet" href="../css/select2.css" />
 
 <link rel="stylesheet" href="../css/matrix-style.css" />
 <link rel="stylesheet" href="../css/matrix-media.css" />
@@ -40,7 +43,6 @@
   <h1><a href="dashboard.html">Matrix Admin</a></h1>
 </div>
 <!--close-Header-part--> 
-
 
 
 
@@ -72,11 +74,10 @@
         <li><a href="../producto/salida/lista.jsp">Salidas</a></li>
       </ul>
     </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
+    <li class="submenu "> <a href="#"><i class="icon icon-truck"></i> <span>Fabricantes</span> </a>
       <ul>
-        <li><a href="../producto/lista.jsp">Buscador</a></li>
-        <li><a href="../producto/entrada/lista.jsp">Entradas</a></li>
-        <li><a href="../producto/salida/lista.jsp">Salidas</a></li>
+          <li><a href="../fabricante/lista.jsp">Listado</a></li>
+        <li><a href="../fabricante/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Usuarios</span> </a>
@@ -91,10 +92,10 @@
         <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu "> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
+    <li class="submenu active"> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
       <ul>
-        <li><a href="../equipo/lista.jsp">Listado</a></li>
-        <li><a href="../equipo/nuevo.jsp">Nuevo</a></li>
+        <li><a href="lista.jsp">Listado</a></li>
+        <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
 
@@ -107,13 +108,14 @@
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="#" title="" class="tip-bottom"><i class="icon-truck"></i>Fabricantes</a>
+        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-folder-close"></i>Equipo</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
 
-
+  
 <!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
@@ -121,32 +123,61 @@
         <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-ban-circle"></i> Cancelar </a> </li>
       </ul>
     </div>
-<!--End-Action boxes-->    
+<!--End-Action boxes--> 
 <!--Chart-box-->    
          <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Data table</h5>
+          <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
+            <h5>Nuevo Equipo</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="/inventariocapris/fabricanteController" name="basic_validate" id="basic_validate" novalidate="novalidate">
-              <div class="control-group">
-                <label class="control-label">Nombre</label>
-                <div class="controls">
-                  <input type="text" class="required" name="nombre" value="<%out.print(request.getParameter("nombre"));%>" id="required">
+             <form class="form-horizontal" method="post" action="/inventariocapris/EquipoController" name="basic_validate" id="basic_validate" novalidate="novalidate">
+             <div class="control-group">
+                <label class="control-label">Hospital</label>
+                 <div class="controls">
+                    <select name="hospital">
+                            <%
+                            Conexion con = new Conexion();
+                            ResultSet rs;
+                            con.query ="select * from hospital";
+                            con.setRs(con.query);
+                            rs = con.getRs();
+                            while(rs.next()){
+                               out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</td>");
+                            }
+                            %>
+                    </select>
                 </div>
-              </div>
-                 <input type="hidden" value="modificar" name="metodo">
-              <div class="control-group">
-                <label class="control-label">Descripcion</label>
-                <div class="controls">
-                    <input type="text" class="required" name="descripcion" value="<%out.print(request.getParameter("descripcion"));%>" id="required">
+               </div> 
+             <div class="control-group">
+                <label class="control-label">Area</label>
+                 <div class="controls">
+                    <select name="area">
+                            <%
+                            con = new Conexion();
+                            
+                            con.query ="select * from area";
+                            con.setRs(con.query);
+                            rs = con.getRs();
+                            while(rs.next()){
+                               out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</td>");
+                            }
+                            %>
+                    </select>
                 </div>
-              </div>
-             
-             
+               </div>                
+             <div class="control-group">
+                <label class="control-label">Tipo Asignacion</label>
+                 <div class="controls">
+                    <select name="tipo">
+                        <option value="1">Asignado</option>
+                        <option value="2">Retirado</option>
+                    </select>
+                </div>
+               </div>  
               <div class="form-actions">
-                  <input type="hidden" name="id" value="<%out.print(request.getParameter("id"));%>"/>
-                <input type="submit" value="Modificar" class="btn btn-success">
+                  <input type="hidden" name="equipo" value="<%out.print(request.getParameter("id"));%>">
+                <input type="hidden" name="metodo" value="asignar"/>
+                <input type="submit" value="Guardar" class="btn btn-success">
               </div>
             </form>
           </div>
@@ -167,6 +198,8 @@
 
 <!--end-Footer-part-->
 
+
+
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
@@ -175,6 +208,8 @@
 <script src="../js/jquery.validate.js"></script> 
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.form_validation.js"></script>
+<script src="../js/matrix.form_common.js"></script>
+
 
 </body>
 </html>

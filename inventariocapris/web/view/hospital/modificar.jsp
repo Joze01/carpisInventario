@@ -92,7 +92,12 @@
         <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-
+    <li class="submenu "> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
+      <ul>
+        <li><a href="../equipo/lista.jsp">Listado</a></li>
+        <li><a href="../equipo/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
   </ul>
 </div>
 <!--sidebar-menu-->
