@@ -81,16 +81,11 @@ public class EquipoController extends HttpServlet {
             equipoBean.setId_hospital(Integer.parseInt(request.getParameter("hospital")));
             equipoBean.setHistorialChange(Integer.parseInt(request.getParameter("tipo")));
             equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("equipo")));
-            
-          
             if(equiModel.asignarEquipo(equipoBean)){
                         response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Nueva Asisgnacion Registrada Correctamente");
-            
             }else{
                      response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al asignar ");
-           
             }    
-        
         }
         
          if(metodo.equals("retirar")){
@@ -98,12 +93,9 @@ public class EquipoController extends HttpServlet {
              equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("id")));
             if(equiModel.eliminarAsignacion(equipoBean)){
                         response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Asignacion Eliminada Correctamente");
-            
             }else{
                      response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al eliminar asignacion  ");
-           
             }    
-        
         }
         
         
