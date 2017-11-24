@@ -132,14 +132,19 @@
                   <th>MODELO</th>
                   <th>MARCA</th>
                   <th>ESTADO</th>
+                  <th>HOSPITAL</th>
+                  <th>AREA</th>
                   <th>FUNCIONES</th> 
                 </tr>
               </thead>
               <tbody>
               <%
               String estado="";
-              String query="select * from equipo "
-                      + "INNER JOIN fabricante on fabricante.fabricante_id =  equipo.id_marca";
+              String query="select equipo.*, "
+                      + "fabricante.*, "
+                      + "(select area.area_nombre from historial_equipo inner join area on area.area_id=historial_equipo.id_area where historial_equipo.id_equipo=equipo.equipo_id limit 1), "
+                      + "(select hospital.hospital_nombre from historial_equipo inner join hospital on historial_equipo.id_hospital=hospital.hospital_id where historial_equipo.id_equipo=equipo.equipo_id limit 1) "
+                      + "from equipo INNER JOIN fabricante on fabricante.fabricante_id = equipo.id_marca";
               Conexion con = new Conexion();
              
               ResultSet rs;
@@ -154,9 +159,8 @@
                 out.println("<td>"+rs.getString(5)+"</td>");
                 out.println("<td>"+rs.getString(4)+"</td>");
                 out.println("<td>"+rs.getString(9)+"</td>");
-       
                 out.println("<td>");
-                if(rs.getInt(8)==1){
+                if(rs.getInt(7)==1){
                 out.println("Activo");
                 estado="Activo";
                 }else{
@@ -164,6 +168,9 @@
                 estado="Desactivado";
                 }
                 out.println("</td>");
+                out.println("<td>"+rs.getString(12)+"</td>");
+                out.println("<td>"+rs.getString(11)+"</td>");
+
 
                 out.println("<td>");
                 out.println("<a href='historial.jsp?id="+rs.getInt(1)+"&serie="+rs.getString(3)+"&nombre="+rs.getString(6)+"&descripcion="+rs.getString(5)+"&marca="+rs.getString(9)+"&modelo="+rs.getString(4)+"&estado="+estado+"' class='btn btn-info btn-mini'>Historial</a>");

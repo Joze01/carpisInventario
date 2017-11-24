@@ -201,7 +201,11 @@
                 out.println("<td>"+rs.getString(18)+"</td>");
                 out.println("<td>"+rs.getString(15)+"</td>");
                 out.println("<td>"+rs.getString(5)+"</td>");
-                out.println("<td>"+rs.getString(5)+"</td>");
+                if(rs.getInt(6)==1){
+                out.println("<td>Asignacion</td>");
+                }if(rs.getInt(6)!=1){
+                out.println("<td>Retirado</td>");
+                }
 
                 out.println("<td>");
                  out.println("<button onclick=\"eliminar2('Equipo',"+rs.getInt(4)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
