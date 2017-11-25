@@ -173,9 +173,9 @@
 
 
                 out.println("<td>");
-                out.println("<a href='historial.jsp?id="+rs.getInt(1)+"&serie="+rs.getString(3)+"&nombre="+rs.getString(6)+"&descripcion="+rs.getString(5)+"&marca="+rs.getString(9)+"&modelo="+rs.getString(4)+"&estado="+estado+"' class='btn btn-info btn-mini'>Historial</a>");
-                out.println("<a href='' class='btn btn-info btn-mini'>Modificar</a>");
-                 out.println("<button onclick=\"eliminar('Equipo',"+rs.getInt(1)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
+                out.println("<a href='historial.jsp?id="+rs.getInt(1)+"&serie="+rs.getString(3)+"&nombre="+rs.getString(6)+"&descripcion="+rs.getString(5)+"&marca="+rs.getString(9)+"&modelo="+rs.getString(4)+"&estado="+estado+"' class='btn btn-warning btn-mini'>Historial</a>");
+                out.println("<a href='modificar.jsp?marcaName="+rs.getString(9)+"&id="+rs.getInt(1)+"' class='btn btn-info btn-mini'>Modificar</a>");
+                out.println("<button onclick=\"eliminar('Equipo',"+rs.getInt(1)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
                 out.println("</td>");
                 out.println("</tr>");
               }

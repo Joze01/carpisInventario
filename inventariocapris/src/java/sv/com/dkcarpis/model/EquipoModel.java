@@ -30,9 +30,10 @@ public class EquipoModel {
     public boolean modificarEquipo(EquipoBean frmData) throws SQLException{
         boolean resultado=false;
         con = new Conexion();
-        con.query="UPDATE equipo SET equipo_estado="+frmData.getEquipo_estado()+",  id_area="+frmData.getId_area()+",id_marca="+frmData.getId_marca()+",equipo_serie='"+frmData.getEquipo_serie()+"',equipo_modelo='"+frmData.getEquipo_modelo()+"',equipo_descripcion='"+frmData.getEquipo_descripcion()+"',equipo_ninventario='"+frmData.getEquipo_nInventario()+"' WHERE equipo_id="+frmData.getEquipo_id();
+        con.query="UPDATE equipo SET equipo_estado="+frmData.getEquipo_estado()+",id_marca="+frmData.getId_marca()+", equipo_serie='"+frmData.getEquipo_serie()+"', equipo_modelo='"+frmData.getEquipo_modelo()+"', equipo_descripcion='"+frmData.getEquipo_descripcion()+"', equipo_nombre='"+frmData.getEquipo_nInventario()+"' WHERE equipo_id="+frmData.getEquipo_id();
+        System.out.println(con.query);
         resultado= con.setQuery(con.query);
-         con.cerrarConexion();
+        con.cerrarConexion();
         return resultado;
     }
         

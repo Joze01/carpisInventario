@@ -59,6 +59,14 @@ public class EquipoController extends HttpServlet {
             }
         }
         if(metodo.equals("modificar")){
+            equipoBean= new EquipoBean();
+            equipoBean.setEquipo_serie(request.getParameter("serie"));
+            equipoBean.setEquipo_nInventario(request.getParameter("nombre"));
+            equipoBean.setEquipo_descripcion(request.getParameter("descripcion"));
+            equipoBean.setEquipo_modelo(request.getParameter("modelo"));
+            equipoBean.setEquipo_estado(Integer.parseInt(request.getParameter("estado")));
+            equipoBean.setId_marca(Integer.parseInt(request.getParameter("fabricante")));
+            equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("id")));
             if(equiModel.modificarEquipo(equipoBean)){
                 response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Equipo Modificado Correctamente");
             }else{

@@ -1,9 +1,8 @@
 <%-- 
-    Document   : modificar
-    Created on : 11-18-2017, 03:07:56 PM
+    Document   : nuevo
+    Created on : 10-15-2017, 04:59:46 PM
     Author     : Jose-PC
 --%>
-
 <%
    HttpSession sesion = request.getSession();
    String id=sesion.getAttribute("id").toString();
@@ -12,13 +11,15 @@
    if(Integer.parseInt(tipo)>2){
        response.sendRedirect("../../");
    }
+    Conexion con = new Conexion();
+    ResultSet rs;
 %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hospitales | Nuevo</title>
+<title>Equipo | Modificar</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -125,34 +126,56 @@
     </div>
 <!--End-Action boxes--> 
 <!--Chart-box-->    
+    <%
+      Integer idmarca=0;
+      String serie="";
+      String modelo="";
+      String descripcion="";
+      String nombre_equipo="";
+      Integer estadoint=0;
+      con=new Conexion();
+      String ids=request.getParameter("id");
+      con.query="select * from equipo where equipo_id="+ids;
+      con.setRs(con.query);
+      rs=con.getRs();
+      while(rs.next()){
+       idmarca=rs.getInt(2);
+       serie=rs.getString(3);
+       modelo=rs.getString(4);
+       descripcion=rs.getString(5);
+       nombre_equipo=rs.getString(6);
+       estadoint=rs.getInt(7);
+      }
+      con.cerrarConexion();
+    %>
          <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
-            <h5>Nuevo Equipo</h5>
+            <h5>Modificar Equipo</h5>
           </div>
           <div class="widget-content nopadding">
              <form class="form-horizontal" method="post" action="/inventariocapris/EquipoController" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
-                <label class="control-label">Numero de Serie</label>
+                <label class="control-label" disa >Numero de Serie</label>
                 <div class="controls">
-                  <input type="text" class="required" name="serie" id="required">
+                    <input type="text" class="required" value="<% out.print(serie);%>" name="serie" id="required">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Nombre</label>
                 <div class="controls">
-                  <input type="text" class="required" name="nombre" id="required">
+                  <input type="text" class="required" value="<% out.print(nombre_equipo);%>" name="nombre" id="required">
                 </div>
               </div>   
               <div class="control-group">
                 <label class="control-label">Descripcion</label>
                 <div class="controls">
-                  <input type="text" class="required" name="descripcion" id="required">
+                  <input type="text" class="required" value="<% out.print(descripcion);%>" name="descripcion" id="required">
                 </div>
               </div>   
               <div class="control-group">
                 <label class="control-label">Modelo</label>
                 <div class="controls">
-                  <input type="text" class="required" name="modelo" id="required">
+                  <input type="text" class="required" value="<% out.print(modelo);%>" name="modelo" id="required">
                 </div>
               </div> 
              <div class="control-group">
@@ -161,11 +184,11 @@
                     <select name="fabricante">
                             <%
 
-                            Conexion con = new Conexion();
-                            ResultSet rs;
+                            con = new Conexion();
                             con.query ="select * from fabricante order by fabricante.fabricante_nombre";
                             con.setRs(con.query);
                             rs = con.getRs();
+                            out.println("<option value='"+idmarca+"'>"+request.getParameter("marcaName")+"</td>");
                             while(rs.next()){
                                out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</td>");
 
@@ -179,6 +202,13 @@
                 <label class="control-label">Estado</label>
                  <div class="controls">
                     <select name="estado">
+                        <%
+                        if(estadoint==1){
+                        out.print("<option value='1'>Activo</option>");
+                        }else{
+                           out.print("<option value='0'>Desactivado</option>");
+                        }
+                        %>
                         <option value="1">Activo</option>
                         <option value="0">Desactivado</option>
                     </select>
@@ -186,7 +216,8 @@
                </div>      
  
               <div class="form-actions">
-                  <input type="hidden" name="metodo" value="insertar"/>
+                  <input type="hidden" name="id" value="<%out.print(ids);%>"/>
+                  <input type="hidden" name="metodo" value="modificar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>
             </form>
