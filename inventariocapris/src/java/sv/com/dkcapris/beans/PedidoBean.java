@@ -25,19 +25,6 @@ public class PedidoBean {
         this.pedido_id = pedido_id;
     }
 
-    /**
-     * @return the pedido_descripcion
-     */
-    public int getPedido_descripcion() {
-        return pedido_descripcion;
-    }
-
-    /**
-     * @param pedido_descripcion the pedido_descripcion to set
-     */
-    public void setPedido_descripcion(int pedido_descripcion) {
-        this.pedido_descripcion = pedido_descripcion;
-    }
 
     /**
      * @return the pedido_fechaInicio
@@ -67,8 +54,22 @@ public class PedidoBean {
         this.pedido_fechaFinal = pedido_fechaFinal;
     }
     private int pedido_id;
-    private int pedido_descripcion;
+    private String pedido_descripcion;
     private String pedido_fechaInicio;
     private String pedido_fechaFinal;
+
+    /**
+     * @return the pedido_descripcion
+     */
+    public String getPedido_descripcion() {
+        return pedido_descripcion;
+    }
+
+    /**
+     * @param pedido_descripcion the pedido_descripcion to set
+     */
+    public void setPedido_descripcion(String pedido_descripcion) {
+        this.pedido_descripcion = pedido_descripcion;
+    }
     
 }

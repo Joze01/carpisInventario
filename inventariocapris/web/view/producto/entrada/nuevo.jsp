@@ -165,7 +165,7 @@
                   <input type="text" name="fecha" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
                   <span class="add-on"><i class="icon-th"></i></span> </div>
               </div>
-            </div>   
+              </div>   
    
   
               <div class="form-actions">

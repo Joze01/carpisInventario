@@ -26,7 +26,12 @@ public class PedidoModel {
     public boolean newPedido(PedidoBean pedido) throws SQLException{
      resultado=false;
      con = new Conexion();
-     con.query="INSERT INTO pedido(pedido_id, pedido_descripcion, pedido_fechaInicio, pedido_fechaFin) VALUES ()";
+//     String[] output = pedido.getPedido_fechaInicio().split("-");
+//     String fechaIni = output[2]+"-"+output[1]+"-"+output[0];
+     
+     String[] output2 = pedido.getPedido_fechaFinal().split("-");
+     String fechaFinal = output2[2]+"-"+output2[1]+"-"+output2[0];
+     con.query="INSERT INTO pedido(pedido_id, pedido_descripcion, pedido_fechaInicio, pedido_fechaFin) VALUES ("+pedido.getPedido_id()+",'"+pedido.getPedido_descripcion()+"',CURRENT_DATE(),"+fechaFinal+")";
      resultado=con.setQuery(con.query);
      con.cerrarConexion();
     return resultado;
@@ -37,7 +42,7 @@ public class PedidoModel {
     public boolean modificarPedido(PedidoBean pedido) throws SQLException{
      resultado=false;
      con = new Conexion();
-     con.query="";
+     con.query="UPDATE pedido SET pedido_descripcion='"+pedido.getPedido_descripcion()+"',pedido_fechaInicio="+pedido.getPedido_fechaInicio()+",pedido_fechaFin="+pedido.getPedido_fechaFinal()+" WHERE pedido_id="+pedido.getPedido_id();
      resultado=con.setQuery(con.query);
      
      con.cerrarConexion();
@@ -48,7 +53,7 @@ public class PedidoModel {
     public boolean deletePedido(PedidoBean pedido) throws SQLException{
      resultado=false;
      con = new Conexion();
-     con.query="";
+     con.query="DELETE FROM `pedido` WHERE pedido_id="+pedido.getPedido_id();
      resultado=con.setQuery(con.query);
      
      con.cerrarConexion();
