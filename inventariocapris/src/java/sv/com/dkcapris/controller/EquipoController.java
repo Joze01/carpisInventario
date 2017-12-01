@@ -85,15 +85,19 @@ public class EquipoController extends HttpServlet {
         
         if(metodo.equals("asignar")){
             equipoBean= new EquipoBean();
+           // System.out.println(request.getParameter("area") + " "+request.getParameter("hospital")+" "+ request.getParameter("tipo")+ " "+request.getParameter("equipoAsignar"));
             equipoBean.setId_area(Integer.parseInt(request.getParameter("area")));
             equipoBean.setId_hospital(Integer.parseInt(request.getParameter("hospital")));
             equipoBean.setHistorialChange(Integer.parseInt(request.getParameter("tipo")));
-            equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("equipo")));
+            equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("equipoAsignar")));
+           
             if(equiModel.asignarEquipo(equipoBean)){
                         response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Nueva Asisgnacion Registrada Correctamente");
             }else{
                      response.sendRedirect("view/equipo/lista.jsp?exito=2&mensaje=Error al asignar ");
-            }    
+            } 
+             
+            System.out.println("ENTRADA A ASIGNAR");
         }
         
          if(metodo.equals("retirar")){

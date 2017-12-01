@@ -27,8 +27,8 @@ public class EntradaModel {
      con = new Conexion();
      try{
             
-            String[] output = ntrData.getEntrada_fecha().split("-");
-            String fecha = output[2]+"-"+output[1]+"-"+output[0];
+    String[] output = ntrData.getEntrada_fecha().split("-");
+    String fecha = output[2]+"-"+output[1]+"-"+output[0];
      con.query="INSERT INTO entrada(id_usuario, id_producto, entrada_cantidad, entrada_precio, entrada_fecha) VALUES ("+ntrData.getId_usuario()+","+ntrData.getId_producto()+","+ntrData.getEntrada_cantidad()+","+ntrData.getEntrada_precio()+",'"+fecha+"')";
      resultado=con.setQuery(con.query);
      con.cerrarConexion();

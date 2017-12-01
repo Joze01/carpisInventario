@@ -90,6 +90,14 @@
         <li><a href="equipo/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
+    
+    <li class="submenu "> <a href="#"><i class="icon icon-shopping-cart"></i> <span>pedido</span> </a>
+      <ul>
+        <li><a href="pedido/lista.jsp">Listado</a></li>
+        <li><a href="pedido/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
+    
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -111,6 +119,8 @@
         <li class="bg_lr span2"> <a href="fabricante/lista.jsp"> <i class="icon-truck"></i>  Fabricantes </a> </li>
         <li class="bg_lv span2"> <a href="usuario/lista.jsp"> <i class="icon-group"></i> Usuarios </a> </li>
         <li class="bg_ls span2"> <a href="hospital/lista.jsp"> <i class="icon-hospital"></i> Hospital </a> </li>
+        <li class="bg_lg span2"> <a href="equipo/lista.jsp"> <i class="icon-folder-close"></i> Equipo </a> </li>
+        <li class="bg_lo span2"> <a href="pedido/lista.jsp"> <i class="icon-shopping-cart"></i> Pedido </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -124,7 +134,23 @@
         <div class="widget-content" >
           <div class="row-fluid">
             <div class="span9">
-                  <li class="bg_ls span2"> <a href="localhost/jasperserver"> <i class="icon-download"></i> Sistema de Reportes </a> </li>
+                
+            </div>
+            <div class="span3">
+
+            </div>
+          </div>
+        </div>
+      </div>
+        
+              <div class="widget-box">
+        <div class="widget-title bg_lg"><span class="icon"><i class="icon-shopping-cart"></i></span>
+          <h5>Pedidos por llegar</h5>
+        </div>
+        <div class="widget-content" >
+          <div class="row-fluid">
+            <div class="span9">
+                
             </div>
             <div class="span3">
 

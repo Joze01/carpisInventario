@@ -1,11 +1,13 @@
-ya<%-- 
-    Document   : historial
-    Created on : 11-17-2017, 12:47:31 PM
+<%-- 
+    Document   : newpedidoDetalle
+    Created on : 11-30-2017, 10:07:26 PM
     Author     : Jose-PC
 --%>
-
+<%@page import="sv.com.dkcapris.beans.ProductoBean"%>
+<%@page import="sv.com.dkcarpis.model.ImageModel"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="sv.com.dkcarpis.model.ProductoModel"%>
 <%
-    
    HttpSession sesion = request.getSession();
    String id=sesion.getAttribute("id").toString();
    String nombre=sesion.getAttribute("nombre").toString();
@@ -13,15 +15,18 @@ ya<%--
    if(Integer.parseInt(tipo)>2){
        response.sendRedirect("../../");
    }
-      ResultSet rs;
-             
+   
+   Integer idPedido = Integer.parseInt(request.getParameter("id"));
+
+
+
 %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Historial | <% out.print(request.getParameter("nombre")); %></title>
+<title>Hospitales | Listado</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -84,17 +89,22 @@ ya<%--
     </li>
     <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
       <ul>
-        <li><a href="../hospital/lista.jsp">Listado</a></li>
-        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
+        <li><a href="lista.jsp">Listado</a></li>
+        <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
+    <li class="submenu "> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
+      <ul>
+        <li><a href="../equipo/lista.jsp">Listado</a></li>
+        <li><a href="../equipo/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
+    <li class="submenu active"> <a href="#"><i class="icon icon-shopping-cart"></i> <span>Pedidos</span> </a>
       <ul>
         <li><a href="lista.jsp">Listado</a></li>
         <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -105,8 +115,7 @@ ya<%--
   <div id="content-header">
     <div id="breadcrumb"> 
         <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-folder-close"></i>Equipos</a>
-         <a href="#" title="" class="tip-bottom"><i class="icon-folder-open"></i>Historial</a>
+        <a href="#" title="" class="tip-bottom"><i class="icon-shopping-cart"></i>Pedidos</a>
     </div>
   </div>
 <!--End-breadcrumbs-->
@@ -116,107 +125,70 @@ ya<%--
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-arrow-left"></i> Regresar </a> </li>
-        <li class="bg_dg"> <a href="asignar.jsp?id=<%out.print(request.getParameter("id"));%>"> <i class="icon-plus"></i> Nueva Asignacion </a> </li>
+        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
-<!--Chart-box-->   
-  <div class="row-fluid">
-      <div class="span12">
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-folder-close"></i> </span>
-            <h5>Equipo </h5>
-          </div>
-        
-          <div class="widget-content">
-            <div class="row-fluid">
-              <div class="span6">
-                <table class="">
-                  <tbody>
-                    <tr>
-                      <td><h4> <%out.print(request.getParameter("nombre"));%></h4></td>
-                    </tr>
-                    <tr>
-                      <td>  <%out.print(request.getParameter("descripcion"));%></td>
-                    </tr>
-
-                  </tbody>
-                </table>
-              </div>
-              <div class="span6">
-                <table class="table table-bordered table-invoice">
-                  <tbody>
-                    <tr>
-                    <tr>
-                      <td class="width30">Marca:</td>
-                      <td class="width70"><strong>  <%out.print(request.getParameter("marca"));%></strong></td>
-                    </tr>
-                    <tr>
-                      <td>Modelo:</td>
-                      <td><strong>  <%out.print(request.getParameter("modelo"));%></strong></td>
-                    </tr>
-
-                  <td class="width30">Estado</td>
-                  <td class="width70"><strong>  <%out.print(request.getParameter("estado"));%></strong></td>
-                  </tr>
-                    </tbody>
-                  
-                </table>
-              </div>
-            </div>
-
-          </div>
-         </div>
-      </div>
-    </div>
+<!--Chart-box-->    
          <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-folder-open"></i></span>
-            <h5>Historial</h5>
+          <div class="widget-title"> <span class="icon"><i class="icon-list"></i></span>
+            <h5>Lista de productos</h5>
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
+          <table class="table table-bordered data-table">
               <thead>
                 <tr>
+                  <th>Cantidad Pedido</th>
                   <th>#</th>
-                  <th>HOSPITAL</th>
-                  <th>AREA</th>
-                  <th>FECHA</th>
-                  <th>TIPO MOVIMIENTO</th>
-                  <th>FUNCIONES</th> 
+                  <th>Serie</th>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Imagen</th>
+                  <th>Marca</th>
+                  <th>Categoria</th>
+                  <th>Tipo</th>
+                  <th>Guardar</th>
                 </tr>
               </thead>
               <tbody>
               <%
+                  ProductoModel pdFunc = new ProductoModel();
+                  ArrayList<ProductoBean> listado;
+                  listado = new ArrayList<ProductoBean>();
+                  ImageModel imgMod = new ImageModel();
+                  listado=pdFunc.getTable();
+                  
              
-              String query="select * from historial_equipo inner join equipo on equipo.equipo_id=historial_equipo.id_equipo inner join area on area.area_id=historial_equipo.id_area inner join hospital on hospital.hospital_id=historial_equipo.id_hospital where equipo.equipo_id="+request.getParameter("id");
-              Conexion con = new Conexion();
-              
-             
-              con.setRs(query);
-              rs=con.getRs();
-              while(rs.next()){
-                out.println("<tr class='gradeX'>");
-                out.println("<td>"+rs.getInt(4)+"</td>");
-                out.println("<td>"+rs.getString(18)+"</td>");
-                out.println("<td>"+rs.getString(15)+"</td>");
-                out.println("<td>"+rs.getString(5)+"</td>");
-                if(rs.getInt(6)==1){
-                out.println("<td>Asignacion</td>");
-                }if(rs.getInt(6)!=1){
-                out.println("<td>Retirado</td>");
-                }
+                  
+                  for(ProductoBean pd: listado ){
+                          
+                         String precios=pdFunc.getEntradaPrecios(pd.getProducto_id());
+                         String imgdir = imgMod.getOneUrl(pd.getProducto_id());  
+                         pd.setProducto_ImgPortada("../producto/images/"+imgdir);
 
-                out.println("<td>");
-                 out.println("<button onclick=\"eliminar2('Equipo',"+rs.getInt(4)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
-                out.println("</td>");
-                out.println("</tr>");
-              }
-              con.cerrarConexion();
+                         out.println("<tr class='gradeX'>");
+                         out.println("<td><input type='number' min='0' value='0' name='id"+pd.getProducto_id()+"'></td>");
+                         out.println("<td>"+pd.getProducto_id()+"</td>");
+                         out.println("<td>"+pd.getProducto_serie()+"</td>");
+                         out.println("<td>"+pd.getProducto_nombre()+"</td>");
+                         out.println("<td>"+pd.getProducto_descripcion()+"</td>");
+                         out.println("<td><img class='img-responsive' src='"+pd.getProducto_ImgPortada()+"'/></td>");
+                         out.println("<td>"+pd.getFabricante_Nombre()+"</td>");
+                         out.println("<td>"+pd.getCategoria_Nombre()+"</td>");
+                         out.println("<td>"+pd.getTipoproducto_nombre()+"</td>");
+                         out.println("<td><button onclick=\"eliminar()\" class='btn btn-success btn-mini'>Guardar</button></td>");
+                         out.println("</tr>");
+                  
+                  }
+                  
+   
+
 
               %>
               </tbody>
             </table>
+
+        
           </div>
         </div>
 <!--End-Chart-box--> 
@@ -253,7 +225,7 @@ ya<%--
 <script src="../js/jquery.uniform.js"></script> 
 <script src="../js/matrix.popover.js"></script> 
 <script src="../js/redirecciones.js"></script>
-
+<script src="../js/ajax.js"></script>
 
 
 <% 

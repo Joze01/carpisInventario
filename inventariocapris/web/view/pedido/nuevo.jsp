@@ -1,6 +1,6 @@
 <%-- 
     Document   : nuevo
-    Created on : 10-15-2017, 04:59:46 PM
+    Created on : 11-30-2017, 10:03:33 AM
     Author     : Jose-PC
 --%>
 <%
@@ -17,7 +17,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Equipo | Nuevo</title>
+<title>Hospitales | Nuevo</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -85,19 +85,18 @@
         <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
-      <ul>
-        <li><a href="../hospital/lista.jsp">Listado</a></li>
-        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
-      </ul>
-    </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
+    <li class="submenu"> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
       <ul>
         <li><a href="lista.jsp">Listado</a></li>
         <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-
+    <li class="submenu active"> <a href="#"><i class="icon icon-shopping-cart"></i> <span>Pedidos</span> </a>
+      <ul>
+        <li><a href="lista.jsp">Listado</a></li>
+        <li><a href="nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -107,8 +106,8 @@
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a>
-        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-folder-close"></i>Equipo</a>
+        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-shopping-cart"></i>pedido</a>
         <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
@@ -125,68 +124,32 @@
 <!--End-Action boxes--> 
 <!--Chart-box-->    
          <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-group"></i></span>
-            <h5>Nuevo Equipo</h5>
+          <div class="widget-title"> <span class="icon"><i class="icon-shopping-cart"></i></span>
+            <h5>Nuevo Pedido</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="/inventariocapris/EquipoController" name="basic_validate" id="basic_validate" novalidate="novalidate">
-              <div class="control-group">
-                <label class="control-label">Numero de Serie</label>
-                <div class="controls">
-                  <input type="text" class="required" name="serie" id="required">
-                </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">Nombre</label>
-                <div class="controls">
-                  <input type="text" class="required" name="nombre" id="required">
-                </div>
-              </div>   
+             <form class="form-horizontal" method="post" action="/inventariocapris/PedidoController" name="basic_validate" id="basic_validate" novalidate="novalidate">
+              
               <div class="control-group">
                 <label class="control-label">Descripcion</label>
                 <div class="controls">
-                  <input type="text" class="required" name="descripcion" id="required">
+                  <input type="text" class="required" name="descripcion" class="required" id="required">
                 </div>
               </div>   
+              
               <div class="control-group">
-                <label class="control-label">Modelo</label>
-                <div class="controls">
-                  <input type="text" class="required" name="modelo" id="required">
-                </div>
-              </div> 
-             <div class="control-group">
-                <label class="control-label">Fabricante</label>
-                 <div class="controls">
-                    <select name="fabricante">
-                            <%
-
-                            Conexion con = new Conexion();
-                            ResultSet rs;
-                            con.query ="select * from fabricante order by fabricante.fabricante_nombre";
-                            con.setRs(con.query);
-                            rs = con.getRs();
-                            while(rs.next()){
-                               out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</td>");
-
-                            }
-
-                            %>
-                    </select>
-                </div>
-               </div> 
-                            <div class="control-group">
-                <label class="control-label">Estado</label>
-                 <div class="controls">
-                    <select name="estado">
-                        <option value="1">Activo</option>
-                        <option value="0">Desactivado</option>
-                    </select>
-                </div>
-               </div>      
- 
-              <div class="form-actions">
+              <label class="control-label">Fecha de Entrega</label>
+              <div class="controls">
+                <div  data-date="12-02-2012" class="input-append date datepicker">
+                  <input type="text" name="fechafin" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
+                  <span class="add-on"><i class="icon-th"></i></span> </div>
+              </div>
+              </div>    
                  
-                  <input type="hidden" name="metodo" value="insertar"/>
+                 
+                 
+              <div class="form-actions">
+                <input type="hidden" name="metodo" value="insertar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>
             </form>
@@ -210,7 +173,6 @@
 
 
 
-
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
@@ -220,9 +182,10 @@
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.form_validation.js"></script>
 <script src="../js/matrix.form_common.js"></script>
-
-
-
+<script src="../js/bootstrap-datepicker.js"></script> 
+<script src="../js/bootstrap-colorpicker.js"></script> 
+<script src="../js/masked.js"></script> 
+<script src="../js/jquery.peity.min.js"></script> 
 
 </body>
 </html>

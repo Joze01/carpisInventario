@@ -24,3 +24,5 @@ function eliminar2(item,id,url){
         
     }
 }
+
+
