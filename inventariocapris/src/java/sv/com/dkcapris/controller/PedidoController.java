@@ -73,11 +73,11 @@ public class PedidoController extends HttpServlet {
             
             if(metodo.equals("setdetalle")){
                 ProductoModel pdmodel = new ProductoModel();
-                System.out.println("Eqipo:");
+                System.out.println("Eqipo:"+ request.getParameter(""));
                 System.out.println("Pedido:");
                 System.out.println("cantidad:");
- 
-            }
+  
+           }
             
             if(metodo.equals("deletedetalle")){
             

@@ -117,7 +117,7 @@ ya<%--
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
         <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-arrow-left"></i> Regresar </a> </li>
-        <li class="bg_dg"> <a href="nuevo.jsp?id=<%out.print(request.getParameter("id"));%>"> <i class="icon-plus"></i> Nueva Asignacion </a> </li>
+        <li class="bg_dg"> <a href="asignar.jsp?id=<%out.print(request.getParameter("id"));%>"> <i class="icon-plus"></i> Nueva Asignacion </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
