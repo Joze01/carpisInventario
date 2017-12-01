@@ -7,6 +7,9 @@ package sv.com.dkcapris.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import sv.com.dkcarpis.model.PedidoModel;
 import sv.com.dkcapris.beans.PedidoBean;
 import sv.com.dkcapris.beans.DetallePedidoBean;
+import sv.com.dkcarpis.model.ProductoModel;
 /**
  *
  * @author Jose-PC
@@ -32,7 +36,7 @@ public class PedidoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
@@ -42,11 +46,17 @@ public class PedidoController extends HttpServlet {
             
             
             
-            if(metodo.equals("insetar")){
+            if(metodo.equals("insertar")){
             PedidoBean pedidoData = new PedidoBean();
             pedidoData.setPedido_descripcion(request.getParameter("descripcion"));
-            pedidoData.setPedido_fechaFinal(request.getParameter("fechafin"))
-            
+            pedidoData.setPedido_fechaFinal(request.getParameter("fechafin"));
+                System.out.println(pedidoData.getPedido_fechaFinal());
+            Integer idz = pedidoModel.getLastPedido();
+                    if(pedidoModel.newPedido(pedidoData)){
+                        response.sendRedirect("view/pedido/newpedidoDetalle.jsp?id="+idz+"&exito=1&mensaje=Pedido Registrado");
+                    }else{
+                         response.sendRedirect("view/pedido/newpedidoDetalle.jsp?id="+idz+"&exito=2&mensaje=Error al registar ");
+                    }
             
             
             }
@@ -62,8 +72,11 @@ public class PedidoController extends HttpServlet {
             }
             
             if(metodo.equals("setdetalle")){
-            
-            
+                ProductoModel pdmodel = new ProductoModel();
+                System.out.println("Eqipo:");
+                System.out.println("Pedido:");
+                System.out.println("cantidad:");
+ 
             }
             
             if(metodo.equals("deletedetalle")){
@@ -92,7 +105,11 @@ public class PedidoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -106,7 +123,11 @@ public class PedidoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -93,6 +93,18 @@ public class ProductoModel {
           return valor;
       } 
       
+      public Integer getCantidad() throws SQLException{
+          Integer cantidad=0;   
+          Conexion con = new  Conexion();
+          con.query="select count(*) from producto";
+          con.setRs(con.query);
+          rs=con.getRs();
+          while(rs.next()){
+          cantidad=rs.getInt(1);
+          }
+          con.cerrarConexion();
+          return cantidad;
+      }
       public Integer getEntradas(Integer id_producto) throws SQLException{
           Integer valor=0;
           Conexion con = new  Conexion();

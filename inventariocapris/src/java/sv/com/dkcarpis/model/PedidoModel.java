@@ -5,6 +5,7 @@
  */
 package sv.com.dkcarpis.model;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import sv.com.dkcapris.beans.PedidoBean;
@@ -16,7 +17,7 @@ import sv.com.dkcapris.beans.DetallePedidoBean;
 public class PedidoModel {
     Conexion con;
     boolean resultado;
-   
+    ResultSet rs;
             
     
     public PedidoModel(){
@@ -31,13 +32,26 @@ public class PedidoModel {
      
      String[] output2 = pedido.getPedido_fechaFinal().split("-");
      String fechaFinal = output2[2]+"-"+output2[1]+"-"+output2[0];
-     con.query="INSERT INTO pedido(pedido_id, pedido_descripcion, pedido_fechaInicio, pedido_fechaFin) VALUES ("+pedido.getPedido_id()+",'"+pedido.getPedido_descripcion()+"',CURRENT_DATE(),"+fechaFinal+")";
+     con.query="INSERT INTO pedido(pedido_descripcion, pedido_fechaInicio, pedido_fechaFin) VALUES ('"+pedido.getPedido_descripcion()+"',CURRENT_DATE(),'"+fechaFinal+"')";
+     System.out.println(con.query);
      resultado=con.setQuery(con.query);
      con.cerrarConexion();
+
+     
     return resultado;
     }
     
-    
+    public Integer getLastPedido() throws SQLException{
+        con = new Conexion();
+        con.query="SELECT * FROM pedido ORDER BY pedido_id desc limit 1 ";
+        con.setRs(con.query);
+        rs=con.getRs();
+        int id=0;
+        while(rs.next()){
+           id=rs.getInt(1);
+        }
+    return id;
+    }
     
     public boolean modificarPedido(PedidoBean pedido) throws SQLException{
      resultado=false;

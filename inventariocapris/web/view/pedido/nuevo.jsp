@@ -138,7 +138,7 @@
               </div>   
               
               <div class="control-group">
-              <label class="control-label">Fecha Llegada</label>
+              <label class="control-label">Fecha de Entrega</label>
               <div class="controls">
                 <div  data-date="12-02-2012" class="input-append date datepicker">
                   <input type="text" name="fechafin" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
@@ -182,7 +182,10 @@
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.form_validation.js"></script>
 <script src="../js/matrix.form_common.js"></script>
-
+<script src="../js/bootstrap-datepicker.js"></script> 
+<script src="../js/bootstrap-colorpicker.js"></script> 
+<script src="../js/masked.js"></script> 
+<script src="../js/jquery.peity.min.js"></script> 
 
 </body>
 </html>

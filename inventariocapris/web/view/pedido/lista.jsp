@@ -156,6 +156,7 @@
                 out.println("<td>"+rs.getString(5)+"</td>");
                 out.println("<td></td>");
                 out.println("<td>");
+                out.println("<a href='newpedidoDetalle.jsp?id="+rs.getInt(1)+"' class='btn btn-warning btn-mini'>Listado Productos</a>");
                 out.println("<a href='modificar.jsp?id="+rs.getInt(1)+"&nombre="+rs.getString(2)+"&descripcion="+rs.getString(3)+"' class='btn btn-info btn-mini'>Modificar</a>");
                 out.println("<button onclick=\"eliminar('Pedido',"+rs.getInt(1)+",'/inventariocapris/HospitalController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
                 out.println("</td>");
