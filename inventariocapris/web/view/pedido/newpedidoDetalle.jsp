@@ -105,6 +105,7 @@
         <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
+    
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -125,7 +126,7 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_dg"> <a href="nuevo.jsp"> <i class="icon-plus"></i> Agregar </a> </li>
+        <li class="bg_lr"> <a href="lista.jsp"> <i class="icon-ban-circle"></i> Regresar </a> </li>
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -167,7 +168,7 @@
                          pd.setProducto_ImgPortada("../producto/images/"+imgdir);
 
                          out.println("<tr class='gradeX'>");
-                         out.println("<td><input type='number' min='0' value='0' name='id"+pd.getProducto_id()+"'></td>");
+                         out.println("<td><input type='number' min='0' value='0' id='id"+pd.getProducto_id()+"' name='id"+pd.getProducto_id()+"'></td>");
                          out.println("<td>"+pd.getProducto_id()+"</td>");
                          out.println("<td>"+pd.getProducto_serie()+"</td>");
                          out.println("<td>"+pd.getProducto_nombre()+"</td>");
@@ -176,7 +177,7 @@
                          out.println("<td>"+pd.getFabricante_Nombre()+"</td>");
                          out.println("<td>"+pd.getCategoria_Nombre()+"</td>");
                          out.println("<td>"+pd.getTipoproducto_nombre()+"</td>");
-                         out.println("<td><button onclick=\"eliminar()\" class='btn btn-success btn-mini'>Guardar</button></td>");
+                         out.println("<td><button onclick=\"nuevoDetalle("+pd.getProducto_id()+","+idPedido+",document.getElementById('id"+pd.getProducto_id()+"').value)\" class='btn btn-success btn-mini'>Guardar</button></td>");
                          out.println("</tr>");
                   
                   }

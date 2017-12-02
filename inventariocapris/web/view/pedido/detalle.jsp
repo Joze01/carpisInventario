@@ -1,8 +1,9 @@
 <%-- 
-    Document   : nuevo
-    Created on : 11-30-2017, 10:03:33 AM
+    Document   : detalle
+    Created on : 12-02-2017, 12:51:22 AM
     Author     : Jose-PC
 --%>
+
 <%
    HttpSession sesion = request.getSession();
    String id=sesion.getAttribute("id").toString();
@@ -11,13 +12,14 @@
    if(Integer.parseInt(tipo)>2){
        response.sendRedirect("../../");
    }
+   Integer idPedido=Integer.parseInt(request.getParameter("id"));
 %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sv.com.dkcarpis.model.Conexion"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hospitales | Nuevo</title>
+<title>Pedido | Detalle</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -85,7 +87,13 @@
         <li><a href="../usuario/nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+    <li class="submenu "> <a href="#"><i class="icon icon-hospital"></i> <span>Hospitales</span> </a>
+      <ul>
+        <li><a href="../hospital/lista.jsp">Listado</a></li>
+        <li><a href="../hospital/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
+    <li class="submenu active"> <a href="#"><i class="icon icon-folder-close"></i> <span>Equipos</span> </a>
       <ul>
         <li><a href="lista.jsp">Listado</a></li>
         <li><a href="nuevo.jsp">Nuevo</a></li>
@@ -97,7 +105,6 @@
         <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-    
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -107,8 +114,8 @@
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i> Dashboard</a>
-        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-shopping-cart"></i>pedido</a>
+        <a href="../indexadmin.jsp" title="Ir a Inicio" class="tip-bottom"><i class="icon-home"></i>Dashboard</a>
+        <a href="lista.jsp" title="" class="tip-bottom"><i class="icon-folder-close"></i>Equipo</a>
         <a href="#" title="" class="tip-bottom"><i class="icon-plus"></i>Nuevo</a>
     </div>
   </div>
@@ -124,36 +131,91 @@
     </div>
 <!--End-Action boxes--> 
 <!--Chart-box-->    
-         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-shopping-cart"></i></span>
-            <h5>Nuevo Pedido</h5>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-shopping-cart"></i> </span>
+            <h5>Detalle Pedido</h5>
+          </div>
+          <div class="widget-content">
+            <div class="row-fluid">
+              <div class="span6">
+                <table class="">
+                  <tbody>
+                    <tr>
+                        <td><h4><%out.print(request.getParameter("descripcion"));%></h4></td>
+                    </tr>
+                   
+                   
+                  </tbody>
+                </table>
+              </div>
+              <div class="span6">
+                <table class="table table-bordered table-invoice">
+                  <tbody>
+                    <tr>
+                    <tr>
+                      <td class="width30">Fecha Registro:</td>
+                      <td class="width70"><strong><%out.print(request.getParameter("fechaRegistro"));%></strong></td>
+                    </tr>
+                    <tr>
+                      <td>Fecha Ingreso:</td>
+                      <td><strong><%out.print(request.getParameter("fechaFinal"));%></strong></td>
+                    </tr>
+                    <tr>
+                      <td>Dias Restantes:</td>
+                      <td><strong><%out.print(request.getParameter("dias"));%></strong></td>
+                    </tr>
+
+                    </tbody>
+                  
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+                    
+                             <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-folder-open"></i></span>
+            <h5>Historial</h5>
           </div>
           <div class="widget-content nopadding">
-             <form class="form-horizontal" method="post" action="/inventariocapris/PedidoController" name="basic_validate" id="basic_validate" novalidate="novalidate">
-              
-              <div class="control-group">
-                <label class="control-label">Descripcion</label>
-                <div class="controls">
-                  <input type="text" class="required" name="descripcion" class="required" id="required">
-                </div>
-              </div>   
-              
-              <div class="control-group">
-              <label class="control-label">Fecha de Entrega</label>
-              <div class="controls">
-                <div  data-date="12-02-2012" class="input-append date datepicker">
-                  <input type="text" name="fechafin" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
-                  <span class="add-on"><i class="icon-th"></i></span> </div>
-              </div>
-              </div>    
-                 
-                 
-                 
-              <div class="form-actions">
-                <input type="hidden" name="metodo" value="insertar"/>
-                <input type="submit" value="Guardar" class="btn btn-success">
-              </div>
-            </form>
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                   <th>Serie</th>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Funciones</th>
+                </tr>
+              </thead>
+              <tbody>
+              <%
+             
+              String query="SELECT * FROM pedidodetalleproducto "
+                      + "inner join producto on producto.producto_id=pedidodetalleproducto.id_producto "
+                      + "inner join pedido on pedido.pedido_id=pedidodetalleproducto.id_pedido where id_pedido="+idPedido;
+              Conexion con = new Conexion();
+              ResultSet rs;
+             
+              con.setRs(query);
+              rs=con.getRs();
+              Integer conta=1;
+              while(rs.next()){
+                out.println("<tr class='gradeX'>");
+                out.println("<td>"+conta+"</td>");
+                out.println("<td>"+rs.getString(9)+"</td>");
+                out.println("<td>"+rs.getString(10)+"</td>");
+                out.println("<td>"+rs.getInt(4)+"</td>");
+                out.println("<td><button onclick=\"eliminar2('Producto',"+rs.getInt(1)+",'/inventariocapris/PedidoController')\" class='btn btn-danger btn-mini'>Eliminar</button></td>");           
+                out.println("</tr>");
+                conta++;
+              }
+              con.cerrarConexion();
+
+              %>
+              </tbody>
+            </table>
           </div>
         </div>
 <!--End-Chart-box--> 
@@ -174,6 +236,7 @@
 
 
 
+
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
@@ -183,10 +246,10 @@
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.form_validation.js"></script>
 <script src="../js/matrix.form_common.js"></script>
-<script src="../js/bootstrap-datepicker.js"></script> 
-<script src="../js/bootstrap-colorpicker.js"></script> 
-<script src="../js/masked.js"></script> 
-<script src="../js/jquery.peity.min.js"></script> 
+<script src="../js/redirecciones.js"></script>
+
+
+
 
 </body>
 </html>

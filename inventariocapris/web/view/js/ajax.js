@@ -113,12 +113,12 @@ function asynTaskConfirm(mensaje,parametro, opcion, pagina){
   }
 }
 
-function nuevoDetalle(idEquipo, idPedido, cantidad){
-      if(confirm(mensaje)){
+function nuevoDetalle(idEquipo, idPedido, cantidadz){
+      if(confirm("Seguro que desar agregar "+cantidadz+ " del equipo #"+idEquipo)){
            $.ajax({
                    type: "POST",
                     url: "/inventariocapris/PedidoController",
-                    data: {"equipo" : idEquipo,"pedido": idPedido, "metodo": "" },
+                    data: {"equipo" : idEquipo,"pedido": idPedido, "metodo": "setdetalle", "cantidad": cantidadz },
                     success: function(data){
                          alert(data);
                      }

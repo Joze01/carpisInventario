@@ -94,7 +94,12 @@ ya<%--
         <li><a href="nuevo.jsp">Nuevo</a></li>
       </ul>
     </li>
-
+    <li class="submenu"> <a href="#"><i class="icon icon-shopping-cart"></i> <span>Pedidos</span> </a>
+      <ul>
+        <li><a href="../equipo/lista.jsp">Listado</a></li>
+        <li><a href="../equipo/nuevo.jsp">Nuevo</a></li>
+      </ul>
+    </li>
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -208,7 +213,7 @@ ya<%--
                 }
 
                 out.println("<td>");
-                 out.println("<button onclick=\"eliminar2('Equipo',"+rs.getInt(4)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
+                out.println("<button onclick=\"eliminar2('Equipo',"+rs.getInt(4)+",'/inventariocapris/EquipoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
                 out.println("</td>");
                 out.println("</tr>");
               }

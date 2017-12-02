@@ -141,7 +141,7 @@
               <tbody>
               <%
              
-              String query="SELECT pedido.*,DATEDIFF(pedido.pedido_fechaFin,pedido.pedido_fechaInicio) as diferencia  FROM pedido ORDER BY diferencia asc";
+              String query="SELECT pedido.*,DATEDIFF(pedido.pedido_fechaFin,CURRENT_DATE()) as diferencia  FROM pedido ORDER BY diferencia asc";
               Conexion con = new Conexion();
               
               ResultSet rs;
@@ -153,12 +153,17 @@
                 out.println("<td>"+rs.getString(2)+"</td>");
                 out.println("<td>"+rs.getString(3)+"</td>");
                 out.println("<td>"+rs.getString(4)+"</td>");
+                if(rs.getInt(5)>0){
                 out.println("<td>"+rs.getString(5)+"</td>");
+                }else{
+                 out.println("<td>Ya Ingresó</td>");
+                }
                 out.println("<td></td>");
                 out.println("<td>");
-                out.println("<a href='newpedidoDetalle.jsp?id="+rs.getInt(1)+"' class='btn btn-warning btn-mini'>Listado Productos</a>");
+                out.println("<a href='newpedidoDetalle.jsp?id="+rs.getInt(1)+"' class='btn btn-warning btn-mini'>Agregar Productos Productos</a>");
+                out.println("<a href='detalle.jsp?dias="+rs.getString(5)+"&fechaFinal="+rs.getString(4)+"&fechaRegistro="+rs.getString(3)+"&descripcion="+rs.getString(2)+"&id="+rs.getInt(1)+"' class='btn btn-success btn-mini'>Detalle del Pedido</a>");
                 out.println("<a href='modificar.jsp?id="+rs.getInt(1)+"&nombre="+rs.getString(2)+"&descripcion="+rs.getString(3)+"' class='btn btn-info btn-mini'>Modificar</a>");
-                out.println("<button onclick=\"eliminar('Pedido',"+rs.getInt(1)+",'/inventariocapris/HospitalController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
+                out.println("<button onclick=\"eliminar('Pedido',"+rs.getInt(1)+",'/inventariocapris/PedidoController')\" class='btn btn-danger btn-mini'>Eliminar</button>");           
                 out.println("</td>");
                 out.println("</tr>");
               }

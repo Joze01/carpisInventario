@@ -12,6 +12,20 @@ package sv.com.dkcapris.beans;
 public class DetallePedidoBean {
 
     /**
+     * @return the cantidad
+     */
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    /**
+     * @param cantidad the cantidad to set
+     */
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    /**
      * @return the detalle_id
      */
     public Integer getDetalle_id() {
@@ -55,4 +69,5 @@ public class DetallePedidoBean {
     private Integer detalle_id;
     private Integer id_producto;
     private Integer id_pedido;
+    private Integer cantidad;
 }

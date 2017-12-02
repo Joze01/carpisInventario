@@ -67,21 +67,41 @@ public class PedidoController extends HttpServlet {
             }
             
             if(metodo.equals("eliminar")){
-            
+              PedidoBean pedidoData = new PedidoBean();
+              pedidoData.setPedido_id(Integer.parseInt(request.getParameter("id")));
+              if(pedidoModel.deletePedido(pedidoData)){
+                 response.sendRedirect("view/pedido/lista.jsp?exito=1&mensaje=Pedido Eliminado Correctamente");
+                }else{
+                 response.sendRedirect("view/pedido/lista.jsp?exito=2&mensaje=Error Al eliminar ");
+                }
             
             }
             
             if(metodo.equals("setdetalle")){
-                ProductoModel pdmodel = new ProductoModel();
-                System.out.println("Eqipo:"+ request.getParameter(""));
-                System.out.println("Pedido:");
-                System.out.println("cantidad:");
-  
+                PedidoModel pdmodel = new PedidoModel();
+                DetallePedidoBean pedidoDetalleData = new DetallePedidoBean();
+                /*System.out.println("Eqipo:"+ request.getParameter("equipo"));
+                System.out.println("Pedido:"+ request.getParameter("pedido"));
+                System.out.println("cantidad:"+request.getParameter("cantidad"));*/
+                pedidoDetalleData.setId_pedido(Integer.parseInt(request.getParameter("pedido")));
+                pedidoDetalleData.setId_producto(Integer.parseInt(request.getParameter("equipo")));
+                pedidoDetalleData.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
+                if(pdmodel.setDetalle(pedidoDetalleData)){
+                out.print("Producto Agregado al pedido");
+                }else{
+                out.print("No se ha podido agregar");
+                }
            }
             
-            if(metodo.equals("deletedetalle")){
-            
-            
+            if(metodo.equals("retirar")){
+            Integer valor = Integer.parseInt(request.getParameter("id"));
+            DetallePedidoBean pedidoDetalle = new DetallePedidoBean();
+            pedidoDetalle.setDetalle_id(valor);
+            if(pedidoModel.deleteDetalle(pedidoDetalle)){
+                 response.sendRedirect("view/pedido/lista.jsp?exito=1&mensaje=Producto Retirado Correctamente");
+                }else{
+                 response.sendRedirect("view/pedido/lista.jsp?exito=2&mensaje=Error Al eliminar ");
+                }
             }
             
             
