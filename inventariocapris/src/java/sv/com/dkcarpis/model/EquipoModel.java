@@ -52,9 +52,12 @@ public class EquipoModel {
    public boolean asignarEquipo(EquipoBean frmData) throws SQLException{
         boolean resultado=false;
         con = new Conexion();
+        String[] output = frmData.getEquipo_fecha().split("-");
+        String fecha = output[2]+"-"+output[1]+"-"+output[0];
         con.query="INSERT INTO historial_equipo(id_equipo, id_hospital, id_area, historial_fecha, historial_tipo) "
-                + "VALUES ("+frmData.getEquipo_id()+", "+frmData.getId_hospital()+","+frmData.getId_area()+", CURRENT_DATE(), "+frmData.getHistorialChange()+")";
-         resultado= con.setQuery(con.query);
+                + "VALUES ("+frmData.getEquipo_id()+", "+frmData.getId_hospital()+","+frmData.getId_area()+", '"+fecha+"', "+frmData.getHistorialChange()+")";
+        System.out.println(con.query); 
+        resultado= con.setQuery(con.query);
           con.cerrarConexion();
         return resultado;
     }

@@ -192,6 +192,7 @@ public class EquipoBean {
     private String equipo_descripcion;
     private String equipo_nombre;
     private Integer equipo_estado;
+    private String equipo_fecha;
 
     /**
      * @return the historialChange
@@ -205,5 +206,19 @@ public class EquipoBean {
      */
     public void setHistorialChange(Integer historialChange) {
         this.historialChange = historialChange;
+    }
+
+    /**
+     * @return the equipo_fecha
+     */
+    public String getEquipo_fecha() {
+        return equipo_fecha;
+    }
+
+    /**
+     * @param equipo_fecha the equipo_fecha to set
+     */
+    public void setEquipo_fecha(String equipo_fecha) {
+        this.equipo_fecha = equipo_fecha;
     }
 }

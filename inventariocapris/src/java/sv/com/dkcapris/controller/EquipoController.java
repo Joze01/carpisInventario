@@ -90,6 +90,7 @@ public class EquipoController extends HttpServlet {
             equipoBean.setId_hospital(Integer.parseInt(request.getParameter("hospital")));
             equipoBean.setHistorialChange(Integer.parseInt(request.getParameter("tipo")));
             equipoBean.setEquipo_id(Integer.parseInt(request.getParameter("equipoAsignar")));
+            equipoBean.setEquipo_fecha(request.getParameter("fecha"));
            
             if(equiModel.asignarEquipo(equipoBean)){
                         response.sendRedirect("view/equipo/lista.jsp?exito=1&mensaje=Nueva Asisgnacion Registrada Correctamente");

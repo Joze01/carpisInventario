@@ -203,14 +203,22 @@ Integer idEquipo=Integer.parseInt(request.getParameter("id"));
                             %>
                     </select>
                 </div>
-               </div>                 
+               </div>    
                <div class="control-group">
-                <label class="control-label">Tipo </label>
+                <label class="control-label">Tipo</label>
                  <div class="controls">
                     <select name="tipo">
                         <option value="1">Asignar</option>
-                        <option value="0">Retirar</option>           
+                        <option value="0">Retirar</option>
                     </select>
+                </div>
+               </div> 
+               <div class="control-group">
+                <label class="control-label">Fecha </label>
+                 <div class="controls">
+                                   <div  data-date="12-02-2012" class="input-append date datepicker">
+                  <input type="text" name="fecha" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
+                  <span class="add-on"><i class="icon-th"></i></span> </div>
                 </div>
                </div> 
    
@@ -251,7 +259,10 @@ Integer idEquipo=Integer.parseInt(request.getParameter("id"));
 <script src="../js/matrix.js"></script> 
 <script src="../js/matrix.form_validation.js"></script>
 <script src="../js/matrix.form_common.js"></script>
-
+<script src="../js/bootstrap-datepicker.js"></script> 
+<script src="../js/bootstrap-colorpicker.js"></script> 
+<script src="../js/masked.js"></script> 
+<script src="../js/jquery.peity.min.js"></script> 
 
 
 
