@@ -145,11 +145,11 @@
               <tbody>
               <%
               String estado="";
-              String query="select equipo.*, "
-                      + "fabricante.*, "
-                      + "(select area.area_nombre from historial_equipo inner join area on area.area_id=historial_equipo.id_area where historial_equipo.id_equipo=equipo.equipo_id limit 1), "
-                      + "(select hospital.hospital_nombre from historial_equipo inner join hospital on historial_equipo.id_hospital=hospital.hospital_id where historial_equipo.id_equipo=equipo.equipo_id limit 1) "
-                      + "from equipo INNER JOIN fabricante on fabricante.fabricante_id = equipo.id_marca";
+              String query="select equipo.*,"
+                      + " fabricante.*,"
+                      + "(select area.area_nombre from historial_equipo inner join area on area.area_id=historial_equipo.id_area where historial_equipo.id_equipo=equipo.equipo_id limit 1),"
+                      + "(select hospital.hospital_nombre from historial_equipo inner join hospital on historial_equipo.id_hospital=hospital.hospital_id where historial_equipo.estado=1 and historial_equipo.id_equipo=equipo.equipo_id limit 1) "
+                      + "from equipo INNER JOIN fabricante on fabricante.fabricante_id = equipo.id_marca ";
               Conexion con = new Conexion();
              
               ResultSet rs;

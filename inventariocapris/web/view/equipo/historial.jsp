@@ -203,8 +203,8 @@ ya<%--
               while(rs.next()){
                 out.println("<tr class='gradeX'>");
                 out.println("<td>"+rs.getInt(4)+"</td>");
-                out.println("<td>"+rs.getString(18)+"</td>");
-                out.println("<td>"+rs.getString(15)+"</td>");
+                out.println("<td>"+rs.getString(19)+"</td>");
+                out.println("<td>"+rs.getString(16)+"</td>");
                 out.println("<td>"+rs.getString(5)+"</td>");
                 if(rs.getInt(6)==1){
                 out.println("<td>Asignacion</td>");
