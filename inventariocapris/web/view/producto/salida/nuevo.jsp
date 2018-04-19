@@ -170,7 +170,14 @@
                     </select>
                 </div>
                </div> 
-                    
+              <div class="control-group">
+              <label class="control-label">Fecha Entrada</label>
+              <div class="controls">
+                <div  data-date="12-02-2012" class="input-append date datepicker">
+                  <input type="text" name="fecha" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
+                  <span class="add-on"><i class="icon-th"></i></span> </div>
+              </div>
+              </div>       
               <div class="control-group">
                 <label class="control-label">Cantidad de Salida</label>
                 <div class="controls">
@@ -178,9 +185,27 @@
                 </div>
               </div>   
 
+                     <input type="hidden" name="usuarioId" value="<%out.print(id);%>"/>
+                    <div class="control-group">
+                <label class="control-label">Usuario:</label>
+                 <div class="controls">
+                    <select name="usuarioId" >
+                            <%
+                            con = new Conexion();
+                            con.query ="select * from usuario";
+                            con.setRs(con.query);
+                            rs = con.getRs();
+                            while(rs.next()){
+                               out.println("<option value='"+rs.getInt(1)+"'>"+rs.getString(3)+"</td>");
+                            }
+                            %>
+                    </select>
+                </div>
+               </div> 
+                    
               <div class="form-actions">
                   <input type="hidden" name="productoId" value="<%out.print(producto_id);%>"/>
-                  <input type="hidden" name="usuarioId" value="<%out.print(id);%>"/>
+                 
                   <input type="hidden" name="metodo" value="insertar"/>
                 <input type="submit" value="Guardar" class="btn btn-success">
               </div>

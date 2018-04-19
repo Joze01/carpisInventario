@@ -9,7 +9,7 @@
    String nombre=sesion.getAttribute("nombre").toString();
    String tipo=sesion.getAttribute("tipo").toString();
    System.out.println("TIPO EN JSP: "+tipo);
-   if(Integer.parseInt(tipo)!=3){
+   if(Integer.parseInt(tipo)==3){
        response.sendRedirect("../");
    }
  %>

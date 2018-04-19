@@ -159,7 +159,7 @@
                          out.println("</ul>");
                          out.println("</div>");
   
-                         out.println("<a href='salida/nuevo.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"' class='btn btn-danger btn-mini'>Nueva Salida</a>");  
+                         //out.println("<a href='salida/nuevo.jsp?id="+pd.getProducto_id()+"&serie="+pd.getProducto_serie()+"&nombre="+pd.getProducto_nombre()+"' class='btn btn-danger btn-mini'>Nueva Salida</a>");  
                          out.println("</td>");
                          
                          

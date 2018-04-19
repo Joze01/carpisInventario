@@ -56,6 +56,8 @@ public class SalidaModel {
                acumuladorEntradas+=ntr.getEntrada_cantidad();
                  System.out.println("ACUMULADOR DE SALIDAS "+cantidadSalidas);
                  System.out.println("ACUMULADOR DE ENTRADAS "+acumuladorEntradas);
+                  String[] output = exitData.getSalida_fecha().split("-");
+                    String fecha = output[2]+"-"+output[1]+"-"+output[0];
                diponiblesByEntrada=acumuladorEntradas-cantidadSalidas;
                if(diponiblesByEntrada>0){
                    System.out.println("EN ENTRADA "+diponiblesByEntrada);
@@ -65,7 +67,8 @@ public class SalidaModel {
                    System.out.println("Puedo sacar: "+diponiblesByEntrada+" A precio: "+ntr.getEntrada_precio());
                    System.out.println("Sacando... "+exitData.getSalidad_cantidad()+" a precio de: "+ntr.getEntrada_precio());
                    con = new Conexion();
-                   con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+exitData.getSalidad_cantidad()+","+ntr.getEntrada_precio()+", CURRENT_DATE(),"+exitData.getId_hospital()+")";
+                   
+                   con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+exitData.getSalidad_cantidad()+","+ntr.getEntrada_precio()+", '"+fecha+"',"+exitData.getId_hospital()+")";
                    resultado=con.setQuery(con.query);
                    con.cerrarConexion();
                    exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-diponiblesByEntrada);
@@ -74,7 +77,7 @@ public class SalidaModel {
                          System.out.println("Puedo sacar: "+diponiblesByEntrada+" A precio: "+ntr.getEntrada_precio());
                          System.out.println("Sacando... "+diponiblesByEntrada+" a precio de: "+ntr.getEntrada_precio());
                          con = new Conexion();
-                         con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+diponiblesByEntrada+","+ntr.getEntrada_precio()+",CURRENT_DATE(), "+exitData.getId_hospital()+")";
+                         con.query="INSERT INTO salida (id_usuario, id_producto, salida_cantidad, salida_precio, salida_fecha, id_hospital) VALUES ("+exitData.getId_usuario()+","+exitData.getId_producto()+","+diponiblesByEntrada+","+ntr.getEntrada_precio()+",'"+fecha+"', "+exitData.getId_hospital()+")";
                         resultado= con.setQuery(con.query);
                          con.cerrarConexion();
                          exitData.setSalidad_cantidad(exitData.getSalidad_cantidad()-diponiblesByEntrada);
@@ -98,7 +101,9 @@ public class SalidaModel {
     public boolean modificarEntrada(SalidaBean exitData) throws SQLException{
      boolean resultado =false;
      con = new Conexion();
-     con.query="UPDATE salida SET id_usuario="+exitData.getId_usuario()+", id_producto="+exitData.getId_producto()+", salida_cantidad="+exitData.getSalidad_cantidad()+",salida_precio="+exitData.getSalida_precio()+",salida_fecha="+exitData.getSalida_fecha()+" WHERE salida_id="+exitData.getId();
+        String[] output = exitData.getSalida_fecha().split("-");
+        String fecha = output[2]+"-"+output[1]+"-"+output[0];
+     con.query="UPDATE salida SET id_usuario="+exitData.getId_usuario()+", id_producto="+exitData.getId_producto()+", salida_cantidad="+exitData.getSalidad_cantidad()+",salida_precio="+exitData.getSalida_precio()+",salida_fecha='"+fecha+"' WHERE salida_id="+exitData.getId();
      resultado=con.setQuery(con.query);
      con.cerrarConexion();
      return resultado;
