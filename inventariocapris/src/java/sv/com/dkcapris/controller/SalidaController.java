@@ -48,6 +48,7 @@ public class SalidaController extends HttpServlet {
             extB.setSalidad_cantidad(Integer.parseInt(request.getParameter("cantidad")));
             extB.setId_usuario(Integer.parseInt(request.getParameter("usuarioId")));
             //System.out.println("HOSPITAL: "+request.getParameter("hospitalId"));
+            extB.setSalida_fecha(request.getParameter("fecha"));
             extB.setId_hospital(Integer.parseInt(request.getParameter("hospitalId")));
             
             if(extModel.nuevaSalida(extB)){
@@ -62,6 +63,7 @@ public class SalidaController extends HttpServlet {
             extB.setSalidad_cantidad(Integer.parseInt(request.getParameter("cantidad")));
             extB.setId_usuario(Integer.parseInt(request.getParameter("usuarioId")));
             //System.out.println("HOSPITAL: "+request.getParameter("hospitalId"));
+            extB.setSalida_fecha(request.getParameter("fecha"));
             extB.setId_hospital(Integer.parseInt(request.getParameter("hospitalId")));
             
             if(extModel.nuevaSalida(extB)){

@@ -171,7 +171,7 @@
                 </div>
                </div> 
               <div class="control-group">
-              <label class="control-label">Fecha Entrada</label>
+              <label class="control-label">Fecha Salida</label>
               <div class="controls">
                 <div  data-date="12-02-2012" class="input-append date datepicker">
                   <input type="text" name="fecha" data-date-format="dd-mm-yyyy" value="20-10-2017" class="datepicker">
